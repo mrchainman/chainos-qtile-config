@@ -36,8 +36,8 @@ def create_bar(extra_bar = False):
             gen_spacer(),
 
             # hidden systray
-            *((w_systray,) if not extra_bar else ()),
-            separator(),
+            # *((w_systray,) if not extra_bar else ()),
+            # separator(),
 
             # WM layout indicator TODO improve
             *gen_current_layout(),

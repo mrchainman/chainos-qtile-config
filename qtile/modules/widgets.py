@@ -42,6 +42,8 @@ def open_powermenu():
 def open_calendar():
     qtile.cmd_spawn("toggle_cal")
 
+def open_wifi():
+    qtile.cmd_spawn("iwgtk")
 
 # TODO fix
 def toggle_maximize():
@@ -252,9 +254,9 @@ w_window_name = widget.WindowName(
 )
 
 # systray
-w_systray = widget.Systray(
-    padding=5,
-)
+# w_systray = widget.Systray(
+#     padding=5,
+# )
 
 # current layout
 def gen_current_layout():
@@ -282,7 +284,7 @@ def gen_current_layout():
 # battery
 w_battery = (
     (
-        widget.Battery(
+        widget.UPowerWidget(
             format="{char}",
             charge_char="",
             discharge_char="",
@@ -295,18 +297,10 @@ w_battery = (
             padding=8,
             decorations=_left_decor(colors[1]),
         ),
-        separator_sm(),
-        widget.Battery(
-            format="{percent:2.0%}",
-            show_short_text=False,
-            foreground=colors[1],
-            padding=8,
-            decorations=_right_decor(colors[5]),
-        ),
         separator(),
     )
-    if with_battery
-    else ()
+    # if with_battery
+    # else ()
 )
 
 # volume
@@ -329,38 +323,18 @@ w_volume = widget.PulseVolume(
 
 # internet
 w_wlan = (
-    (
-        widget.Wlan(
+        widget.WiFiIcon(
             format="󰖩",
             foreground=colors[10],
             disconnected_message="󰖪",
-            fontsize=16,
-            interface="wlo1",
+            fontsize=12,
+            interface="wlan0",
             update_interval=5,
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn("" + home + "/.local/bin/nmgui"),
-                # "Button3": lambda: qtile.cmd_spawn(myTerm + " -e nmtui"),
-            },
+            mouse_callbacks={ "Button3": open_wifi },
             padding=4,
             decorations=_left_decor(colors[2]),
         ),
-        separator_sm(),
-        widget.Wlan(
-            format="{percent:2.0%}",
-            disconnected_message=" ",
-            interface="wlo1",
-            update_interval=5,
-            mouse_callbacks={
-                "Button1": lambda: qtile.cmd_spawn("" + home + "/.local/bin/nmgui"),
-                # "Button3": lambda: qtile.cmd_spawn(myTerm + " -e nmtui"),
-            },
-            padding=8,
-            decorations=_right_decor(colors[2]),
-        ),
         separator(),
-    )
-    if with_wlan
-    else ()
 )
 
 # time, calendar
@@ -407,14 +381,4 @@ w_power = widget.TextBox(
     fontsize=18,
     padding=16,
     mouse_callbacks={"Button1": open_powermenu},
-)
-
-w_test = widget.WidgetBox(
-    close_button_location="right",
-    fontsize=24,
-    font="JetBrainsMono Nerd Font",
-    text_open=" ",
-    text_closed=" ",
-    widgets=[w_systray],
-    decorations=_left_decor(colors[2]),
 )
