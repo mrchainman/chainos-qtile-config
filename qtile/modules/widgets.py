@@ -322,7 +322,7 @@ w_wttr = (
 
 w_blue = (
         widget.Bluetooth(
-            hci=/dev_E1_4A_BB_C7_62_0F
+            hci="/dev_E1_4A_BB_C7_62_0F",
             foreground=colors[11],
             font="Font Awesome 6 Free Solid:style=Solid",
             fontsize=18,
