@@ -47,6 +47,8 @@ def open_wifi():
 def open_flame():
     qtile.cmd_spawn("flameshot gui")
 
+def open_wttr():
+    qtile.cmd_spawn("kitty --hold --class='wttr' curl https://wttr.in")
 # TODO fix
 # def toggle_maximize():
 #     lazy.window.toggle_maximize()
@@ -300,6 +302,18 @@ w_flame = (
         decorations=_left_decor(colors[8]),
         mouse_callbacks={"Button1": open_flame},
             )
+)
+
+w_wttr = (
+        widget.Wttr(
+            location = { 'Berlin': 'Berlin' },
+            font="JetBrainsMono Nerd Font",
+            fontsize=16,
+            foreground=colors[10],  # blue
+            padding=8,
+            decorations=_left_decor(colors[8]),
+            mouse_callbacks={"Button1": open_wttr},
+        )
 )
 
 w_power = widget.TextBox(

@@ -37,6 +37,8 @@ def create_bar(extra_bar = False):
             separator(),
             *gen_clock(),
             separator(),
+            w_wttr,
+            separator(),
             w_power,
             separator(),
         ],

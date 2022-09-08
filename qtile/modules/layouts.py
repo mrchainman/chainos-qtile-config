@@ -36,6 +36,7 @@ floating_layout = layout.Floating(
         Match(wm_class="Jitsi Meet"),  # Jitsi
         Match(wm_class="iwgtk"),  # Jitsi
         Match(wm_class="proton-bridge"),  # Jitsi
+        Match(wm_class="wttr"),  # Jitsi
 
         # TODO add matches
     ],
