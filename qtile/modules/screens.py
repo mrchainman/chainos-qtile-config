@@ -36,7 +36,7 @@ def create_bar(extra_bar = False):
             separator(),
             *w_wlan,
             separator(),
-            *w_blue,
+            w_blue,
             separator(),
             *gen_clock(),
             separator(),
