@@ -218,6 +218,9 @@ def gen_current_layout():
         # ),
         widget.CurrentLayoutIcon(
             background=colors[8],
+            foreground=colors[11],
+            font="JetBrainsMono Nerd Font",
+            fontsize=12,
             padding=8,
             decorations=_left_decor(colors[8]),
         ),
