@@ -127,11 +127,10 @@ def _right_decor(color):
 
 # hollow knight icon
 w_hk = widget.Image(
-    background=colors[8],
-    margin_x=14,
-    margin_y=3,
+    margin=5,
     mouse_callbacks={"Button1": open_launcher},
     filename="~/.config/qtile/icons/hkskull.png",
+    decorations=_left_decor(colors[8]),
 )
 
 
@@ -305,10 +304,10 @@ w_flame = (
 
 w_power = widget.TextBox(
     text="⏻",
-    background=colors[8],
-    foreground="#000000",
+    foreground=colors[11],
     font="Font Awesome 6 Free Solid:style=Solid",
     fontsize=18,
     padding=16,
+    decorations=_left_decor(colors[8]),
     mouse_callbacks={"Button1": open_powermenu},
 )
