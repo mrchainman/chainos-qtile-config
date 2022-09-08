@@ -20,6 +20,7 @@ def create_bar(extra_bar = False):
     """Create top bar, defined as function to allow duplication in other monitors"""
     return bar.Bar(
         [
+            separator(),
             w_hk,
             *gen_groupbox(),
             gen_spacer(),
@@ -37,6 +38,7 @@ def create_bar(extra_bar = False):
             *gen_clock(),
             separator(),
             w_power,
+            separator(),
         ],
         30,
         margin=[4, 6, 2, 6],
