@@ -20,52 +20,22 @@ def create_bar(extra_bar = False):
     """Create top bar, defined as function to allow duplication in other monitors"""
     return bar.Bar(
         [
-            # w_sys_icon,
             w_hk,
-            # Workspaces
             *gen_groupbox(),
-
-            # Left spacer
             gen_spacer(),
-
-            # Window name
             w_window_name_icon,
             w_window_name,
-
-            # Right spacer
             gen_spacer(),
-
-            # hidden systray
-            # *((w_systray,) if not extra_bar else ()),
-            # separator(),
-
-            # WM layout indicator TODO improve
             *gen_current_layout(),
-
-            # Battery
+            separator(),
             *w_battery,
-
-            # Sound
-            # w_volume_icon,
-            separator_sm(),
-            # w_volume,
             separator(),
             w_flame,
-            separator_sm(),
-            # w_volume,
             separator(),
-
-            # Wlan
             *w_wlan,
-
-            # Clock
             separator(),
-
             *gen_clock(),
-
-            # CLipboard
-            # w_clipboard,
-            # Power button
+            separator(),
             w_power,
         ],
         30,
