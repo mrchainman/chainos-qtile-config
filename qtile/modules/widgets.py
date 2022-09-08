@@ -34,7 +34,6 @@ group_box_settings = {
 def open_launcher():
     qtile.cmd_spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi")
 
-
 def open_powermenu():
     qtile.cmd_spawn("power")
 
@@ -47,9 +46,10 @@ def open_wifi():
 
 def open_flame():
     qtile.cmd_spawn("flameshot gui")
+
 # TODO fix
-def toggle_maximize():
-    lazy.window.toggle_maximize()
+# def toggle_maximize():
+#     lazy.window.toggle_maximize()
 
 
 def parse_window_name(text):
@@ -65,7 +65,6 @@ def parse_window_name(text):
 # separator
 def separator():
     return widget.Sep(
-        # foreground=colors[18],
         foreground=colors[12],
         padding=4,
         linewidth=3,
@@ -74,7 +73,6 @@ def separator():
 
 def separator_sm():
     return widget.Sep(
-        # foreground=colors[18],
         foreground=colors[12],
         padding=1,
         linewidth=1,
@@ -101,36 +99,6 @@ def _full_decor(color):
         )
     ]
 
-
-# def _left_decor(color):
-#     return [
-#         RectDecoration(
-#             colour=color,
-#             radius=[4, 0, 0, 4],
-#             filled=True,
-#             padding_y=4,
-#         )
-#     ]
-
-
-# def _right_decor(color):
-#     return [
-#         RectDecoration(
-#             colour=colors[10],
-#             radius=0,
-#             filled=True,
-#             padding_y=5,
-#             padding_x=0,
-#         ),
-#         RectDecoration(
-#             colour=color,
-#             radius=[0, 4, 4, 0],
-#             filled=False,
-#             line_width=2,
-#             padding_y=5,
-#             padding_x=0,
-#         ),
-#     ]
 
 
 def _left_decor(color, padding_x=None, padding_y=4):
@@ -159,29 +127,13 @@ def _right_decor(color):
 
 # hollow knight icon
 w_hk = widget.Image(
-    background=colors[0],
+    background=colors[8],
     margin_x=14,
     margin_y=3,
     mouse_callbacks={"Button1": open_launcher},
     filename="~/.config/qtile/icons/hkskull.png",
 )
 
-# left icon
-w_sys_icon = widget.TextBox(
-    # text=" ",
-    # text="",
-    # text="ﮊ",
-    # text="",
-    # text="",
-    text="",
-    font="Font Awesome 6 Free Solid",
-    fontsize=22,
-    foreground="#000000",
-    # foreground=colors[2],
-    background=colors[0],
-    padding=16,
-    mouse_callbacks={"Button1": open_launcher},
-)
 
 # workspace groups
 w_groupbox_1 = widget.GroupBox(  # WEB
@@ -252,13 +204,9 @@ w_window_name = widget.WindowName(
     empty_group_string="Desktop",
     max_chars=40,
     parse_text=parse_window_name,
-    mouse_callbacks={"Button1": toggle_maximize},
+    # mouse_callbacks={"Button1": toggle_maximize},
 )
 
-# systray
-# w_systray = widget.Systray(
-#     padding=5,
-# )
 
 # current layout
 def gen_current_layout():
@@ -349,7 +297,7 @@ w_flame = (
 
 w_power = widget.TextBox(
     text="⏻",
-    background=colors[0],
+    background=colors[8],
     foreground="#000000",
     font="Font Awesome 6 Free Solid:style=Solid",
     fontsize=18,
