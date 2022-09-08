@@ -305,7 +305,7 @@ w_battery = (
             font="JetBrainsMono Nerd Font",
             fontsize=12,
             padding=8,
-            decorations=_left_decor(colors[19]),
+            decorations=_left_decor(colors[8]),
         ),
         separator(),
     )
@@ -313,23 +313,6 @@ w_battery = (
     # else ()
 )
 
-# volume
-# w_volume_icon = widget.TextBox(
-#     text="墳",
-#     foreground=colors[10],
-#     font="JetBrainsMono Nerd Font",
-#     fontsize=20,
-#     padding=8,
-#     decorations=_left_decor(colors[6]),
-# )
-
-# w_volume = widget.PulseVolume(
-#     foreground=colors[6],
-#     limit_max_volume="True",
-#     # mouse_callbacks={"Button3": open_pavu},
-#     padding=8,
-#     decorations=_right_decor(colors[6]),
-# )
 
 # internet
 w_wlan = (
@@ -345,7 +328,7 @@ w_wlan = (
             update_interval=5,
             mouse_callbacks={"Button3": open_wifi},
             padding=8,
-            decorations=_left_decor(colors[19]),
+            decorations=_left_decor(colors[8]),
         ),
         separator(),
 )
@@ -364,14 +347,6 @@ def gen_clock():
             decorations=_left_decor(color),
             mouse_callbacks={"Button1": open_calendar},
         ),
-        separator_sm(),
-        widget.Clock(
-            format="%b %d, %H:%M",
-            foreground=color,
-            padding=8,
-            decorations=_right_decor(color),
-            mouse_callbacks={"Button1": open_calendar},
-        ),
         separator(),
     )
 
@@ -387,17 +362,6 @@ w_flame = (
             )
 )
 
-# Clipboard
-# w_clipboard = widget.Clipboard(
-#     test="©",
-#     background=colors[0],
-#     foreground="#000000",
-#     font="Font Awesome 6 Free Solid:style=Solid",
-#     fontsize=18,
-#     padding=16,
-#     mouse_callbacks={"Button1": open_powermenu},
-# )
-# power menu
 w_power = widget.TextBox(
     text="⏻",
     background=colors[0],
