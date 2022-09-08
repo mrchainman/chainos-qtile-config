@@ -51,7 +51,7 @@ def open_wttr():
     qtile.cmd_spawn("kitty --hold --class='wttr' curl https://wttr.in")
 
 def open_bluetooth():
-    qtile.cmd_spawn("blueman")
+    qtile.cmd_spawn("blueman-manager")
 
 # TODO fix
 # def toggle_maximize():
