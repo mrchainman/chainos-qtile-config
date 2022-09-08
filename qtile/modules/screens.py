@@ -46,15 +46,21 @@ def create_bar(extra_bar = False):
             *w_battery,
 
             # Sound
-            w_volume_icon,
+            # w_volume_icon,
             separator_sm(),
-            w_volume,
+            # w_volume,
+            separator(),
+            w_flame,
+            separator_sm(),
+            # w_volume,
             separator(),
 
             # Wlan
             *w_wlan,
 
             # Clock
+            separator(),
+
             *gen_clock(),
 
             # CLipboard

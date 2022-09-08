@@ -45,6 +45,8 @@ def open_calendar():
 def open_wifi():
     qtile.cmd_spawn("iwgtk")
 
+def open_flame():
+    qtile.cmd_spawn("flameshot gui")
 # TODO fix
 def toggle_maximize():
     lazy.window.toggle_maximize()
@@ -312,22 +314,22 @@ w_battery = (
 )
 
 # volume
-w_volume_icon = widget.TextBox(
-    text="墳",
-    foreground=colors[10],
-    font="JetBrainsMono Nerd Font",
-    fontsize=20,
-    padding=8,
-    decorations=_left_decor(colors[6]),
-)
+# w_volume_icon = widget.TextBox(
+#     text="墳",
+#     foreground=colors[10],
+#     font="JetBrainsMono Nerd Font",
+#     fontsize=20,
+#     padding=8,
+#     decorations=_left_decor(colors[6]),
+# )
 
-w_volume = widget.PulseVolume(
-    foreground=colors[6],
-    limit_max_volume="True",
-    # mouse_callbacks={"Button3": open_pavu},
-    padding=8,
-    decorations=_right_decor(colors[6]),
-)
+# w_volume = widget.PulseVolume(
+#     foreground=colors[6],
+#     limit_max_volume="True",
+#     # mouse_callbacks={"Button3": open_pavu},
+#     padding=8,
+#     decorations=_right_decor(colors[6]),
+# )
 
 # internet
 w_wlan = (
@@ -341,7 +343,7 @@ w_wlan = (
             fontsize=12,
             interface="wlan0",
             update_interval=5,
-            mouse_callbacks={ "Button3": open_wifi },
+            mouse_callbacks={"Button3": open_wifi},
             padding=8,
             decorations=_left_decor(colors[19]),
         ),
@@ -372,6 +374,18 @@ def gen_clock():
         ),
         separator(),
     )
+
+w_flame = (
+    widget.TextBox(
+        text="📸",
+        font="JetBrainsMono Nerd Font",
+        fontsize=16,
+        foreground=colors[10],  # blue
+        padding=8,
+        decorations=_left_decor(colors[8]),
+        mouse_callbacks={"Button1": open_flame},
+            )
+)
 
 # Clipboard
 # w_clipboard = widget.Clipboard(
