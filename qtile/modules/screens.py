@@ -22,6 +22,7 @@ def create_bar(extra_bar = False):
         [
             separator(),
             w_hk,
+            separator(),
             *gen_groupbox(),
             gen_spacer(),
             w_window_name_icon,
