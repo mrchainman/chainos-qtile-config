@@ -49,6 +49,10 @@ def open_flame():
 
 def open_wttr():
     qtile.cmd_spawn("kitty --hold --class='wttr' curl https://wttr.in")
+
+def open_bluetooth():
+    qtile.cmd_spawn("blueman")
+
 # TODO fix
 # def toggle_maximize():
 #     lazy.window.toggle_maximize()
@@ -315,6 +319,17 @@ w_wttr = (
             mouse_callbacks={"Button1": open_wttr},
         )
 )
+
+w_blue = (
+        widget.Bluetooth(
+            foreground=colors[11],
+            font="Font Awesome 6 Free Solid:style=Solid",
+            fontsize=18,
+            padding=16,
+            decorations=_left_decor(colors[8]),
+            mouse_callbacks={"Button1": open_bluetooth},
+            )
+        )
 
 w_power = widget.TextBox(
     text="⏻",
