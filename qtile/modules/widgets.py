@@ -211,8 +211,13 @@ w_window_name = widget.WindowName(
 # current layout
 def gen_current_layout():
     return (
-        widget.CurrentLayout(
-            foreground=colors[11],
+        # widget.CurrentLayout(
+        #     foreground=colors[11],
+        #     padding=8,
+        #     decorations=_left_decor(colors[8]),
+        # ),
+        widget.CurrentLayoutIcon(
+            background=colors[8],
             padding=8,
             decorations=_left_decor(colors[8]),
         ),
