@@ -262,24 +262,12 @@ w_window_name = widget.WindowName(
 
 # current layout
 def gen_current_layout():
-    color = colors[5]
-
     return (
-        # widget.CurrentLayoutIcon(
-        #     # custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-        #     padding=3,
-        #     scale=0.65,
-        #     use_mask=True,
-        #     foreground=colors[12],
-        #     decorations=_left_decor(color),
-        # ),
-        # separator_sm(),
         widget.CurrentLayout(
-            foreground=color,
+            foreground=colors[11],
             padding=8,
-            decorations=_right_decor(color),
+            decorations=_left_decor(colors[8]),
         ),
-        separator(),
     )
 
 
@@ -307,7 +295,6 @@ w_battery = (
             padding=8,
             decorations=_left_decor(colors[8]),
         ),
-        separator(),
     )
     # if with_battery
     # else ()
@@ -330,7 +317,6 @@ w_wlan = (
             padding=8,
             decorations=_left_decor(colors[8]),
         ),
-        separator(),
 )
 
 # time, calendar
@@ -347,7 +333,6 @@ def gen_clock():
             decorations=_left_decor(color),
             mouse_callbacks={"Button1": open_calendar},
         ),
-        separator(),
     )
 
 w_flame = (
