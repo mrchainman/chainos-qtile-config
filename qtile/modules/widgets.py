@@ -10,10 +10,10 @@ import os
 home = os.path.expanduser("~")
 
 group_box_settings = {
-    "active": colors[0],
-    "block_highlight_text_color": colors[0],
-    "this_current_screen_border": colors[0],
-    "this_screen_border": colors[0],
+    "active": colors[8],
+    "block_highlight_text_color": colors[8],
+    "this_current_screen_border": colors[8],
+    "this_screen_border": colors[8],
     "urgent_border": colors[3],
     "background": colors[12],  # background is [10-12]
     "other_current_screen_border": colors[12],
