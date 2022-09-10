@@ -108,10 +108,9 @@ keys = [
     # qtile
     Key([mod, shift], "r", lazy.restart(), desc="Restart Qtile"),
     # menus
-    Key([mod], "e", lazy.spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi"), desc="Launch Rofi"),
-    Key([mod], "c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"), desc="Launch Rofi"),
-    Key([mod, shift], "e", lazy.spawn("power"), desc="Power Menu"),
-    Key([mod], "w", lazy.spawn("garuda-welcome"), desc="Launch Garuda Welcome"),
+    Key([mod], "e", lazy.spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi"), desc="Launch Rofi Launcher"),
+    Key([mod], "c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"), desc="Launch Rofi Clipboard Manager"),
+    Key([mod, shift], "e", lazy.spawn("power"), desc="Launc Rofi Power Menu"),
     # focus, move windows and screens
     Key([mod], "j", lazy.layout.down(), desc="Move focus down in current stack pane"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up in current stack pane"),
@@ -137,69 +136,33 @@ keys = [
     Key([mod, shift], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
     Key([mod], "i", lazy.window.toggle_floating(), desc="Toggle floating mode for a window"),
     # program launches
-    Key([mod], "b", lazy.spawn("bg.sh new"), desc="Change Wallpaper"),
-    Key([mod], "p", lazy.spawn("passmenu"), desc="Passmenu"),
+    Key([mod], "b", lazy.spawn("chainos-background-switcher new"), desc="Change Wallpaper"),
+    Key([mod], "p", lazy.spawn("passmenu"), desc="Launch Passmenu"),
     Key([mod], "f", lazy.spawn("qutebrowser"), desc="Launch Qutebrowser"),
-    Key([alt], "e", lazy.spawn("rofi -modi emoji -show emoji"), desc="Emoji Picker"),
-    Key([alt], "l", lazy.spawn("betterlockscreen -l blur"), desc="Emoji Picker"),
+    Key([alt], "e", lazy.spawn("rofi -modi emoji -show emoji"), desc="Launch Rofi Emoji Picker"),
+    Key([alt], "l", lazy.spawn("betterlockscreen -l blur"), desc="Lock screen"),
     Key([alt], "p", lazy.spawn("picom-toggle.sh"), desc="Toggle picom"),
     Key([mod], "o", lazy.spawn("opac.sh"), desc="Change opacity of Kitty"),
-    Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle("term")),
+    Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle("term"), desc="Toggle Scratchpad"),
     # Dunst
-    Key([control], "space", lazy.spawn("dunstctl close")),
-    Key([control, shift], "space", lazy.spawn("dunstctl close-all")),
-    Key([control], "grave", lazy.spawn("dunstctl history-pop")),
-    Key([control, shift], "period", lazy.spawn("dunstctl context")),
+    Key([control], "space", lazy.spawn("dunstctl close"), desc="Close last Notification"),
+    Key([control, shift], "space", lazy.spawn("dunstctl close-all"), desc="Close all Notifications"),
+    Key([control], "grave", lazy.spawn("dunstctl history-pop"), desc="Show old Notifications"),
+    Key([control, shift], "period", lazy.spawn("dunstctl context"), desc="Execute Notification context"),
     # Umlaute
     Key([alt], "a", lazy.spawn("umlaute.sh a"), desc="Copy Ä to clipboard"),
     Key([alt], "o", lazy.spawn("umlaute.sh o"), desc="Copy Ö to clipboard"),
     Key([alt], "u", lazy.spawn("umlaute.sh u"), desc="Copy Ü to clipboard"),
     # audio stuff
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("./.config/qtile/scripts/temp_vol.sh up"), desc="Increase volume",),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("./.config/qtile/scripts/temp_vol.sh down"), desc="Decrease volume",),
-    Key([], "XF86AudioMute", lazy.spawn("./.config/qtile/scripts/temp_vol.sh mute"), desc="Toggle volume mute",),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pulsemixer --change-volume +10"), desc="Increase volume",),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pulsemixer --change-volume -10"), desc="Decrease volume",),
+    Key([], "XF86AudioMute", lazy.spawn("pulsemixer --toggle-mute"), desc="Toggle volume mute",),
     Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), desc="Play last audio",),
     Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc="Play next audio"),
     Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), desc="Toggle play/pause audio"),
-    # Key([mod], "F8", lazy.spawn("playerctl stop"), desc="Stop audio"),
-    # eww
-    Key([mod], "d", lazy.spawn("toggle_eww"), desc="Toggle eww dashboard",),
     # brightness
     Key([], 'XF86MonBrightnessUp', lazy.function(backlight('inc')), desc='Increase brightness'),
     Key([], 'XF86MonBrightnessDown', lazy.function(backlight('dec')), desc='Decrease brightness'),
+    # eww
+    Key([mod], "d", lazy.spawn("toggle_eww"), desc="Toggle EWW Dashboard",),
 ]
-
-def show_keys():
-    key_help = ""
-    for k in keys:
-        mods = ""
-
-        for m in k.modifiers:
-            if m == "mod4":
-                mods += "Super + "
-            else:
-                mods += m.capitalize() + " + "
-
-        if len(k.key) > 1:
-            mods += k.key.capitalize()
-        else:
-            mods += k.key
-
-        key_help += "{:<25} {}".format(mods, k.desc + "\n")
-
-    return key_help
-
-keys.extend(
-    [
-        Key(
-            [mod],
-            "a",
-            lazy.spawn(
-                "sh -c 'echo \""
-                + show_keys()
-                + '" | rofi -dmenu -theme ~/.config/rofi/configTall.rasi -i -p ""\''
-            ),
-            desc="Print keyboard bindings",
-        ),
-    ]
-)
