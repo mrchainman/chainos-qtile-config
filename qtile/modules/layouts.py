@@ -13,10 +13,11 @@ layout_theme = {
 }
 
 layouts = [
-    layout.Floating(**layout_theme),
     layout.Tile(**layout_theme),
     layout.Bsp(**layout_theme),
     layout.Matrix(**layout_theme),
+    layout.Zoomy(**layout_theme),
+    layout.Floating(**layout_theme),
 ]
 
 floating_layout = layout.Floating(
