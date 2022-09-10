@@ -216,14 +216,8 @@ w_window_name = widget.WindowName(
 # current layout
 def gen_current_layout():
     return (
-        # widget.CurrentLayout(
-        #     foreground=colors[11],
-        #     padding=8,
-        #     decorations=_left_decor(colors[8]),
-        # ),
         widget.CurrentLayoutIcon(
             scale=0.6,
-            foreground=colors[11],
             font="JetBrainsMono Nerd Font",
             fontsize=12,
             padding=8,
@@ -269,9 +263,8 @@ w_wlan = (
             inactive_colour=colors[16],
             background=colors[12],
             foreground=colors[11],
-            font="JetBrainsMono Nerd Font",
-            # disconnected_message="󰖪",
-            fontsize=12,
+            font="Font Awesome 6 Free Solid:style=Solid",
+            fontsize=16,
             interface="wlan0",
             update_interval=5,
             mouse_callbacks={"Button3": open_wifi},
@@ -298,14 +291,14 @@ def gen_clock():
 
 w_flame = (
     widget.TextBox(
-        text="📸",
-        font="JetBrainsMono Nerd Font",
-        fontsize=16,
+        text="",
+        font="Font Awesome 6 Free Solid:style=Solid",
         foreground=colors[10],  # blue
+        fontsize=30,
         padding=8,
         decorations=_left_decor(colors[8]),
         mouse_callbacks={"Button1": open_flame},
-            )
+        )
 )
 
 w_wttr = (
@@ -322,10 +315,11 @@ w_wttr = (
 
 w_blue = (
         widget.Bluetooth(
+            fmt=" {}",
             hci="/dev_E1_4A_BB_C7_62_0F",
             foreground=colors[11],
             font="Font Awesome 6 Free Solid:style=Solid",
-            fontsize=18,
+            fontsize=16,
             padding=16,
             decorations=_left_decor(colors[8]),
             mouse_callbacks={"Button1": open_bluetooth},

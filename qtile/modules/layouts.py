@@ -5,7 +5,7 @@ from utils.settings import colors
 
 layout_theme = {
     "border_width": 2,
-    "margin": 4,
+    "margin": 20,
     "border_focus": colors[0],
     "border_normal": colors[12],
     "font": "JetBrainsMono Nerd Font",
@@ -13,10 +13,10 @@ layout_theme = {
 }
 
 layouts = [
-    layout.Bsp(**layout_theme, fair=False, border_on_single=True),
-    layout.MonadTall(**layout_theme, ratio=0.6),
-    layout.Columns(**layout_theme, insert_position=1, border_on_single=True),
-    layout.Floating(**layout_theme)
+    layout.Floating(**layout_theme),
+    layout.Tile(**layout_theme),
+    layout.Bsp(**layout_theme),
+    layout.Matrix(**layout_theme),
 ]
 
 floating_layout = layout.Floating(
