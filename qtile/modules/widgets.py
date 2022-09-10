@@ -135,7 +135,7 @@ def _right_decor(color):
 w_hk = widget.Image(
     margin=5,
     mouse_callbacks={"Button1": open_launcher},
-    filename="~/.config/qtile/icons/hkskull.png",
+    filename="~/.config/qtile/icons/python.png",
     decorations=_left_decor(colors[8]),
 )
 
