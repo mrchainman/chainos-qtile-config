@@ -2,7 +2,7 @@ from libqtile.config import Group, Key, Match, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile import qtile
 from utils.settings import workspace_names
-from modules.keys import keys, mod, shift
+from modules.keys import keys, mod, shift, alt
 # from libqtile.backend.base import Window, Internal
 # from libqtile import hook
 
@@ -14,20 +14,96 @@ from modules.keys import keys, mod, shift
 #                 w.togroup()
 
 workspaces = [
-    {"name": workspace_names[0], "key": "1", "matches": [Match(wm_class="qutebrowser")], "lay": "monadtall"},
-    {"name": workspace_names[1], "key": "2", "matches": [Match(wm_class="coms"),Match(wm_class="mon")], "lay": "columns"},
-    {"name": workspace_names[2], "key": "3", "matches": [Match(wm_class="term")], "lay": "columns"},
-    {"name": workspace_names[3], "key": "4", "matches": [Match(wm_class="neovim")], "lay": "columns"},
-    {"name": workspace_names[4], "key": "5", "matches": [Match(wm_class="Spotify")], "lay": "columns"},
-    {"name": workspace_names[5], "key": "6", "matches": [Match(wm_class="Jitsi Meet")], "lay": "floating"},
-    {"name": workspace_names[6], "key": "7", "matches": [Match(wm_class="TeamworkTimer"),Match(wm_class="KeePassXC"),Match(wm_class="TelegramDesktop")], "lay": "columns"},
+    {
+        "name": workspace_names[0],
+        "key": "0",
+        "matches": [
+            Match( wm_class="qutebrowser"),
+            ],
+        "lay": "monadtall",
+    },
+    {
+        "name": workspace_names[1],
+        "key": "1",
+        "matches": [
+            Match(wm_class="coms"),
+            Match(wm_class="mon"),
+            ],
+        "lay": "columns",
+    },
+    {
+        "name": workspace_names[2],
+        "key": "2",
+        "matches": [
+            Match(wm_class="term"),
+            ],
+        "lay": "columns",
+    },
+    {
+        "name": workspace_names[3],
+        "key": "3",
+        "matches": [
+            Match(wm_class="neovim"),
+            ],
+        "lay": "columns",
+    },
+    {
+        "name": workspace_names[4],
+        "key": "4",
+        "matches": [
+            Match(wm_class="Spotify"),
+            ],
+        "lay": "columns",
+    },
+    {
+        "name": workspace_names[5],
+        "key": "5",
+        "matches": [
+            Match(wm_class="Jitsi Meet"),
+            Match(wm_class="TelegramDesktop"),
+            ],
+        "lay": "columns",
+    },
+    {
+        "name": workspace_names[6],
+        "key": "6",
+        "matches": [
+            Match(wm_class="TeamworkTimer"),
+            Match(wm_class="KeePassXC"),
+            ],
+        "lay": "columns",
+    },
+    {
+        "name": workspace_names[7],
+        "key": "7",
+        "lay": "bsp",
+        "start": False,
+        "keep": False,
+    },
+    {
+        "name": workspace_names[8],
+        "key": "8",
+        "lay": "bsp",
+        "start": False,
+        "keep": False,
+    },
+    {
+        "name": workspace_names[9],
+        "key": "9",
+        "lay": "floating",
+        "start": False,
+        "keep": False,
+    },
 ]
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i) for i in "0123456789"]
 
 for workspace in workspaces:
     matches = workspace["matches"] if "matches" in workspace else None
-    groups.append(Group(workspace["name"], matches=matches, layout=workspace["lay"]))
+    lay = workspace["lay"] if "lay" in workspace else "bsp"
+    keep = workspace["keep"] if "keep" in workspace else True
+    start = workspace["start"] if "start" in workspace else True
+    groups.append(Group(workspace["name"], matches=matches, layout=lay, persist=keep, init=False))
     keys.append(
         Key(
             [mod],
@@ -47,6 +123,15 @@ for workspace in workspaces:
             desc="Move focused window to another group",
         )
     )
+    if start == False:
+        keys.append(
+            Key(
+                [alt],
+                workspace["key"],
+                lazy.addgroup(workspace["name"]),
+                desc="Create this Group"
+            )
+        )
 
 groups.append(
     ScratchPad(

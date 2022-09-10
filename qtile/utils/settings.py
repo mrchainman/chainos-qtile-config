@@ -23,37 +23,17 @@ colors = [
     ["#F5E0DC", "#F5E0DC"],  # 20 rosewater
 ]
 
-# Workspaces with names
-# workspace_names = [
-#     " WEB",
-#     " DEV",
-#     " SYS",
-#     " DISC",
-#     " MUS",
-#     " DIR",
-#     " NOT",
-# ]
-
-# Nerd Font icons without names
-# workspace_names = [
-#     "",
-#     "",
-#     "",
-#     "ﭮ",
-#     "",
-#     "",
-#     "",
-# ]
-
-# Without names
 workspace_names = [
-    "🌐",
-    "📧",
-    "💻",
-    "🐋",
-    "🎵",
-    "📹",
-    "🥶",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
 ]
 
 # General
@@ -61,7 +41,7 @@ wallpaper_main = "~/.config/qtile/wallpapers/hk1.jpg"
 wallpaper_sec = "~/.config/qtile/wallpapers/hk1.jpg"
 
 # Hardware
-network = "enp1s0"  # network interface name
-two_monitors = True # number of screens in the system
-with_battery = False  # whether the system uses a battery or not
-with_wlan = False   # whether the system uses wlan/internet or not
+network = "bond0"  # network interface name
+two_monitors = False # number of screens in the system
+with_battery = True  # whether the system uses a battery or not
+with_wlan = True   # whether the system uses wlan/internet or not

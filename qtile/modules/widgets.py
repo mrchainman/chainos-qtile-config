@@ -27,7 +27,7 @@ group_box_settings = {
     "highlight_method": "line",
     "padding_x": 10,
     "padding_y": 16,
-    "rounded": False,
+    "rounded": True,
 }
 
 # functions for callbacks
@@ -141,53 +141,53 @@ w_hk = widget.Image(
 
 
 # workspace groups
-w_groupbox_1 = widget.GroupBox(  # WEB
-    font="Font Awesome 6 Brands",
-    visible_groups=[workspace_names[0]],
-    **group_box_settings,
-)
+# w_groupbox_1 = widget.GroupBox(  # WEB
+#     font="Font Awesome 6 Brands",
+#     visible_groups=[workspace_names[0]],
+#     **group_box_settings,
+# )
 
-w_groupbox_2 = widget.GroupBox(  # DEV, SYS
-    font="Font Awesome 6 Free Solid",
-    visible_groups=[workspace_names[1], workspace_names[2]],
-    **group_box_settings,
-)
+# w_groupbox_2 = widget.GroupBox(  # DEV, SYS
+#     font="Font Awesome 6 Free Solid",
+#     visible_groups=[workspace_names[1], workspace_names[2]],
+#     **group_box_settings,
+# )
 
-w_groupbox_3 = widget.GroupBox(  # DISC, MUS
-    font="Font Awesome 6 Brands",
-    visible_groups=[workspace_names[3], workspace_names[4]],
-    **group_box_settings,
-)
+# w_groupbox_3 = widget.GroupBox(  # DISC, MUS
+#     font="Font Awesome 6 Brands",
+#     visible_groups=[workspace_names[3], workspace_names[4]],
+#     **group_box_settings,
+# )
 
-w_groupbox_4 = widget.GroupBox(  # FILE, NOT
-    font="Font Awesome 6 Free Solid",
-    visible_groups=[workspace_names[5], workspace_names[6]],
-    **group_box_settings,
-)
+# w_groupbox_4 = widget.GroupBox(  # FILE, NOT
+#     font="Font Awesome 6 Free Solid",
+#     visible_groups=[workspace_names[5], workspace_names[6]],
+#     **group_box_settings,
+# )
 
 
 def gen_groupbox():
     return (
         widget.GroupBox(  # WEB
             font="Font Awesome 6 Brands",
-            visible_groups=[workspace_names[0]],
+            # visible_groups=[workspace_names[0]],
             **group_box_settings,
         ),
-        widget.GroupBox(  # DEV, SYS
-            font="Font Awesome 6 Free Solid",
-            visible_groups=[workspace_names[1], workspace_names[2]],
-            **group_box_settings,
-        ),
-        widget.GroupBox(  # DISC, MUS
-            font="Font Awesome 6 Brands",
-            visible_groups=[workspace_names[3], workspace_names[4]],
-            **group_box_settings,
-        ),
-        widget.GroupBox(  # FILE, NOT
-            font="Font Awesome 6 Free Solid",
-            visible_groups=[workspace_names[5], workspace_names[6]],
-            **group_box_settings,
-        ),
+        # widget.GroupBox(  # DEV, SYS
+        #     font="Font Awesome 6 Free Solid",
+        #     visible_groups=[workspace_names[1], workspace_names[2]],
+        #     **group_box_settings,
+        # ),
+        # widget.GroupBox(  # DISC, MUS
+        #     font="Font Awesome 6 Brands",
+        #     visible_groups=[workspace_names[3], workspace_names[4]],
+        #     **group_box_settings,
+        # ),
+        # widget.GroupBox(  # FILE, NOT
+        #     font="Font Awesome 6 Free Solid",
+        #     visible_groups=[workspace_names[5], workspace_names[6]],
+        #     **group_box_settings,
+        # ),
     )
 
 
