@@ -35,7 +35,7 @@ def open_launcher():
     qtile.cmd_spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi")
 
 def open_powermenu():
-    qtile.cmd_spawn("power")
+    qtile.cmd_spawn("chainos-toggle_eww")
 
 
 def open_calendar():
