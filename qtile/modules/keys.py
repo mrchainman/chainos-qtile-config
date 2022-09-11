@@ -110,7 +110,7 @@ keys = [
     # menus
     Key([mod], "e", lazy.spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi"), desc="Launch Rofi Launcher"),
     Key([mod], "c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"), desc="Launch Rofi Clipboard Manager"),
-    Key([mod, shift], "e", lazy.spawn("power"), desc="Launc Rofi Power Menu"),
+    Key([mod, shift], "e", lazy.spawn("chainos-toggle_eww"), desc="Launc Eww Power Menu"),
     # focus, move windows and screens
     Key([mod], "j", lazy.layout.down(), desc="Move focus down in current stack pane"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up in current stack pane"),
@@ -164,5 +164,4 @@ keys = [
     Key([], 'XF86MonBrightnessUp', lazy.function(backlight('inc')), desc='Increase brightness'),
     Key([], 'XF86MonBrightnessDown', lazy.function(backlight('dec')), desc='Decrease brightness'),
     # eww
-    Key([mod], "d", lazy.spawn("toggle_eww"), desc="Toggle EWW Dashboard",),
 ]
