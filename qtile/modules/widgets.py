@@ -287,8 +287,12 @@ w_cal = (
 )
 
 w_clock = (
-            widget.Clock
+    widget.Clock(
+        foreground=colors[10],  # blue
+        padding=8,
+        decorations=_left_decor(colors[8]),
         )
+)
 
 w_flame = (
     widget.TextBox(
