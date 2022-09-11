@@ -274,20 +274,21 @@ w_wlan = (
 )
 
 # time, calendar
-def gen_clock():
-    color = colors[8]
-
-    return (
-        widget.TextBox(
+w_cal = (
+            widget.TextBox(
             text="",
             font="JetBrainsMono Nerd Font",
             fontsize=16,
             foreground=colors[10],  # blue
             padding=8,
-            decorations=_left_decor(color),
+            decorations=_left_decor(colors[8]),
             mouse_callbacks={"Button1": open_calendar},
-        ),
     )
+)
+
+w_clock = (
+            widget.Clock
+        )
 
 w_flame = (
     widget.TextBox(
