@@ -39,7 +39,7 @@ def open_powermenu():
 
 
 def open_calendar():
-    qtile.cmd_spawn("toggle_cal")
+    qtile.cmd_spawn("chainos-toggle_cal")
 
 def open_wifi():
     qtile.cmd_spawn("iwgtk")
