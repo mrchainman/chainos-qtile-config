@@ -10,20 +10,11 @@ import os
 home = os.path.expanduser("~")
 
 group_box_settings = {
-    "active": colors[8],
-    "block_highlight_text_color": colors[8],
-    "this_current_screen_border": colors[8],
-    "this_screen_border": colors[8],
-    "urgent_border": colors[3],
-    "background": colors[12],  # background is [10-12]
-    "other_current_screen_border": colors[12],
-    "other_screen_border": colors[12],
-    "highlight_color": colors[13],
-    "inactive": colors[14],
-    "foreground": colors[18],
-    "borderwidth": 2,
+    "active": colors[4],
+    "inactive": colors[21],
+    "block_highlight_text_color": colors[10],
+    "highlight_color": colors[8],
     "disable_drag": True,
-    "fontsize": 14,
     "highlight_method": "line",
     "padding_x": 10,
     "padding_y": 16,
@@ -71,15 +62,21 @@ def parse_window_name(text):
 # separator
 def separator():
     return widget.Sep(
-        foreground=colors[12],
+        foreground=colors[21],
         padding=4,
         linewidth=3,
     )
 
+def separator_bg():
+    return widget.Sep(
+        foreground=colors[21],
+        padding=4,
+        linewidth=40,
+    )
 
 def separator_sm():
     return widget.Sep(
-        foreground=colors[12],
+        foreground=colors[21],
         padding=1,
         linewidth=1,
         size_percent=55,
@@ -95,17 +92,6 @@ base_decor = {
 }
 
 
-def _full_decor(color):
-    return [
-        RectDecoration(
-            colour=color,
-            radius=4,
-            filled=True,
-            padding_y=4,
-        )
-    ]
-
-
 
 def _left_decor(color, padding_x=None, padding_y=4):
     return [
@@ -119,18 +105,6 @@ def _left_decor(color, padding_x=None, padding_y=4):
     ]
 
 
-def _right_decor(color):
-    return [
-        RectDecoration(
-            colour=colors[13],
-            radius=4,
-            filled=True,
-            padding_y=4,
-            padding_x=0,
-        )
-    ]
-
-
 # hollow knight icon
 w_hk = widget.Image(
     margin=5,
@@ -140,54 +114,11 @@ w_hk = widget.Image(
 )
 
 
-# workspace groups
-# w_groupbox_1 = widget.GroupBox(  # WEB
-#     font="Font Awesome 6 Brands",
-#     visible_groups=[workspace_names[0]],
-#     **group_box_settings,
-# )
-
-# w_groupbox_2 = widget.GroupBox(  # DEV, SYS
-#     font="Font Awesome 6 Free Solid",
-#     visible_groups=[workspace_names[1], workspace_names[2]],
-#     **group_box_settings,
-# )
-
-# w_groupbox_3 = widget.GroupBox(  # DISC, MUS
-#     font="Font Awesome 6 Brands",
-#     visible_groups=[workspace_names[3], workspace_names[4]],
-#     **group_box_settings,
-# )
-
-# w_groupbox_4 = widget.GroupBox(  # FILE, NOT
-#     font="Font Awesome 6 Free Solid",
-#     visible_groups=[workspace_names[5], workspace_names[6]],
-#     **group_box_settings,
-# )
-
-
 def gen_groupbox():
     return (
         widget.GroupBox(  # WEB
-            font="Font Awesome 6 Brands",
-            # visible_groups=[workspace_names[0]],
             **group_box_settings,
         ),
-        # widget.GroupBox(  # DEV, SYS
-        #     font="Font Awesome 6 Free Solid",
-        #     visible_groups=[workspace_names[1], workspace_names[2]],
-        #     **group_box_settings,
-        # ),
-        # widget.GroupBox(  # DISC, MUS
-        #     font="Font Awesome 6 Brands",
-        #     visible_groups=[workspace_names[3], workspace_names[4]],
-        #     **group_box_settings,
-        # ),
-        # widget.GroupBox(  # FILE, NOT
-        #     font="Font Awesome 6 Free Solid",
-        #     visible_groups=[workspace_names[5], workspace_names[6]],
-        #     **group_box_settings,
-        # ),
     )
 
 
@@ -199,16 +130,17 @@ def gen_spacer():
 # window name
 w_window_name_icon = widget.TextBox(
     text=" ",
-    foreground="#ffffff",
-    font="Font Awesome 6 Free Solid",
+    background=colors[21],
+    foreground=colors[17],
 )
 
 w_window_name = widget.WindowName(
-    foreground="#ffffff",
+    background=colors[21],
     width=bar.CALCULATED,
     empty_group_string="Desktop",
     max_chars=40,
     parse_text=parse_window_name,
+    foreground=colors[17],
     # mouse_callbacks={"Button1": toggle_maximize},
 )
 
@@ -218,8 +150,6 @@ def gen_current_layout():
     return (
         widget.CurrentLayoutIcon(
             scale=0.6,
-            font="JetBrainsMono Nerd Font",
-            fontsize=12,
             padding=8,
             decorations=_left_decor(colors[8]),
         ),
@@ -237,16 +167,12 @@ w_battery = (
             unknown_char="",
             empty_char="",
             show_short_text=False,
-            foreground=colors[11],
-            background=colors[12],
             border_colour=colors[11],
             border_charge_colour=colors[11],
             border_critical_colour=colors[11],
             fill_normal=colors[11],
             fill_charge=colors[6],
             fill_critical=colors[2],
-            font="JetBrainsMono Nerd Font",
-            fontsize=12,
             padding=8,
             decorations=_left_decor(colors[8]),
         ),
@@ -261,10 +187,6 @@ w_wlan = (
         widget.WiFiIcon(
             active_colour=colors[11],
             inactive_colour=colors[16],
-            background=colors[12],
-            foreground=colors[11],
-            font="Font Awesome 6 Free Solid:style=Solid",
-            fontsize=16,
             interface="wlan0",
             update_interval=5,
             mouse_callbacks={"Button3": open_wifi},
@@ -277,9 +199,6 @@ w_wlan = (
 w_cal = (
             widget.TextBox(
             text="",
-            font="JetBrainsMono Nerd Font",
-            fontsize=16,
-            foreground=colors[10],  # blue
             padding=8,
             decorations=_left_decor(colors[8]),
             mouse_callbacks={"Button1": open_calendar},
@@ -288,7 +207,6 @@ w_cal = (
 
 w_clock = (
     widget.Clock(
-        foreground=colors[10],  # blue
         padding=8,
         decorations=_left_decor(colors[8]),
         )
@@ -297,9 +215,6 @@ w_clock = (
 w_flame = (
     widget.TextBox(
         text="",
-        font="Font Awesome 6 Free Solid:style=Solid",
-        foreground=colors[10],  # blue
-        fontsize=30,
         padding=8,
         decorations=_left_decor(colors[8]),
         mouse_callbacks={"Button1": open_flame},
@@ -309,9 +224,6 @@ w_flame = (
 w_wttr = (
         widget.Wttr(
             location = { 'Berlin': 'Berlin' },
-            font="JetBrainsMono Nerd Font",
-            fontsize=16,
-            foreground=colors[10],  # blue
             padding=8,
             decorations=_left_decor(colors[8]),
             mouse_callbacks={"Button1": open_wttr},
@@ -322,9 +234,6 @@ w_blue = (
         widget.Bluetooth(
             fmt=" {}",
             hci="/dev_E1_4A_BB_C7_62_0F",
-            foreground=colors[11],
-            font="Font Awesome 6 Free Solid:style=Solid",
-            fontsize=16,
             padding=16,
             decorations=_left_decor(colors[8]),
             mouse_callbacks={"Button1": open_bluetooth},
@@ -333,9 +242,6 @@ w_blue = (
 
 w_power = widget.TextBox(
     text="⏻",
-    foreground=colors[11],
-    font="Font Awesome 6 Free Solid:style=Solid",
-    fontsize=18,
     padding=16,
     decorations=_left_decor(colors[8]),
     mouse_callbacks={"Button1": open_powermenu},

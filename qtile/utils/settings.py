@@ -21,6 +21,7 @@ colors = [
     ["#D9E0EE", "#D9E0EE"],  # 18 white
     ["#C9CBFF", "#C9CBFF"],  # 19 lavender
     ["#F5E0DC", "#F5E0DC"],  # 20 rosewater
+    ["#00000000", "#00000000"], # 21 transparent
 ]
 
 workspace_names = [

@@ -11,7 +11,8 @@ widget_defaults = dict(
     font="JetBrainsMono Nerd Font",
     fontsize=15,
     padding=2,
-    background=colors[12],
+    background=colors[21],
+    foreground=colors[10],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -22,10 +23,11 @@ def create_bar(extra_bar = False):
         [
             separator(),
             w_hk,
-            separator(),
+            separator_bg(),
             *gen_groupbox(),
             gen_spacer(),
             w_window_name_icon,
+            separator(),
             w_window_name,
             gen_spacer(),
             *gen_current_layout(),
@@ -48,6 +50,7 @@ def create_bar(extra_bar = False):
             separator(),
         ],
         30,
+        background=colors[21],
         margin=[4, 6, 2, 6],
     )
 
