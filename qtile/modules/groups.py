@@ -1,6 +1,5 @@
 from libqtile.config import Group, Key, Match, ScratchPad, DropDown
 from libqtile.lazy import lazy
-from libqtile import qtile
 from utils.settings import workspace_names
 from modules.keys import keys, mod, shift, alt
 # from libqtile.backend.base import Window, Internal

@@ -1,8 +1,6 @@
 from libqtile import bar
 from libqtile.config import Screen
 
-from qtile_extras import widget
-
 from modules.widgets import *
 from utils.settings import colors, two_monitors
 
@@ -29,20 +27,16 @@ def create_bar(extra_bar = False):
             separator(),
             w_window_name,
             gen_spacer(),
-            *gen_current_layout(),
-            separator(),
-            *w_battery,
+            w_layout,
             separator(),
             w_flame,
             separator(),
             *w_wlan,
-            separator(),
             w_blue,
+            *w_battery,
             separator(),
             w_cal,
-            separator(),
             w_clock,
-            separator(),
             w_wttr,
             separator(),
             w_power,
