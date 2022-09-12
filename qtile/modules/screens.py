@@ -4,15 +4,14 @@ from libqtile.config import Screen
 from qtile_extras import widget
 
 from modules.widgets import *
-from utils.settings import colors, two_monitors, wallpaper_main, wallpaper_sec
-
+from utils.settings import colors, two_monitors
 
 widget_defaults = dict(
     font="JetBrainsMono Nerd Font",
     fontsize=15,
     padding=2,
-    background=colors[21],
-    foreground=colors[10],
+    background=colors["trans"],
+    foreground=colors["foreground"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -50,7 +49,7 @@ def create_bar(extra_bar = False):
             separator(),
         ],
         30,
-        background=colors[21],
+        background=colors["trans"],
         margin=[4, 6, 2, 6],
     )
 

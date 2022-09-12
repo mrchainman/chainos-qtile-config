@@ -6,8 +6,8 @@ from utils.settings import colors
 layout_theme = {
     "border_width": 2,
     "margin": 20,
-    "border_focus": colors[0],
-    "border_normal": colors[12],
+    "border_focus": colors["accent"],
+    "border_normal": colors["trans"],
     "font": "JetBrainsMono Nerd Font",
     "grow_amount": 1,
 }

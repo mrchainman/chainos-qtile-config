@@ -16,7 +16,7 @@ from modules.keys import keys, mod, shift, alt
 workspaces = [
     {
         "name": workspace_names[0],
-        "key": "0",
+        "key": "1",
         "matches": [
             Match( wm_class="qutebrowser"),
             ],
@@ -24,7 +24,7 @@ workspaces = [
     },
     {
         "name": workspace_names[1],
-        "key": "1",
+        "key": "2",
         "matches": [
             Match(wm_class="coms"),
             Match(wm_class="mon"),
@@ -33,7 +33,7 @@ workspaces = [
     },
     {
         "name": workspace_names[2],
-        "key": "2",
+        "key": "3",
         "matches": [
             Match(wm_class="term"),
             ],
@@ -41,7 +41,7 @@ workspaces = [
     },
     {
         "name": workspace_names[3],
-        "key": "3",
+        "key": "4",
         "matches": [
             Match(wm_class="neovim"),
             ],
@@ -49,7 +49,7 @@ workspaces = [
     },
     {
         "name": workspace_names[4],
-        "key": "4",
+        "key": "5",
         "matches": [
             Match(wm_class="Spotify"),
             ],
@@ -57,7 +57,7 @@ workspaces = [
     },
     {
         "name": workspace_names[5],
-        "key": "5",
+        "key": "6",
         "matches": [
             Match(wm_class="Jitsi Meet"),
             Match(wm_class="TelegramDesktop"),
@@ -66,7 +66,7 @@ workspaces = [
     },
     {
         "name": workspace_names[6],
-        "key": "6",
+        "key": "7",
         "matches": [
             Match(wm_class="TeamworkTimer"),
             Match(wm_class="KeePassXC"),
@@ -75,28 +75,28 @@ workspaces = [
     },
     {
         "name": workspace_names[7],
-        "key": "7",
-        "lay": "bsp",
-        "start": False,
-        "keep": False,
-    },
-    {
-        "name": workspace_names[8],
         "key": "8",
         "lay": "bsp",
         "start": False,
         "keep": False,
     },
     {
-        "name": workspace_names[9],
+        "name": workspace_names[8],
         "key": "9",
+        "lay": "bsp",
+        "start": False,
+        "keep": False,
+    },
+    {
+        "name": workspace_names[9],
+        "key": "0",
         "lay": "floating",
         "start": False,
         "keep": False,
     },
 ]
 
-groups = [Group(i) for i in "0123456789"]
+groups = [Group(i) for i in workspace_names]
 
 for workspace in workspaces:
     matches = workspace["matches"] if "matches" in workspace else None
@@ -123,15 +123,14 @@ for workspace in workspaces:
             desc="Move focused window to another group",
         )
     )
-    if start == False:
-        keys.append(
-            Key(
-                [alt],
-                workspace["key"],
-                lazy.addgroup(workspace["name"]),
-                desc="Create this Group"
-            )
+    keys.append(
+        Key(
+            [alt],
+            workspace["key"],
+            lazy.addgroup(workspace["name"]),
+            desc="Create this Group"
         )
+    )
 
 groups.append(
     ScratchPad(
