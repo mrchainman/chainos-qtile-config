@@ -17,11 +17,6 @@ from libqtile.resources.modules.popups.power import *
 from libqtile.resources.modules.popups.weather import *
 from libqtile.resources.modules.popups.windows import *
 
-# TODOs
-# - customize special rofi menus - DONE (room for improvement)
-# - qtile hooks
-
-# REVIEW options
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
@@ -32,12 +27,14 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = False
 wmname = "qtile"
+wl_input_rules = {}
 
 # TODO take a look at hooks
 # @hook.subscribe.startup
 # def start():
 #     main_screen_bar.window.window.set_property("QTILE_BAR", 1)
-
+ # Really we'd want to check this Any is libqtile.backend.wayland.ImportConfig, but
+ # doing so forces the import, creating a hard dependency for wlroots.
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser("~")
