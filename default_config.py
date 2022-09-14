@@ -12,16 +12,16 @@ from libqtile.resources.modules.screens import screens, main_screen_bar, widget_
 # - qtile hooks
 mouse = []
 # REVIEW options
-# dgroups_key_binder = None
-# dgroups_app_rules = []  # type: list
-# follow_mouse_focus = True
-# bring_front_click = False
-# cursor_warp = False
-# auto_fullscreen = True
-# focus_on_window_activation = "smart"
-# # reconfigure_screens = True
-# auto_minimize = False
-# wmname = "qtile"
+dgroups_key_binder = None
+dgroups_app_rules = []  # type: list
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = False
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+auto_minimize = False
+wmname = "qtile"
 
 # # TODO take a look at hooks
 # # @hook.subscribe.startup
