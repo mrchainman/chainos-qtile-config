@@ -2,7 +2,6 @@ from libqtile import bar
 from libqtile.lazy import lazy
 from qtile_extras import widget
 from libqtile.resources.utils.settings import colors, decor, with_wlan, with_battery, with_bluetooth
-from libqtile.resources.modules.functions import open_launcher, open_calendar, open_wifi, open_flame, open_wttr, open_bluetooth
 from libqtile.resources.modules.popups.power import show_power_menu
 from libqtile.resources.modules.popups.windows import show_windows_menu
 from libqtile.resources.modules.popups.bl import bl_applet
@@ -67,7 +66,7 @@ def separator_sm():
 # hollow knight icon
 w_hk = widget.Image(
     margin=5,
-    mouse_callbacks={"Button1": open_launcher},
+    mouse_callbacks={"Button1": lazy.spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi") },
     filename="/usr/share/icons/chainos/python.png",
     decorations=decor(),
 )
@@ -146,7 +145,7 @@ if with_wlan:
                 inactive_colour=colors["base"],
                 interface="wlan0",
                 update_interval=5,
-                mouse_callbacks={"Button1": open_wifi},
+                mouse_callbacks={"Button1": lazy.spawn("iwgtk")},
                 padding=8,
                 decorations=decor(),
             ),
@@ -176,7 +175,7 @@ w_flame = (
         text="   ",
         padding=8,
         decorations=decor(),
-        mouse_callbacks={"Button1": open_flame},
+        mouse_callbacks={"Button1": lazy.spawn("flameshot gui")},
         )
 )
 
@@ -185,7 +184,7 @@ w_wttr = (
             location = { 'Berlin': 'Berlin' },
             padding=8,
             decorations=decor(),
-            mouse_callbacks={"Button1": open_wttr},
+            mouse_callbacks={"Button1": lazy.spawn("kitty --hold --class='wttr' curl https://wttr.in")},
         )
 )
 
@@ -196,7 +195,7 @@ if with_bluetooth:
                 hci="/dev_E1_4A_BB_C7_62_0F",
                 padding=16,
                 decorations=decor(),
-                mouse_callbacks={"Button1": open_bluetooth, "Button3": lazy.function(bl_applet)},
+                mouse_callbacks={"Button1": lazy.spawn("blueman-manager"), "Button3": lazy.function(bl_applet)},
                 )
             )
 else:

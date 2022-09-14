@@ -2,12 +2,20 @@ from libqtile import hook
 import subprocess
 import os
 
-from libqtile.resources.modules.groups import groups
-from libqtile.resources.modules.keys import keys
-from libqtile.resources.modules.layouts import layouts
-from libqtile.resources.modules.screens import screens
-from libqtile.resources.modules.mouse import mouse
-from libqtile.resources.modules.widgets import extension_defaults,widget_defaults
+from libqtile.resources.utils.settings import *
+from libqtile.resources.utils.presets import *
+from libqtile.resources.modules.functions import *
+from libqtile.resources.modules.groups import *
+from libqtile.resources.modules.keys import *
+from libqtile.resources.modules.layouts import *
+from libqtile.resources.modules.screens import *
+from libqtile.resources.modules.mouse import *
+from libqtile.resources.modules.widgets import *
+from libqtile.resources.modules.popups.bl import *
+from libqtile.resources.modules.popups.calendar import *
+from libqtile.resources.modules.popups.power import *
+from libqtile.resources.modules.popups.weather import *
+from libqtile.resources.modules.popups.windows import *
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
