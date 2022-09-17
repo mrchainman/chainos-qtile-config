@@ -112,7 +112,8 @@ keys = [
     # qtile
     Key([mod, shift], "r", lazy.restart(), desc="Restart Qtile"),
     # menus
-    Key([mod], "e", lazy.spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi"), desc="Launch Rofi Launcher"),
+    #Key([mod], "e", lazy.spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi"), desc="Launch Rofi Launcher"),
+    Key([mod], "space", lazy.spawn("ulauncher"), desc="Open Launcher"),
     Key([mod], "c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"), desc="Launch Rofi Clipboard Manager"),
     Key([mod, shift], "e", lazy.function(show_power_menu), desc="Launch Power Menu"),
     Key([mod], "d", lazy.function(show_windows_menu), desc="Launch Windows Menu"),
