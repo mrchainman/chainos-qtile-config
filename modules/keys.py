@@ -149,6 +149,7 @@ keys = [
     Key([alt], "p", lazy.spawn("picom-toggle.sh"), desc="Toggle picom"),
     Key([mod], "o", lazy.spawn("opac.sh"), desc="Change opacity of Kitty"),
     Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle("term"), desc="Toggle Scratchpad"),
+    Key([mod], "n", lazy.spawn("kitty nvim"), desc="Launch Neovim")
     # Dunst
     Key([control], "space", lazy.spawn("dunstctl close"), desc="Close last Notification"),
     Key([control, shift], "space", lazy.spawn("dunstctl close-all"), desc="Close all Notifications"),
