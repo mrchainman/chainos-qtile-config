@@ -4,7 +4,6 @@ import os
 
 from libqtile.resources.utils.settings import *
 from libqtile.resources.utils.presets import *
-from libqtile.resources.modules.functions import *
 from libqtile.resources.modules.groups import *
 from libqtile.resources.modules.keys import *
 from libqtile.resources.modules.layouts import *
@@ -39,3 +38,7 @@ wl_input_rules = {}
 def start_once():
     home = os.path.expanduser("~")
     subprocess.call([home + "/.config/chainos/qtile_autostart.sh"])
+
+@hook.subscribe.startup
+def barclass():
+    main_screen_bar.window.window.set_property("QTILE_BAR", 1, type="CARDINAL", format=32)
