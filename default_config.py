@@ -42,3 +42,5 @@ def start_once():
 @hook.subscribe.startup
 def barclass():
     main_screen_bar.window.window.set_property("QTILE_BAR", 1, type="CARDINAL", format=32)
+    secondary_screen_bar.window.window.set_property("QTILE_BAR", 1, type="CARDINAL", format=32)
+    third_screen_bar.window.window.set_property("QTILE_BAR", 1, type="CARDINAL", format=32)
