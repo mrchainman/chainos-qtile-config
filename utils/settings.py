@@ -23,7 +23,7 @@ def decor():
             colour=colors["accent"],
             radius=8,
             line_width = 0,
-            filled=True,
+            filled=False,
             padding_x=None,
             padding_y=4,
             group=True,
@@ -32,7 +32,7 @@ def decor():
 
 # Hardware
 network = "bond0"  # network interface name
-two_monitors = False # number of screens in the system
+two_monitors = True # number of screens in the system
 with_battery = True  # whether the system uses a battery or not
 with_wlan = True   # whether the system uses wlan/internet or not
 with_bluetooth = True

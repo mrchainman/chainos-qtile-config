@@ -5,6 +5,7 @@ from libqtile.resources.utils.settings import colors, decor, with_wlan, with_bat
 from libqtile.resources.modules.popups.power import show_power_menu
 from libqtile.resources.modules.popups.windows import show_windows_menu
 from libqtile.resources.modules.popups.bl import bl_applet
+from libqtile.resources.modules.popups.bat import bat_applet
 from libqtile.resources.modules.popups.calendar import gen_gui
 
 import os
@@ -12,9 +13,9 @@ import os
 home = os.path.expanduser("~")
 
 group_box_settings = {
-    "active": colors["foreground"],
-    "inactive": colors["base"],
-    "block_highlight_text_color": colors["highlight"],
+    "active": colors["highlight"],
+    "inactive": colors["trans"],
+    "block_highlight_text_color": colors["accent"],
     "highlight_color": colors["trans"],
     "disable_drag": True,
     "highlight_method": "line",
@@ -61,17 +62,6 @@ def separator_sm():
     )
 
 
-# widget decorations
-
-# hollow knight icon
-w_hk = widget.Image(
-    margin=5,
-    mouse_callbacks={"Button1": lazy.spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi") },
-    filename="/usr/share/icons/chainos/python.png",
-    decorations=decor(),
-)
-
-
 def gen_groupbox():
     return (
         widget.GroupBox(  # WEB
@@ -86,124 +76,176 @@ def gen_spacer():
     return widget.Spacer()
 
 
-# window name
-w_window_name_icon = widget.TextBox(
-    text=" ",
-    background=colors["trans"],
-    foreground=colors["foreground"],
-)
-
-w_window_name = widget.WindowName(
-    background=colors["trans"],
-    width=bar.CALCULATED,
-    empty_group_string="Desktop",
-    max_chars=40,
-    parse_text=parse_window_name,
-    foreground=colors["foreground"],
-    mouse_callbacks={"Button1": lazy.function(show_windows_menu)},
+w_hk = (
+    separator(),
+    widget.Image (
+    margin=5,
+    mouse_callbacks={"Button1": lazy.spawn("ulauncher")},
+    filename="/usr/share/icons/BeautyLine/apps/scalable/python.svg",
+    decorations=decor(),
+    ),
+    separator(),
 )
 
 
-# current layout
-w_layout =  widget.CurrentLayout(
-            padding=8,
-            decorations=decor(),
-        )
-
-
-# battery
-if with_battery:
-    w_battery = (
-        (
-            widget.UPowerWidget(
-                format="{char}",
-                charge_char="",
-                discharge_char="",
-                full_char="",
-                unknown_char="",
-                empty_char="",
-                show_short_text=False,
-                border_colour=colors["foreground"],
-                border_charge_colour=colors["foreground"],
-                border_critical_colour=colors["foreground"],
-                fill_normal=colors["foreground"],
-                fill_charge=colors["bat_charging"],
-                fill_critical=colors["bat_discharing"],
-                padding=8,
-                decorations=decor(),
-            ),
-        )
-    )
-else:
-    w_battery = ""
-
-# internet
-if with_wlan:
-    w_wlan = (
-            widget.WiFiIcon(
-                active_colour=colors["foreground"],
-                inactive_colour=colors["base"],
-                interface="wlan0",
-                update_interval=5,
-                mouse_callbacks={"Button1": lazy.spawn("iwgtk")},
-                padding=8,
-                decorations=decor(),
-            ),
-    )
-else:
-    w_wlan = ""
-
-# time, calendar
-w_cal = (
-            widget.TextBox(
-            text="  ",
-            padding=8,
-            decorations=decor(),
-            mouse_callbacks={"Button1": lazy.function(gen_gui)},
-    )
-)
-
-w_clock = (
-    widget.Clock(
+w_layout =  (
+    separator(),
+    widget.CurrentLayout(
         padding=8,
         decorations=decor(),
-        )
+    ),
+    separator(),
 )
+
+
+
+
+
+
+w_cal = (
+    separator(),
+    widget.Image(
+        margin=5,
+        mouse_callbacks={
+            "Button3": lazy.function(gen_gui),
+            },
+        filename="/usr/share/icons/BeautyLine/apps/scalable/calendar.svg",
+        decorations=decor(),
+    ),
+    separator(),
+)
+
 
 w_flame = (
-    widget.TextBox(
-        text="   ",
-        padding=8,
-        decorations=decor(),
+    separator(),
+    widget.Image(
+        margin=5,
         mouse_callbacks={"Button1": lazy.spawn("flameshot gui")},
-        )
+        filename="/usr/share/icons/BeautyLine/apps/scalable/flameshot.svg",
+        decorations=decor(),
+    ),
+    separator(),
 )
 
-w_wttr = (
-        widget.Wttr(
-            location = { 'Berlin': 'Berlin' },
-            padding=8,
-            decorations=decor(),
-            mouse_callbacks={"Button1": lazy.spawn("kitty --hold --class='wttr' curl https://wttr.in")},
-        )
-)
 
-if with_bluetooth:
-    w_blue = (
-            widget.Bluetooth(
-                fmt=" {}",
-                hci="/dev_E1_4A_BB_C7_62_0F",
-                padding=16,
-                decorations=decor(),
-                mouse_callbacks={"Button1": lazy.spawn("blueman-manager"), "Button3": lazy.function(bl_applet)},
-                )
-            )
-else:
-    w_blue = ""
 
-w_power = widget.TextBox(
-    text=" ⏻ ",
-    padding=16,
+w_blue = (
+    separator(),
+    widget.Image(
+    margin=5,
+    mouse_callbacks={
+        "Button1": lazy.spawn("kitty bluetuith"),
+        "Button3": lazy.function(bl_applet),
+    },
+    filename="/usr/share/icons/BeautyLine/apps/scalable/bluetooth.svg",
     decorations=decor(),
-    mouse_callbacks={"Button1": lazy.function(show_power_menu)},
+    ),
+    separator(),
 )
+
+w_bat = (
+    separator(),
+    widget.Image(
+    margin=5,
+    mouse_callbacks={
+        "Button1": lazy.spawn("kitty"),
+        "Button3": lazy.function(bat_applet),
+        },
+    filename="/usr/share/icons/BeautyLine/apps/scalable/battery.svg",
+    decorations=decor(),
+    ),
+    separator(),
+)
+
+w_wifi = (
+    separator(),
+    widget.Image(
+    margin=5,
+    mouse_callbacks={"Button1": lazy.spawn("iwgtk")},
+    filename="/usr/share/icons/BeautyLine/apps/scalable/wifi-radar.svg",
+    decorations=decor(),
+    ),
+    separator(),
+)
+
+w_power = (
+    separator(),
+    widget.Image(
+        margin=5,
+        mouse_callbacks={"Button1": lazy.function(show_power_menu)},
+        filename="/usr/share/icons/BeautyLine/actions/scalable/system-shutdown.svg",
+        decorations=decor(),
+    ),
+    separator(),
+)
+
+
+
+
+# w_clock = (
+#     widget.Clock(
+#         padding=8,
+#         decorations=decor(),
+#         )
+# )
+
+
+# w_blue = (
+#         widget.Bluetooth(
+#             fmt="{}",
+#             hci="/dev_E1_4A_BB_C7_62_0F",
+#             padding=16,
+#             decorations=decor(),
+#             mouse_callbacks={"Button1": lazy.spawn("kitty bluetuith"), "Button3": lazy.function(bl_applet)},
+#             )
+#         )
+
+
+# w_wttr = (
+#         widget.Wttr(
+#             location = { 'Berlin': 'Berlin' },
+#             padding=8,
+#             decorations=decor(),
+#             mouse_callbacks={"Button1": lazy.spawn("kitty --hold curl https://wttr.in")},
+#         )
+# )
+
+
+# internet
+# w_wlan = (
+#     separator(),
+#     widget.WiFiIcon(
+#         active_colour=colors["foreground"],
+#         inactive_colour=colors["base"],
+#         interface="wlan0",
+#         update_interval=5,
+#         mouse_callbacks={"Button1": lazy.spawn("iwgtk")},
+#         padding=8,
+#         decorations=decor(),
+#     ),
+#     separator(),
+# )
+
+
+# # battery
+# w_battery = (
+#     separator(),
+#     widget.UPowerWidget(
+#         format="{char}",
+#         charge_char="",
+#         discharge_char="",
+#         full_char="",
+#         unknown_char="",
+#         empty_char="",
+#         show_short_text=False,
+#         border_colour=colors["foreground"],
+#         border_charge_colour=colors["foreground"],
+#         border_critical_colour=colors["foreground"],
+#         fill_normal=colors["foreground"],
+#         fill_charge=colors["bat_charging"],
+#         fill_critical=colors["bat_discharing"],
+#         padding=8,
+#         decorations=decor(),
+#     ),
+#     separator(),
+# )

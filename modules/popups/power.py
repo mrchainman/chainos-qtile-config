@@ -10,7 +10,7 @@ def show_power_menu(qtile):
 
     controls = [
         PopupImage(
-            filename="/usr/share/icons/chainos/lock.svg",
+            filename="/usr/share/icons/BeautyLine/actions/scalable/lock.svg",
             pos_x=0.05,
             pos_y=0.1,
             width=0.1,
@@ -20,7 +20,7 @@ def show_power_menu(qtile):
             }
         ),
         PopupImage(
-            filename="/usr/share/icons/chainos/sleep.svg",
+            filename="/usr/share/icons/BeautyLine/actions/scalable/system-suspend.svg",
             pos_x=0.25,
             pos_y=0.1,
             width=0.1,
@@ -30,18 +30,18 @@ def show_power_menu(qtile):
             }
         ),
         PopupImage(
-            filename="/usr/share/icons/chainos/shutdown.svg",
+            filename="/usr/share/icons/BeautyLine/actions/scalable/system-shutdown.svg",
             pos_x=0.45,
             pos_y=0.1,
             width=0.1,
             height=0.5,
             highlight="A00000",
             mouse_callbacks={
-                "Button1": lazy.shutdown()
+                "Button1": lazy.spawn("systemctl poweroff")
             }
         ),
         PopupImage(
-            filename="/usr/share/icons/chainos/reboot.svg",
+            filename="/usr/share/icons/BeautyLine/actions/scalable/system-reboot.svg",
             pos_x=0.65,
             pos_y=0.1,
             width=0.1,
@@ -52,7 +52,7 @@ def show_power_menu(qtile):
             }
         ),
         PopupImage(
-            filename="/usr/share/icons/chainos/leave.svg",
+            filename="/usr/share/icons/BeautyLine/actions/scalable/xfsm-logout.svg",
             pos_x=0.85,
             pos_y=0.1,
             width=0.1,

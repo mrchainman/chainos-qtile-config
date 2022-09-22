@@ -5,31 +5,36 @@ from qtile_extras.popup.toolkit import (
 )
 from libqtile.resources.utils.settings import colors
 
-def bl_applet(qtile):
+import psutil
+
+def bat_applet(qtile):
+    bat_stat = psutil.sensors_battery()
+    perc = int(bat_stat.percent)
+    state = bat_stat.power_plugged
     controls = [
         PopupText(
-            text="Enable",
+            text=f"Percent remaining: {perc}",
             pos_x=0.10,
             pos_y=0.1,
             width=0.80,
             height=0.1,
-            h_align="center",
+            h_align="left",
             highlight="A00000",
-            mouse_callbacks={
-                "Button1": lazy.spawn("sudo systemctl start bluetooth")
-            },
+            # mouse_callbacks={
+            #     "Button1": lazy.spawn("sudo systemctl start bluetooth")
+            # },
         ),
         PopupText(
-            text="Disable",
+            text=f"Charging: {state}",
             pos_x=0.10,
-            pos_y=0.2,
+            pos_y=0.3,
             width=0.80,
             height=0.1,
-            h_align="center",
+            h_align="left",
             highlight="A00000",
-            mouse_callbacks={
-                "Button1": lazy.spawn("sudo systemctl stop bluetooth")
-            },
+            # mouse_callbacks={
+            #     "Button1": lazy.spawn("sudo systemctl start bluetooth")
+            # },
         ),
         ]
 

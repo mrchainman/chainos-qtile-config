@@ -17,60 +17,39 @@ workspaces = [
     {
         "name": workspace_names[0],
         "key": "1",
-        "matches": [
-            Match( wm_class="qutebrowser"),
-            ],
         "lay": "monadtall",
     },
     {
         "name": workspace_names[1],
         "key": "2",
-        "matches": [
-            Match(wm_class="coms"),
-            Match(wm_class="mon"),
-            ],
         "lay": "columns",
     },
     {
         "name": workspace_names[2],
         "key": "3",
-        "matches": [
-            Match(wm_class="term"),
-            ],
         "lay": "columns",
     },
     {
         "name": workspace_names[3],
         "key": "4",
-        "matches": [
-            Match(wm_class="neovim"),
-            ],
         "lay": "columns",
     },
     {
         "name": workspace_names[4],
         "key": "5",
-        "matches": [
-            Match(wm_class="Spotify"),
-            ],
+        # "matches": [
+        #     Match(wm_class="Spotify"),
+        #     ],
         "lay": "columns",
     },
     {
         "name": workspace_names[5],
         "key": "6",
-        "matches": [
-            Match(wm_class="Jitsi Meet"),
-            Match(wm_class="TelegramDesktop"),
-            ],
         "lay": "columns",
     },
     {
         "name": workspace_names[6],
         "key": "7",
-        "matches": [
-            Match(wm_class="TeamworkTimer"),
-            Match(wm_class="KeePassXC"),
-            ],
         "lay": "columns",
     },
     {
@@ -146,13 +125,22 @@ groups.append(
             DropDown(
                 "term",
                 "kitty --listen-on=unix:@scratch",
-                opacity=0.7,
+                opacity=0.5,
                 x=0.1,
                 y=0.15,
                 width=0.8,
                 height=0.7,
                 on_focus_lost_hide=False,
             ),
+            DropDown(
+                "mpv",
+                "mpv  --input-ipc-server='/home/davidc/.config/chainos/mpv/mpv.fifo' --idle --ao=pulse --framedrop=vo --video-latency-hacks=yes --player-operation-mode=pseudo-gui",
+                # x=0.1,
+                # y=0.15,
+                # width=0.5,
+                # height=0.5,
+                on_focus_lost_hide=False,
+            ),
         ],
-    )
+)
 )

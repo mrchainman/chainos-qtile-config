@@ -1,4 +1,4 @@
-from libqtile.config import Key
+from libqtile.config import Key, KeyChord
 from libqtile.lazy import lazy
 
 import os
@@ -52,6 +52,8 @@ def resize_left(qtile):
         resize(qtile, "left")
     elif current == "columns":
         layout.cmd_grow_left()
+    elif current == "tile":
+        layout.cmd_decrease_ratio()
 
 
 @lazy.function
@@ -62,6 +64,8 @@ def resize_right(qtile):
         resize(qtile, "right")
     elif current == "columns":
         layout.cmd_grow_right()
+    elif current == "tile":
+        layout.cmd_increase_ratio()
 
 
 @lazy.function
@@ -72,7 +76,8 @@ def resize_up(qtile):
         resize(qtile, "up")
     elif current == "columns":
         layout.cmd_grow_up()
-
+    elif current == "tile":
+        layout.cmd_increase_nmaster()
 
 @lazy.function
 def resize_down(qtile):
@@ -82,6 +87,8 @@ def resize_down(qtile):
         resize(qtile, "down")
     elif current == "columns":
         layout.cmd_grow_down()
+    elif current == "tile":
+        layout.cmd_decrease_nmaster()
 
 
 def backlight(action):
@@ -104,20 +111,27 @@ def backlight(action):
 
 
 keys = [
-    # essentials
+    ###########################################################################################################
+    ####################################### Qtile essentials ##################################################
+    ###########################################################################################################
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "q", lazy.window.kill(), desc="Kill active window"),
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle forward layout"),
     Key([mod, shift], "Tab", lazy.prev_layout(), desc="Toggle last layout"),
-    # qtile
     Key([mod, shift], "r", lazy.restart(), desc="Restart Qtile"),
-    # menus
-    #Key([mod], "e", lazy.spawn("rofi -show drun -theme ~/.config/rofi/launcher.rasi"), desc="Launch Rofi Launcher"),
+    ###########################################################################################################
+    ####################################### Qtile Menus #######################################################
+    ###########################################################################################################
     Key([mod], "space", lazy.spawn("ulauncher"), desc="Open Launcher"),
     Key([mod], "c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"), desc="Launch Rofi Clipboard Manager"),
-    Key([mod, shift], "e", lazy.function(show_power_menu), desc="Launch Power Menu"),
-    Key([mod], "d", lazy.function(show_windows_menu), desc="Launch Windows Menu"),
-    # focus, move windows and screens
+    Key([mod], "e", lazy.function(show_power_menu), desc="Launch Power Menu"),
+    Key([mod], "b", lazy.spawn("chainos-background-switcher new"), desc="Change Wallpaper"),
+    Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle("term"), desc="Toggle Scratchpad"),
+    Key([mod], "v", lazy.group["scratchpad"].dropdown_toggle("mpv"), desc="Toggle MPV"),
+    # Key([mod], "d", lazy.function(show_windows_menu), desc="Launch Windows Menu"),
+    ###########################################################################################################
+    ####################################### Qtile Windows #####################################################
+    ###########################################################################################################
     Key([mod], "j", lazy.layout.down(), desc="Move focus down in current stack pane"),
     Key([mod], "k", lazy.layout.up(), desc="Move focus up in current stack pane"),
     Key([mod], "h", lazy.layout.left(), desc="Move focus left in current stack pane"),
@@ -126,40 +140,39 @@ keys = [
     Key([mod, shift], "k", lazy.layout.shuffle_up(), lazy.layout.move_up(), desc="Move windows up in current stack",),
     Key([mod, shift], "h", lazy.layout.shuffle_left(), lazy.layout.move_left(), desc="Move windows left in current stack",),
     Key([mod, shift], "l", lazy.layout.shuffle_right(), lazy.layout.move_right(), desc="Move windows right in the current stack",),
+    Key([mod], "z", lazy.prev_screen(), desc="Move focus to previous monitor",),    # TODO find a better hotkey
     Key([mod], "x", lazy.next_screen(), desc="Move focus to next monitor",),    # TODO find a better hotkey
     Key([mod, control], "j", lazy.layout.flip_down(), desc="Flip layout down"),
     Key([mod, control], "k", lazy.layout.flip_up(), desc="Flip layout up"),
     Key([mod, control], "h", lazy.layout.flip_left(), lazy.layout.swap_column_left(), desc="Flip layout left"),
     Key([mod, control], "l", lazy.layout.flip_right(), lazy.layout.swap_column_left(), desc="Flip layout right"),
-    # window resizing
     Key([mod, alt], "h", resize_left, desc="Resize window left"),
     Key([mod, alt], "l", resize_right, desc="Resize window Right"),
     Key([mod, alt], "k", resize_up, desc="Resize windows upward"),
     Key([mod, alt], "j", resize_down, desc="Resize windows downward"),
     Key([mod, alt], "n", lazy.layout.normalize(), desc="Normalize window size ratios"),
-    # window states
     Key([mod], "m", lazy.window.toggle_maximize(), desc="Toggle window between minimum and maximum sizes",),
-    Key([mod, shift], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
-    Key([mod], "i", lazy.window.toggle_floating(), desc="Toggle floating mode for a window"),
-    # program launches
-    Key([mod], "b", lazy.spawn("chainos-background-switcher new"), desc="Change Wallpaper"),
-    Key([mod], "p", lazy.spawn("passmenu"), desc="Launch Passmenu"),
-    Key([mod], "f", lazy.spawn("qutebrowser"), desc="Launch Qutebrowser"),
+    # Key([mod, shift], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
+    Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating mode for a window"),
+    ###########################################################################################################
+    ####################################### Qtile Programs#####################################################
+    ###########################################################################################################
+    Key([alt], "p", lazy.spawn("passmenu"), desc="Launch Passmenu"),
+    Key([alt], "w", lazy.spawn("qutebrowser"), desc="Launch Qutebrowser"),
     Key([alt], "e", lazy.spawn("rofi -modi emoji -show emoji"), desc="Launch Rofi Emoji Picker"),
     Key([alt], "l", lazy.spawn("betterlockscreen -l blur"), desc="Lock screen"),
-    Key([alt], "p", lazy.spawn("picom-toggle.sh"), desc="Toggle picom"),
-    Key([mod], "o", lazy.spawn("opac.sh"), desc="Change opacity of Kitty"),
-    Key([mod], "t", lazy.group["scratchpad"].dropdown_toggle("term"), desc="Toggle Scratchpad"),
-    Key([mod], "n", lazy.spawn("kitty nvim"), desc="Launch Neovim"),
+    Key([alt], "n", lazy.spawn("kitty nvim"), desc="Launch Neovim"),
     # Dunst
     Key([control], "space", lazy.spawn("dunstctl close"), desc="Close last Notification"),
     Key([control, shift], "space", lazy.spawn("dunstctl close-all"), desc="Close all Notifications"),
     Key([control], "grave", lazy.spawn("dunstctl history-pop"), desc="Show old Notifications"),
     Key([control, shift], "period", lazy.spawn("dunstctl context"), desc="Execute Notification context"),
     # Umlaute
-    Key([alt], "a", lazy.spawn("umlaute.sh a"), desc="Copy Ä to clipboard"),
-    Key([alt], "o", lazy.spawn("umlaute.sh o"), desc="Copy Ö to clipboard"),
-    Key([alt], "u", lazy.spawn("umlaute.sh u"), desc="Copy Ü to clipboard"),
+    KeyChord([alt], "u", [
+    Key([], "a", lazy.spawn("chainos-umlaute a"), desc="Copy Ä to clipboard"),
+    Key([], "o", lazy.spawn("chainos-umlaute o"), desc="Copy Ö to clipboard"),
+    Key([], "u", lazy.spawn("chainos-umlaute u"), desc="Copy Ü to clipboard"),
+    ]),
     # audio stuff
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pulsemixer --change-volume +10"), desc="Increase volume",),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pulsemixer --change-volume -10"), desc="Decrease volume",),
@@ -170,5 +183,4 @@ keys = [
     # brightness
     Key([], 'XF86MonBrightnessUp', lazy.function(backlight('inc')), desc='Increase brightness'),
     Key([], 'XF86MonBrightnessDown', lazy.function(backlight('dec')), desc='Decrease brightness'),
-    # eww
 ]

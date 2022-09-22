@@ -5,11 +5,12 @@ from qtile_extras.popup.toolkit import (
     PopupText
 )
 import calendar
-from datetime import date
+from datetime import date, datetime
 from libqtile.resources.utils.settings import colors
 
 cal = calendar.Calendar()
 today = date.today()
+cur_time = datetime.now().strftime("%H:%M:%S")
 days = []
 def gen_calendar():
     i = cal.itermonthdays2(today.year,today.month)
@@ -37,6 +38,10 @@ def gen_gui(qtile):
     ri = 0
     ci = 0
     for i,j in days:
+        if i == int(today.strftime("%d")):
+            bg = colors["accent"]
+        else:
+            bg = colors["trans"]
         controls.append(
                 PopupText(
                     text=str(j+"\n"+str(i)),
@@ -47,7 +52,7 @@ def gen_gui(qtile):
                     h_align="center",
                     highlight=colors["accent"],
                     highlight_method="block",
-                    background=colors["trans"],
+                    background=bg,
                     can_focus=True,
                     mouse_callbacks={
                         # "Button1": qtile.cmd_spawn(f"kitty khal at {i}/{today.month}/{today.year}"),
@@ -71,5 +76,6 @@ def gen_gui(qtile):
         initial_focus=None,
     )
 
-    layout.show()
+    # layout.show(centered=True)
+    layout.show(pos_x=10, pos_y=750)
 
