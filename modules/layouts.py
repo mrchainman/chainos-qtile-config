@@ -23,9 +23,9 @@ layout_theme = {
 layouts = [
     layout.Tile(**layout_theme),
     layout.Bsp(**layout_theme),
-    # layout.Matrix(**layout_theme),
-    # layout.Zoomy(**layout_theme),
-    # layout.Floating(**layout_theme),
+    layout.Matrix(**layout_theme),
+    layout.Zoomy(**layout_theme),
+    layout.Floating(**layout_theme),
 ]
 
 floating_layout = layout.Floating(
@@ -46,6 +46,7 @@ floating_layout = layout.Floating(
         Match(wm_class="iwgtk"),  # Jitsi
         Match(wm_class="proton-bridge"),  # Jitsi
         Match(wm_class="ripdrag"),
+        Match(wm_class="net-sourceforge-MSGViewer-ModuleLauncher"),
 
         # TODO add matches
     ],

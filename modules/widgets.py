@@ -7,6 +7,7 @@ from libqtile.resources.modules.popups.windows import show_windows_menu
 from libqtile.resources.modules.popups.bl import bl_applet
 from libqtile.resources.modules.popups.bat import bat_applet
 from libqtile.resources.modules.popups.calendar import gen_gui
+from libqtile.resources.modules.popups.clock import gen_clock
 
 import os
 
@@ -70,7 +71,6 @@ def gen_groupbox():
         ),
     )
 
-
 # spacers
 def gen_spacer():
     return widget.Spacer()
@@ -107,6 +107,7 @@ w_cal = (
     widget.Image(
         margin=5,
         mouse_callbacks={
+            "Button1": lazy.function(gen_clock),
             "Button3": lazy.function(gen_gui),
             },
         filename="/usr/share/icons/BeautyLine/apps/scalable/calendar.svg",

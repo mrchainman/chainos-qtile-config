@@ -17,61 +17,69 @@ workspaces = [
     {
         "name": workspace_names[0],
         "key": "1",
-        "lay": "monadtall",
+        "lay": "bsp",
+        "matches":[
+            Match(wm_class="qutebrowser"),
+            ],
     },
     {
         "name": workspace_names[1],
         "key": "2",
-        "lay": "columns",
+        "lay": "bsp",
+        "matches":[
+            Match(wm_class="Microsoft Teams - Preview"),
+            ],
     },
     {
         "name": workspace_names[2],
         "key": "3",
-        "lay": "columns",
+        "lay": "bsp",
+        "matches":[
+            Match(wm_class="TeamworkTimer")
+            ]
     },
     {
         "name": workspace_names[3],
         "key": "4",
-        "lay": "columns",
+        "lay": "matrix",
+        "matches":[
+            Match(wm_class="coms"),
+            ],
     },
     {
         "name": workspace_names[4],
         "key": "5",
-        # "matches": [
-        #     Match(wm_class="Spotify"),
-        #     ],
-        "lay": "columns",
+        "lay": "bsp",
     },
     {
         "name": workspace_names[5],
         "key": "6",
-        "lay": "columns",
+        "lay": "bsp",
     },
     {
         "name": workspace_names[6],
         "key": "7",
-        "lay": "columns",
+        "lay": "bsp",
     },
     {
         "name": workspace_names[7],
         "key": "8",
         "lay": "bsp",
-        "start": False,
-        "keep": False,
     },
     {
         "name": workspace_names[8],
         "key": "9",
         "lay": "bsp",
-        "start": False,
-        "keep": False,
+        "matches": [
+            Match(wm_class="Spotify"),
+            Match(wm_class="Nchat"),
+            Match(wm_class="Igdm"),
+            ],
     },
     {
         "name": workspace_names[9],
         "key": "0",
         "lay": "floating",
-        "start": False,
-        "keep": False,
     },
 ]
 
@@ -109,14 +117,6 @@ for workspace in workspaces:
             desc="Move focused window to another group",
         )
     )
-    keys.append(
-        Key(
-            [alt],
-            workspace["key"],
-            lazy.addgroup(workspace["name"]),
-            desc="Create this Group"
-        )
-    )
 
 groups.append(
     ScratchPad(
@@ -135,10 +135,10 @@ groups.append(
             DropDown(
                 "mpv",
                 "mpv  --input-ipc-server='/home/davidc/.config/chainos/mpv/mpv.fifo' --idle --ao=pulse --framedrop=vo --video-latency-hacks=yes --player-operation-mode=pseudo-gui",
-                # x=0.1,
-                # y=0.15,
-                # width=0.5,
-                # height=0.5,
+                x=0.62,
+                y=0.60,
+                width=0.35,
+                height=0.35,
                 on_focus_lost_hide=False,
             ),
         ],

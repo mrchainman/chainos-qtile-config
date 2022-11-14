@@ -152,16 +152,20 @@ keys = [
     Key([mod, alt], "j", resize_down, desc="Resize windows downward"),
     Key([mod, alt], "n", lazy.layout.normalize(), desc="Normalize window size ratios"),
     Key([mod], "m", lazy.window.toggle_maximize(), desc="Toggle window between minimum and maximum sizes",),
+    Key([mod, shift], "g", lazy.window.togroup("scratchpad"), desc="Move Window to scratchpad"),
+    Key([mod], "g", lazy.group["scratchpad"].toscreen(toggle=True), desc="Toggle scratchpad group"),
     # Key([mod, shift], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
     Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating mode for a window"),
     ###########################################################################################################
     ####################################### Qtile Programs#####################################################
     ###########################################################################################################
+    Key([alt], "r", lazy.spawn("rofi-rbw"), desc="Launch Bitwarden"),
     Key([alt], "p", lazy.spawn("passmenu"), desc="Launch Passmenu"),
     Key([alt], "w", lazy.spawn("qutebrowser"), desc="Launch Qutebrowser"),
     Key([alt], "e", lazy.spawn("rofi -modi emoji -show emoji"), desc="Launch Rofi Emoji Picker"),
     Key([alt], "l", lazy.spawn("betterlockscreen -l blur"), desc="Lock screen"),
     Key([alt], "n", lazy.spawn("kitty nvim"), desc="Launch Neovim"),
+    Key([alt], "v", lazy.spawn("kitty vifmrun"), desc="Launch Neovim"),
     # Dunst
     Key([control], "space", lazy.spawn("dunstctl close"), desc="Close last Notification"),
     Key([control, shift], "space", lazy.spawn("dunstctl close-all"), desc="Close all Notifications"),
@@ -172,6 +176,7 @@ keys = [
     Key([], "a", lazy.spawn("chainos-umlaute a"), desc="Copy Ä to clipboard"),
     Key([], "o", lazy.spawn("chainos-umlaute o"), desc="Copy Ö to clipboard"),
     Key([], "u", lazy.spawn("chainos-umlaute u"), desc="Copy Ü to clipboard"),
+    Key([], "s", lazy.spawn("chainos-umlaute s"), desc="Copy ß to clipboard"),
     ]),
     # audio stuff
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pulsemixer --change-volume +10"), desc="Increase volume",),

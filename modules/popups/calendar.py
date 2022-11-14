@@ -2,17 +2,17 @@ from libqtile.lazy import lazy
 from libqtile.backend.x11.window import Window
 from qtile_extras.popup.toolkit import (
     PopupGridLayout,
-    PopupText
+    PopupText,
+    PopupRelativeLayout
 )
 import calendar
 from datetime import date, datetime
 from libqtile.resources.utils.settings import colors
 
 cal = calendar.Calendar()
-today = date.today()
-cur_time = datetime.now().strftime("%H:%M:%S")
-days = []
 def gen_calendar():
+    days = []
+    today = date.today()
     i = cal.itermonthdays2(today.year,today.month)
     for m,k in i:
         if m != 0:
@@ -31,9 +31,10 @@ def gen_calendar():
             if k == 6:
                 d = "Su"
             days.append((m,d))
+    return today, days
 
 def gen_gui(qtile):
-    gen_calendar()
+    today, days = gen_calendar()
     controls = []
     ri = 0
     ci = 0
@@ -64,6 +65,7 @@ def gen_gui(qtile):
         else:
             ri += 1
             ci = 0
+
 
     layout = PopupGridLayout(
         qtile,
