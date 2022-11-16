@@ -48,4 +48,4 @@ def bat_applet(qtile):
         initial_focus=None,
     )
 
-    layout.show(pos_x=10, pos_y=750)
+    layout.show(x=0, y=0, relative_to = 3, relative_to_bar=True)

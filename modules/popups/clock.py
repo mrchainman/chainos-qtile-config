@@ -30,4 +30,4 @@ def gen_clock(qtile):
             background=colors["trans"],
             initial_focus=None,
             )
-    layout.show(pos_x=10, pos_y=1000)
+    layout.show(x=0, y=0, relative_to = 3, relative_to_bar=True)
