@@ -50,6 +50,9 @@ workspaces = [
         "name": workspace_names[4],
         "key": "5",
         "lay": "bsp",
+        "matches":[
+            Match(wm_class="ipy"),
+            ],
     },
     {
         "name": workspace_names[5],
