@@ -172,12 +172,13 @@ keys = [
     Key([control], "grave", lazy.spawn("dunstctl history-pop"), desc="Show old Notifications"),
     Key([control, shift], "period", lazy.spawn("dunstctl context"), desc="Execute Notification context"),
     # Umlaute
-    KeyChord([alt], "u", [
-    Key([], "a", lazy.spawn("chainos-umlaute a"), desc="Copy Ä to clipboard"),
-    Key([], "o", lazy.spawn("chainos-umlaute o"), desc="Copy Ö to clipboard"),
-    Key([], "u", lazy.spawn("chainos-umlaute u"), desc="Copy Ü to clipboard"),
-    Key([], "s", lazy.spawn("chainos-umlaute s"), desc="Copy ß to clipboard"),
-    ]),
+    Key([alt], "u", lazy.spawn("chainos-kb-layout"), desc="Change Keyboard Layout"),
+    #KeyChord([alt], "u", [
+    #Key([], "a", lazy.spawn("chainos-umlaute a"), desc="Copy Ä to clipboard"),
+    #Key([], "o", lazy.spawn("chainos-umlaute o"), desc="Copy Ö to clipboard"),
+    #Key([], "u", lazy.spawn("chainos-umlaute u"), desc="Copy Ü to clipboard"),
+    #Key([], "s", lazy.spawn("chainos-umlaute s"), desc="Copy ß to clipboard"),
+    #]),
     # audio stuff
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pulsemixer --change-volume +10"), desc="Increase volume",),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pulsemixer --change-volume -10"), desc="Decrease volume",),
