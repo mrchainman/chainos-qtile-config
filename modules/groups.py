@@ -17,7 +17,7 @@ workspaces = [
     {
         "name": workspace_names[0],
         "key": "1",
-        "lay": "bsp",
+        "lay": "zoomy",
         "matches":[
             Match(wm_class="qutebrowser"),
             ],
@@ -73,16 +73,16 @@ workspaces = [
         "name": workspace_names[8],
         "key": "9",
         "lay": "bsp",
-        "matches": [
-            Match(wm_class="Spotify"),
-            Match(wm_class="Nchat"),
-            Match(wm_class="Igdm"),
-            ],
     },
     {
         "name": workspace_names[9],
         "key": "0",
         "lay": "floating",
+        "matches": [
+            Match(wm_class="Spotify"),
+            Match(wm_class="Nchat"),
+            Match(wm_class="Igdm"),
+            ],
     },
 ]
 
