@@ -26,6 +26,7 @@ def create_bar(extra_bar = False):
             *w_blue,
             *w_wifi,
             *w_bat,
+            *w_kb,
             *w_cal,
             *w_power,
         ],

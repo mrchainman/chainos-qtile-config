@@ -17,7 +17,7 @@ workspaces = [
     {
         "name": workspace_names[0],
         "key": "1",
-        "lay": "zoomy",
+        "lay": "bsp",
         "matches":[
             Match(wm_class="qutebrowser"),
             ],
@@ -28,6 +28,7 @@ workspaces = [
         "lay": "bsp",
         "matches":[
             Match(wm_class="Microsoft Teams - Preview"),
+            Match(wm_class="ferdium"),
             ],
     },
     {
@@ -35,7 +36,8 @@ workspaces = [
         "key": "3",
         "lay": "bsp",
         "matches":[
-            Match(wm_class="TeamworkTimer")
+            Match(wm_class="TeamworkTimer"),
+            Match(wm_class="firefox-esr"),
             ]
     },
     {
@@ -77,7 +79,7 @@ workspaces = [
     {
         "name": workspace_names[9],
         "key": "0",
-        "lay": "floating",
+        "lay": "bsp",
         "matches": [
             Match(wm_class="Spotify"),
             Match(wm_class="Nchat"),
@@ -97,7 +99,7 @@ groups = [Group(i) for i in workspace_names]
 
 for workspace in workspaces:
     matches = workspace["matches"] if "matches" in workspace else None
-    lay = workspace["lay"] if "lay" in workspace else "bsp"
+    lay = workspace["lay"]
     keep = workspace["keep"] if "keep" in workspace else True
     start = workspace["start"] if "start" in workspace else True
     groups.append(Group(workspace["name"], matches=matches, layout=lay, persist=keep, init=False))

@@ -47,6 +47,7 @@ floating_layout = layout.Floating(
         Match(wm_class="proton-bridge"),  # Jitsi
         Match(wm_class="ripdrag"),
         Match(wm_class="net-sourceforge-MSGViewer-ModuleLauncher"),
+        Match(wm_class="Display"),
 
         # TODO add matches
     ],

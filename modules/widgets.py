@@ -169,6 +169,17 @@ w_wifi = (
     separator(),
 )
 
+w_kb = (
+    separator(),
+    widget.Image(
+    margin=5,
+    mouse_callbacks={"Button1": lazy.spawn("chainos-kb-layout")},
+    filename="/usr/share/icons/BeautyLine/actions/scalable/help-keybord-shortcuts.svg",
+    decorations=decor(),
+    ),
+    separator(),
+)
+
 w_power = (
     separator(),
     widget.Image(
