@@ -165,7 +165,8 @@ keys = [
     Key([alt], "e", lazy.spawn("rofi -modi emoji -show emoji"), desc="Launch Rofi Emoji Picker"),
     Key([alt], "l", lazy.spawn("betterlockscreen -l blur"), desc="Lock screen"),
     Key([alt], "n", lazy.spawn("kitty nvim"), desc="Launch Neovim"),
-    Key([alt], "v", lazy.spawn("kitty vifmrun"), desc="Launch Neovim"),
+    Key([alt], "v", lazy.spawn("kitty vifmrun"), desc="Launch Vifm"),
+    Key([alt, shift], "v", lazy.spawn("pcmanfm"), desc="Launch PCManFm"),
     # Dunst
     Key([control], "space", lazy.spawn("dunstctl close"), desc="Close last Notification"),
     Key([control, shift], "space", lazy.spawn("dunstctl close-all"), desc="Close all Notifications"),

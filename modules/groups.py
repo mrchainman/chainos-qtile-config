@@ -60,11 +60,17 @@ workspaces = [
         "name": workspace_names[5],
         "key": "6",
         "lay": "bsp",
+        "matches":[
+            Match(wm_class="vifm"),
+            ],
     },
     {
         "name": workspace_names[6],
         "key": "7",
         "lay": "bsp",
+        "matches":[
+            Match(wm_class="Zathura"),
+            ],
     },
     {
         "name": workspace_names[7],
@@ -84,6 +90,7 @@ workspaces = [
             Match(wm_class="Spotify"),
             Match(wm_class="Nchat"),
             Match(wm_class="Igdm"),
+            Match(wm_class="btop"),
             ],
     },
 ]
