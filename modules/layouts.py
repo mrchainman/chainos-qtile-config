@@ -21,10 +21,10 @@ layout_theme = {
 }
 
 layouts = [
-    layout.Tile(**layout_theme),
+    # layout.Tile(**layout_theme),
     layout.Bsp(**layout_theme),
-    layout.Matrix(**layout_theme),
-    layout.Zoomy(**layout_theme),
+    # layout.Matrix(**layout_theme),
+    # layout.Zoomy(**layout_theme),
     layout.Floating(**layout_theme),
 ]
 
@@ -48,6 +48,8 @@ floating_layout = layout.Floating(
         Match(wm_class="ripdrag"),
         Match(wm_class="net-sourceforge-MSGViewer-ModuleLauncher"),
         Match(wm_class="Display"),
+        Match(wm_class="Godot"),
+        Match(wm_class="Minetest"),
 
         # TODO add matches
     ],

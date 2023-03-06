@@ -167,13 +167,14 @@ keys = [
     Key([alt], "n", lazy.spawn("kitty nvim"), desc="Launch Neovim"),
     Key([alt], "v", lazy.spawn("kitty vifmrun"), desc="Launch Vifm"),
     Key([alt, shift], "v", lazy.spawn("pcmanfm"), desc="Launch PCManFm"),
+    # Umlaute
+    Key([alt], "u", lazy.spawn("chainos-kb-layout"), desc="Change Keyboard Layout"),
+    Key([alt], "space", lazy.spawn("chainos-run"), desc="Run homedir script"),
     # Dunst
     Key([control], "space", lazy.spawn("dunstctl close"), desc="Close last Notification"),
     Key([control, shift], "space", lazy.spawn("dunstctl close-all"), desc="Close all Notifications"),
     Key([control], "grave", lazy.spawn("dunstctl history-pop"), desc="Show old Notifications"),
     Key([control, shift], "period", lazy.spawn("dunstctl context"), desc="Execute Notification context"),
-    # Umlaute
-    Key([alt], "u", lazy.spawn("chainos-kb-layout"), desc="Change Keyboard Layout"),
     # KeyChord([alt], "u", [
     # Key([], "a", lazy.spawn("chainos-umlaute a"), desc="Copy Ä to clipboard"),
     # Key([], "o", lazy.spawn("chainos-umlaute o"), desc="Copy Ö to clipboard"),

@@ -43,7 +43,7 @@ workspaces = [
     {
         "name": workspace_names[3],
         "key": "4",
-        "lay": "matrix",
+        "lay": "bsp",
         "matches":[
             Match(wm_class="coms"),
             ],
@@ -85,12 +85,12 @@ workspaces = [
     {
         "name": workspace_names[9],
         "key": "0",
-        "lay": "bsp",
+        "lay": "zoomy",
         "matches": [
-            Match(wm_class="Spotify"),
-            Match(wm_class="Nchat"),
-            Match(wm_class="Igdm"),
-            Match(wm_class="btop"),
+            Match(wm_class="qpwgraph"),
+            Match(wm_class="jamesdsp"),
+            Match(wm_class="easyeffects"),
+            Match(wm_class="NoiseTorch"),
             ],
     },
 ]

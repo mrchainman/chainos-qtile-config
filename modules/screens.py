@@ -19,6 +19,7 @@ def create_bar(extra_bar = False):
     return bar.Bar(
         [
             *w_hk,
+            *w_layout,
             gen_spacer(),
             *gen_groupbox(),
             gen_spacer(),

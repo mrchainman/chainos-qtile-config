@@ -75,6 +75,15 @@ def gen_groupbox():
 def gen_spacer():
     return widget.Spacer()
 
+def battery_state():
+    status_file = open("/sys/class/power_supply/BAT0/status", "r")
+    status = status_file.readline()
+    if status == "Discharging\n":
+        battery_icon = "/usr/share/icons/BeautyLine/apps/scalable/battery.svg"
+    else:
+        battery_icon = "/usr/share/icons/BeautyLine/devices/scalable/ac-adapter.svg"
+    return battery_icon
+
 
 w_hk = (
     separator(),
@@ -152,7 +161,7 @@ w_bat = (
         "Button1": lazy.spawn("kitty"),
         "Button3": lazy.function(bat_applet),
         },
-    filename="/usr/share/icons/BeautyLine/apps/scalable/battery.svg",
+    filename=battery_state(),
     decorations=decor(),
     ),
     separator(),
