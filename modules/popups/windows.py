@@ -6,6 +6,13 @@ from qtile_extras.popup.toolkit import (
 )
 import os
 from libqtile.resources.utils.settings import colors
+# from libqtile.log_utils import logger
+
+def wrapperstuff(win):
+    group = win.group
+    name = win.name
+    group.toscreen()
+    group.focus_by_name(name)
 
 def show_windows_menu(qtile):
     controls = []
@@ -13,30 +20,28 @@ def show_windows_menu(qtile):
     ci = 0
     for i in qtile.windows_map.values():
         if isinstance(i, Window):
-            if "scratch" not in i.name:
-                x = lambda a : qtile.current_screen.set_group(a.group)
-                controls.append(
-                        PopupText(
-                            text=str(i.name),
-                            row = ri,
-                            col = ci,
-                            width=0.1,
-                            height=1,
-                            h_align="center",
-                            highlight=colors["accent"],
-                            highlight_method="block",
-                            background=colors["trans"],
-                            can_focus=True,
-                            mouse_callbacks={
-                                "Button1": lambda: x(i),
-                            },
-                            )
+            controls.append(
+                    PopupText(
+                        text=str(i.name),
+                        row = ri,
+                        col = ci,
+                        width=0.1,
+                        height=1,
+                        h_align="center",
+                        highlight=colors["accent"],
+                        highlight_method="block",
+                        background=colors["trans"],
+                        can_focus=True,
+                        mouse_callbacks={
+                            "Button1": lambda value=i: wrapperstuff(value),
+                        },
                         )
-                if ci < 4:
-                    ci += 1
-                else:
-                    ri += 1
-                    ci = 0
+                    )
+            if ci < 4:
+                ci += 1
+            else:
+                ri += 1
+                ci = 0
 
     layout = PopupGridLayout(
         qtile,

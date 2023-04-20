@@ -1,4 +1,5 @@
 from libqtile import hook
+from libqtile.lazy import lazy
 import subprocess
 import os
 
@@ -15,6 +16,7 @@ from libqtile.resources.modules.popups.calendar import *
 from libqtile.resources.modules.popups.power import *
 from libqtile.resources.modules.popups.weather import *
 from libqtile.resources.modules.popups.windows import *
+from libqtile.resources.modules.hooks import *
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
@@ -26,20 +28,17 @@ focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = False
 wmname = "qtile"
-wl_input_rules = {}
+wl_input_rules = None
 
-# TODO take a look at hooks
-# @hook.subscribe.startup
-# def start():
-#     main_screen_bar.window.window.set_property("QTILE_BAR", 1)
- # Really we'd want to check this Any is libqtile.backend.wayland.ImportConfig, but
- # doing so forces the import, creating a hard dependency for wlroots.
+
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser("~")
+    lazy.group["scratchpad"].dropdown_toggle("mpv")
     subprocess.call([home + "/.config/chainos/qtile_autostart.sh"])
 @hook.subscribe.startup
 def barclass():
-    main_screen_bar.window.window.set_property("QTILE_BAR", 1, type="CARDINAL", format=32)
-    secondary_screen_bar.window.window.set_property("QTILE_BAR", 1, type="CARDINAL", format=32)
-    third_screen_bar.window.window.set_property("QTILE_BAR", 1, type="CARDINAL", format=32)
+    pass
+    # main_screen_bar.window.window.set_property("QTILE_BAR", 1, type="CARDINAL", format=32)
+    # second_screen_bar.window.window.set_property("QTILE_BAR", 1, type="CARDINAL", format=32)
+    # third_screen_bar.window.window.set_property("QTILE_BAR", 1, type="CARDINAL", format=32)

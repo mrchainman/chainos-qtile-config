@@ -3,15 +3,7 @@ from libqtile.lazy import lazy
 from libqtile.resources.utils.settings import workspace_names
 from libqtile.resources.utils.presets import chinese, numbers, smileys
 from libqtile.resources.modules.keys import keys, mod, shift, alt
-# from libqtile.backend.base import Window, Internal
-# from libqtile import hook
 
-# @hook.subscribe.setgroup
-# def mpv_follow():
-#     for w in qtile.windows_map.values():
-#         if not isinstance(w, Internal):
-#             if w.get_wm_class() == "mpv":
-#                 w.togroup()
 
 workspaces = [
     {
@@ -36,7 +28,6 @@ workspaces = [
         "key": "3",
         "lay": "bsp",
         "matches":[
-            Match(wm_class="TeamworkTimer"),
             Match(wm_class="firefox-esr"),
             ]
     },
@@ -76,11 +67,16 @@ workspaces = [
         "name": workspace_names[7],
         "key": "8",
         "lay": "bsp",
+        # "matches":[
+        #     ],
     },
     {
         "name": workspace_names[8],
         "key": "9",
         "lay": "bsp",
+        "matches":[
+            Match(wm_class="Steam"),
+            ],
     },
     {
         "name": workspace_names[9],
@@ -136,12 +132,32 @@ groups.append(
         [
             DropDown(
                 "term",
-                "kitty --listen-on=unix:@scratch",
+                "kitty",
                 opacity=0.5,
-                x=0.1,
-                y=0.15,
-                width=0.8,
-                height=0.7,
+                x=0.05,
+                y=0.05,
+                width=0.4,
+                height=0.4,
+                on_focus_lost_hide=False,
+            ),
+            DropDown(
+                "ipy",
+                "kitty -e ipython",
+                opacity=0.5,
+                x=0.05,
+                y=0.55,
+                width=0.4,
+                height=0.4,
+                on_focus_lost_hide=False,
+            ),
+            DropDown(
+                "nvim",
+                "kitty -e nvim ~/.data/editornotes",
+                opacity=0.5,
+                x=0.5,
+                y=0.05,
+                width=0.42,
+                height=0.6,
                 on_focus_lost_hide=False,
             ),
             DropDown(
@@ -153,6 +169,93 @@ groups.append(
                 height=0.35,
                 on_focus_lost_hide=False,
             ),
+            DropDown(
+                "twtimer",
+                "teamworktimer",
+                x=0.5,
+                y=0.3,
+                width=0.4,
+                height=0.3,
+                on_focus_lost_hide=False,
+            ),
+            DropDown(
+                "keepass",
+                "keepassxc",
+                x=0.5,
+                y=0.47,
+                width=0.4,
+                height=0.3,
+                on_focus_lost_hide=False,
+            ),
+            DropDown(
+                "qtpass",
+                "qtpass",
+                x=0.5,
+                y=0.47,
+                width=0.4,
+                height=0.3,
+                on_focus_lost_hide=False,
+            ),
+            DropDown(
+                "joplin",
+                "joplin-desktop",
+                opacity=0.5,
+                x=0.5,
+                y=0.05,
+                width=0.42,
+                height=0.6,
+                on_focus_lost_hide=False,
+            ),
+            DropDown(
+                "pcmanfm",
+                "pcmanfm",
+                x=0.55,
+                y=0.50,
+                width=0.4,
+                height=0.4,
+                on_focus_lost_hide=False,
+            ),
+            DropDown(
+                "ferdium",
+                "ferdium",
+                opacity=0.5,
+                x=0.05,
+                y=0.05,
+                width=0.6,
+                height=0.6,
+                on_focus_lost_hide=False,
+            ),
+            DropDown(
+                "myxer",
+                "myxer",
+                x=0.55,
+                y=0.50,
+                width=0.4,
+                height=0.4,
+                on_focus_lost_hide=False,
+            ),
+            DropDown(
+                "bluetooth",
+                "blueman-manager",
+                opacity=0.5,
+                x=0.5,
+                y=0.05,
+                width=0.42,
+                height=0.6,
+                on_focus_lost_hide=False,
+            ),
+
+            DropDown(
+                "wifi",
+                "iwgtk",
+                opacity=0.5,
+                x=0.5,
+                y=0.05,
+                width=0.42,
+                height=0.6,
+                on_focus_lost_hide=False,
+            ),
+
         ],
 )
 )

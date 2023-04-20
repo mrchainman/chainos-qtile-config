@@ -6,7 +6,7 @@ from libqtile.resources.utils.settings import colors
 layout_theme = {
     "margin": 20,
     "margin_on_single": True,
-    "border_width": 2,
+    "border_width": 0,
     "border_focus": colors["accent"],
     "border_normal": colors["trans"],
     "border_on_single": True,
@@ -21,10 +21,10 @@ layout_theme = {
 }
 
 layouts = [
-    # layout.Tile(**layout_theme),
+    layout.Tile(**layout_theme),
     layout.Bsp(**layout_theme),
-    # layout.Matrix(**layout_theme),
-    # layout.Zoomy(**layout_theme),
+    layout.Matrix(**layout_theme),
+    layout.Zoomy(**layout_theme),
     layout.Floating(**layout_theme),
 ]
 
@@ -50,7 +50,9 @@ floating_layout = layout.Floating(
         Match(wm_class="Display"),
         Match(wm_class="Godot"),
         Match(wm_class="Minetest"),
-
+        Match(wm_class="Steam"),
+        # Match(wm_class="Dockx"),
+        Match(title="chainos-urlhandler"),  # Custom
         # TODO add matches
     ],
 )

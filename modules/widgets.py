@@ -89,7 +89,7 @@ w_hk = (
     separator(),
     widget.Image (
     margin=5,
-    mouse_callbacks={"Button1": lazy.spawn("ulauncher")},
+    mouse_callbacks={"Button1": lazy.function(show_windows_menu)},
     filename="/usr/share/icons/BeautyLine/apps/scalable/python.svg",
     decorations=decor(),
     ),
@@ -97,19 +97,32 @@ w_hk = (
 )
 
 
-w_layout =  (
-    separator(),
-    widget.CurrentLayout(
-        padding=8,
-        decorations=decor(),
-    ),
-    separator(),
-)
+# w_layout =  (
+#     separator(),
+#     widget.CurrentLayout(
+#         padding=8,
+#         decorations=decor(),
+#     ),
+#     separator(),
+# )
+
+def w_layout():   
+    return (
+        separator(),
+        widget.CurrentLayoutIcon(
+            padding=8,
+            decorations=decor(),
+        ),
+        separator(),
+    )
 
 
 
-
-
+w_notif = (
+        widget.Notify(
+            decorations=decor(),
+            )
+        )
 
 w_cal = (
     separator(),
@@ -127,7 +140,7 @@ w_cal = (
 
 
 w_flame = (
-    separator(),
+    # separator(),
     widget.Image(
         margin=5,
         mouse_callbacks={"Button1": lazy.spawn("flameshot gui")},
@@ -144,7 +157,7 @@ w_blue = (
     widget.Image(
     margin=5,
     mouse_callbacks={
-        "Button1": lazy.spawn("kitty bluetuith"),
+        "Button1": lazy.group["scratchpad"].dropdown_toggle("bluetooth"),
         "Button3": lazy.function(bl_applet),
     },
     filename="/usr/share/icons/BeautyLine/apps/scalable/bluetooth.svg",
@@ -171,7 +184,10 @@ w_wifi = (
     separator(),
     widget.Image(
     margin=5,
-    mouse_callbacks={"Button1": lazy.spawn("iwgtk")},
+    mouse_callbacks={
+        "Button1": lazy.group["scratchpad"].dropdown_toggle("wifi"),
+        # "Button1": lazy.spawn("iwgtk")
+        },
     filename="/usr/share/icons/BeautyLine/apps/scalable/wifi-radar.svg",
     decorations=decor(),
     ),
@@ -200,7 +216,33 @@ w_power = (
     separator(),
 )
 
+w_systray = (
+    separator(),
+    widget.StatusNotifier(
+        margin=5,
+        icon_theme="BeautyLine",
+        decorations=decor(),
+        icon_size=20,
+        menu_background=colors["trans"],
+        # menu_foreground=colors["foreground"],
+        menu_foreground="#FFFFFF",
+        padding=33,
+        ),
+    # separator(),
+    )
 
+w_gmenu = (
+    separator(),
+    widget.GlobalMenu(
+        margin=5,
+        decorations=decor(),
+        menu_background=colors["trans"],
+        # menu_foreground=colors["foreground"],
+        menu_foreground="#FFFFFF",
+        padding=33,
+        ),
+    separator(),
+        )
 
 
 # w_clock = (

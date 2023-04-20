@@ -1,8 +1,9 @@
 from libqtile import bar
 from libqtile.config import Screen
+import copy
 
 from libqtile.resources.modules.widgets import *
-from libqtile.resources.utils.settings import colors, two_monitors
+from libqtile.resources.utils.settings import colors, monitors
 
 widget_defaults = dict(
     font="JetBrainsMono Nerd Font",
@@ -14,15 +15,18 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-def create_bar(extra_bar = False):
+def create_bar():
     """Create top bar, defined as function to allow duplication in other monitors"""
     return bar.Bar(
         [
             *w_hk,
-            *w_layout,
+            *w_layout(),
+            *w_gmenu,
+            # gen_spacer(),
+            w_notif,
+            # *gen_groupbox(),
             gen_spacer(),
-            *gen_groupbox(),
-            gen_spacer(),
+            # *w_systray,
             *w_flame,
             *w_blue,
             *w_wifi,
@@ -36,35 +40,17 @@ def create_bar(extra_bar = False):
         margin=[4, 6, 2, 6],
     )
 
+screens = []
 
-main_screen_bar = create_bar()
-if two_monitors:
-    secondary_screen_bar = create_bar(True)
-    third_screen_bar = create_bar(True)
-
-screens = [
-    Screen(
-        top=main_screen_bar,
-        bottom=bar.Gap(2),
-        left=bar.Gap(2),
-        right=bar.Gap(2),
-    ),
-]
-
-if two_monitors:
+for i in monitors:
     screens.append(
         Screen(
-            top=secondary_screen_bar,
+            top=create_bar(),
             bottom=bar.Gap(2),
             left=bar.Gap(2),
             right=bar.Gap(2),
+            wallpaper="/home/davidc/.config/wallpaper",
+            wallpaper_mode="stretch",
         ),
     )
-    screens.append(
-        Screen(
-            top=third_screen_bar,
-            bottom=bar.Gap(2),
-            left=bar.Gap(2),
-            right=bar.Gap(2),
-        ),
-    )
+

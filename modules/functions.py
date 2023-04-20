@@ -1,4 +1,6 @@
 from libqtile import qtile
+from libqtile import hook
+from libqtile.lazy import lazy
 import os
 home = os.path.expanduser("~")
 
@@ -19,3 +21,6 @@ def open_wttr():
 
 def open_bluetooth():
     qtile.spawn("blueman-manager")
+
+
+

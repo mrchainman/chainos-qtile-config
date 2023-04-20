@@ -1,5 +1,7 @@
 from qtile_extras.widget.decorations import RectDecoration
 from libqtile.resources.utils.presets import *
+from Xlib import display
+from Xlib.ext import randr
 
 theme = mocca
 
@@ -16,6 +18,12 @@ colors = {
 
 workspace_names = chinese
 
+stickys = [
+        "chainos-urlhandler",
+        "dockx",
+        "mpv",
+        ]
+
 
 def decor():
     return [
@@ -30,9 +38,18 @@ def decor():
         )
     ]
 
+def get_mon():
+    d = display.Display()
+    root = d.screen().root
+    monitors = []
+    for m in root.xrandr_get_monitors().monitors:
+        c = d.get_atom_name(m.name)
+        monitors.append(c)
+    return monitors
+
 # Hardware
 network = "bond0"  # network interface name
-two_monitors = True # number of screens in the system
+monitors = get_mon()
 with_battery = True  # whether the system uses a battery or not
 with_wlan = True   # whether the system uses wlan/internet or not
 with_bluetooth = True
