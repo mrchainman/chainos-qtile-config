@@ -36,5 +36,3 @@ def gen_clock(qtile):
             )
     layout.show(x=0, y=0, relative_to = 3, relative_to_bar=True)
 
-def update_clock(qtile):
-    pass
