@@ -7,7 +7,7 @@ import subprocess
 from libqtile.resources.modules.popups.power import show_power_menu
 from libqtile.resources.modules.popups.windows import show_windows_menu
 from libqtile.resources.modules.popups.bl import bl_applet
-from libqtile.resources.modules.popups.clock import gen_clock
+from libqtile.resources.modules.popups.clock import PClock
 
 mod = "mod4"
 control = "control"
@@ -157,7 +157,7 @@ keys = [
     KeyChord([mod], "b", [
     # Key([], "c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"), desc="Launch Rofi Clipboard Manager"),
     Key([], "e", lazy.function(show_power_menu), desc="Launch Power Menu"),
-    Key([], "c", lazy.function(gen_clock), desc="Launch Power Menu"),
+    Key([], "c", lazy.function(PClock), desc="Toggle Clock Widget"),
     Key([], "r", lazy.restart(), desc="Restart Qtile"),
     ]),
     ###########################################################################################################

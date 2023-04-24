@@ -1,5 +1,6 @@
 from libqtile import bar
 from libqtile.lazy import lazy
+from libqtile.log_utils import logger
 from qtile_extras import widget
 from libqtile.resources.utils.settings import colors, decor, with_wlan, with_battery, with_bluetooth
 from libqtile.resources.modules.popups.power import show_power_menu
@@ -7,7 +8,7 @@ from libqtile.resources.modules.popups.windows import show_windows_menu
 from libqtile.resources.modules.popups.bl import bl_applet
 from libqtile.resources.modules.popups.bat import bat_applet
 from libqtile.resources.modules.popups.calendar import gen_gui
-from libqtile.resources.modules.popups.clock import gen_clock
+from libqtile.resources.modules.popups.clock import PClock
 
 import os
 
@@ -129,7 +130,7 @@ w_cal = (
     widget.Image(
         margin=5,
         mouse_callbacks={
-            "Button1": lazy.function(gen_clock),
+            "Button1": lazy.function(PClock),
             "Button3": lazy.function(gen_gui),
             },
         filename="/usr/share/icons/BeautyLine/apps/scalable/calendar.svg",
