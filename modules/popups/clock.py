@@ -14,19 +14,6 @@ from libqtile.resources.utils.settings import colors
 
 def gen_clock(qtile):
     controls = []
-    # cur_time = datetime.now().strftime("%H:%M:%S")
-    # controls.append(
-    #         PopupText(
-    #              text=str(cur_time),
-    #              width=1,
-    #              height=1,
-    #              h_align="center",
-    #              highlight=colors["accent"],
-    #              highlight_method="block",
-    #              background=colors["trans"],               
-    #              name="clock",
-    #             )
-    #         )
     controls.append(
             PopupWidget(
                 widget = widget.Clock(
