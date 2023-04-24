@@ -33,6 +33,7 @@ def gen_clock(qtile):
                     foreground=colors["accent"],
                     format='%H:%M:%S',
                     ),
+                width=200,
                 name = "clock",
                 )
             )
