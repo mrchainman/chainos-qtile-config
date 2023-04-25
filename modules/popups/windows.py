@@ -70,7 +70,7 @@ def show_windows_menu(qtile):
                 if ci < 4:
                     ci += 1
                 else:
-                    ri += 1
+                    ri += 2
                     ci = 0
 
     layout = PopupGridLayout(
