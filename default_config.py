@@ -12,7 +12,6 @@ from libqtile.resources.modules.screens import *
 from libqtile.resources.modules.mouse import *
 from libqtile.resources.modules.widgets import *
 from libqtile.resources.modules.popups.bl import *
-from libqtile.resources.modules.popups.calendar import *
 from libqtile.resources.modules.popups.power import *
 from libqtile.resources.modules.popups.weather import *
 from libqtile.resources.modules.popups.windows import *

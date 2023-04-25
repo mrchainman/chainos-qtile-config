@@ -7,7 +7,6 @@ from libqtile.resources.modules.popups.power import show_power_menu
 from libqtile.resources.modules.popups.windows import show_windows_menu
 from libqtile.resources.modules.popups.bl import bl_applet
 from libqtile.resources.modules.popups.bat import bat_applet
-from libqtile.resources.modules.popups.calendar import gen_gui
 from libqtile.resources.modules.popups.clock import PClock
 
 import os
