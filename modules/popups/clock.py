@@ -69,7 +69,7 @@ class PClock():
         self.controls.append(
                         PopupWidget(
                             widget = widget.Clock(
-                                foreground=colors["accent"],
+                                foreground="#ffffff",
                                 format='%H:%M:%S',
                                 ),
                             # width=100,
@@ -113,7 +113,7 @@ class PClock():
         ci = 0
         for i in self.days:
             bg = colors["accent"] if i.istoday == True else colors["trans"]
-            fg = colors["accent2"] if i.isthismonth == True else colors["base"]
+            fg = "#ffffff" if i.isthismonth == True else colors["base"]
             self.controls.append(
                     PopupText(
                         name= i.name,
@@ -150,7 +150,7 @@ class PClock():
                         highlight=colors["accent"],
                         highlight_method="block",
                         background=colors["trans"],
-                        foreground=colors["accent2"],
+                        foreground="#ffffff",
                         can_focus=True,
                         mouse_callbacks={
                             "Button1": self.month_back,
@@ -168,7 +168,7 @@ class PClock():
                         highlight=colors["accent"],
                         highlight_method="block",
                         background=colors["trans"],
-                        foreground=colors["accent2"],
+                        foreground="#ffffff",
                         can_focus=True,
                         mouse_callbacks={
                             "Button1": self.month_back,
@@ -185,7 +185,7 @@ class PClock():
                         highlight=colors["accent"],
                         highlight_method="block",
                         background=colors["trans"],
-                        foreground=colors["accent2"],
+                        foreground="#ffffff",
                         can_focus=True,
                         mouse_callbacks={
                             "Button1": self.month_forward,
@@ -209,7 +209,7 @@ class PClock():
             for i in self.days:
                 if i.name in self.layout._updateable_controls:
                     self.layout._updateable_controls[i.name].text = f"{i.weekday}\n{i.monthday}"
-                    self.layout._updateable_controls[i.name].foreground = colors["accent2"] if i.isthismonth == True else colors["base"]
+                    self.layout._updateable_controls[i.name].foreground = "#ffffff" if i.isthismonth == True else colors["base"]
                     self.layout._updateable_controls[i.name].background = colors["accent"] if i.istoday == True else colors["trans"]
                 else:
                     logger.warning(f"Could not update control {i.name}")
