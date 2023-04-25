@@ -166,7 +166,7 @@ class PClock():
             logger.warning("regenerated calendar")
             for i in self.days:
                 if i.name in self.layout._updateable_controls:
-                    self.layout._updateable_controls[i.name].text = f"{self.days[i].weekday}\n{self.days[i].monthday}"
+                    self.layout._updateable_controls[i.name].text = f"{i.weekday}\n{i.monthday}"
                 else:
                     logger.warning(f"Could not update control {i.name}")
             self.layout.draw()
