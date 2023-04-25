@@ -23,6 +23,7 @@ def get_image(name):
     if os.path.isfile(image):
         return image
     else:
+        logger.warning(f"could not find {image}, using fallback ({fallback})")
         return fallback
 
 def show_windows_menu(qtile):
