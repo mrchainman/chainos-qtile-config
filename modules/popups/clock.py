@@ -192,8 +192,15 @@ class PClock():
 
     def month_back(self):
         if self.month > 1:
-            logger.warning("month is above 0")
             self.month -= 1
+            self.reload_calendar()
+
+    def month_forward(self):
+        if self.month < 12:
+            self.month += 1
+            self.reload_calendar()
+
+    def reload_calendar(self):
             self.gen_calendar()
             logger.warning("regenerated calendar")
             for i in self.days:
@@ -207,24 +214,8 @@ class PClock():
             self.layout._updateable_controls["month"].text = self.month_converter()
             self.layout.draw()
             logger.warning("redrew popup")
-        else:
-            logger.warning(f"Can not go below {self.month}")
 
-    def month_forward(self):
-        if self.month < 12:
-            logger.warning("month is above 0")
-            self.month += 1
-            self.gen_calendar()
-            logger.warning("regenerated calendar")
-            for i in self.days:
-                if i.name in self.layout._updateable_controls:
-                    self.layout._updateable_controls[i.name].text = f"{i.weekday}\n{i.monthday}"
-                else:
-                    logger.warning(f"Could not update control {i.name}")
-            self.layout.draw()
-            logger.warning("redrew popup")
-        else:
-            logger.warning(f"Can not go above {self.month}")
+
 
     def month_converter(self):
         if self.month == 1:
