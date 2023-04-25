@@ -160,13 +160,16 @@ class PClock():
 
     def month_back(self):
         if self.month > 0:
+            logger.warning("month is above 0")
             self.month -= 1
             self.gen_calendar()
+            logger.warning("regenerated calendar")
             for i in self.days:
                 if i.name in self.layout._updateable_controls:
                     self.layout._updateable_controls[i.name] = f"{self.days[0].weekday}\n{self.days[0].monthday}"
                 else:
                     logger.warning(f"Could not update control {i.name}")
             self.layout.draw()
+            logger.warning("redrew popup")
         else:
             logger.warning(f"Can not go below {self.month}")
