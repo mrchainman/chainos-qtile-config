@@ -14,6 +14,14 @@ from libqtile.log_utils import logger
 import calendar
 
 
+class mday():
+    def __init__(self, name, monthday, weekday, isthismonth=True, istoday=False):
+        self.name = name
+        self.monthday = monthday
+        self.weekday = weekday
+        self.istoday = istoday
+        self.isthismonth = isthismonth
+
 class PClock():
     instances = [] 
     def __init__(self,qtile):
@@ -29,6 +37,7 @@ class PClock():
             self.__class__.instances.append(self)
             self.cal = calendar.Calendar()
             self.month = date.today().month
+            self.days = []
             self.gen_all()
             self.gen_layout(qtile)
             self.show_layout()
@@ -36,8 +45,9 @@ class PClock():
     def gen_all(self):
         self.controls = []
         self.gen_clock_gui()
-        self.gen_month_switcher()
+        self.gen_calendar()
         self.gen_calendar_gui()
+        self.gen_month_switcher()
 
     def show_layout(self):
         self.layout.show(x=0, y=0, relative_to = 3, relative_to_bar=True)
@@ -71,11 +81,13 @@ class PClock():
                         )
 
     def gen_calendar(self):
-        days = []
-        today = date.today()
-        i = self.cal.itermonthdays2(today.year,self.month)
-        for m,k in i:
-            if m != 0:
+        self.days = []
+        today = date.today().strftime("%d")
+        year = date.today().year
+        i = self.cal.monthdays2calendar(year,self.month)
+        counter = 0
+        for week in i:
+            for m,k in week:
                 if k == 0:
                     d = "Mo"
                 if k == 1:
@@ -90,22 +102,24 @@ class PClock():
                     d = "Sa"
                 if k == 6:
                     d = "Su"
-                days.append((m,d))
-        return today, days
+                self.days.append(
+                        mday(name=f"slot_{counter}",monthday=m,weekday=d,isthismonth= True if m > 0 else False, istoday= True if m == today else False)
+                        )
+                counter += 1
+        
 
     def gen_calendar_gui(self):
-        today, days = self.gen_calendar()
         ri = 2
         ci = 0
-        for i,j in days:
-            if i == int(today.strftime("%d")):
+        for i in self.days:
+            if i.istoday == True:
                 bg = colors["accent"]
             else:
                 bg = colors["trans"]
             self.controls.append(
                     PopupText(
-                        name=f"{str(i)}-day",
-                        text=str(j+"\n"+str(i)),
+                        name= i.name,
+                        text=f"{i.weekday}\n{i.monthday}",
                         row = ri,
                         col = ci,
                         width=0.1,
@@ -147,8 +161,13 @@ class PClock():
     def month_back(self):
         self.month -= 1
         logger.warning(f"Set month to {self.month}")
-        self.gen_all()
-        self.show_layout()
+        self.gen_calendar()
+        for i in self.days:
+            # logger.warning(f"self.layout.update_controls({i.name}={i.weekday}\n{i.monthday})")
+            name=i.name
+            # text=f"{i.weekday}\n{i.monthday}"
+            text="Y"
+            self.layout.update_controls(slot_5=text)
         
 
 
