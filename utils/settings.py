@@ -24,6 +24,10 @@ stickys = [
         "mpv",
         ]
 
+app_img_maps = {
+        "qutebrowser": "web-browser"
+        }
+
 
 def decor():
     return [

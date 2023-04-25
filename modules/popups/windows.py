@@ -6,7 +6,7 @@ from qtile_extras.popup.toolkit import (
     PopupImage,
 )
 import os
-from libqtile.resources.utils.settings import colors, stickys
+from libqtile.resources.utils.settings import colors, stickys, app_img_maps
 from libqtile.log_utils import logger
 
 
@@ -19,14 +19,24 @@ def wrapperstuff(win):
 def get_image(cls):
     path = "/usr/share/icons/BeautyLine/apps/scalable"
     fallback = f"{path}/python.svg"
+    image = ""
     for name in cls:
-        image = f"{path}/{str(name).lower()}.svg"
-        if os.path.isfile(image):
-            return image
+        try_image = f"{path}/{str(name).lower()}.svg"
+        if os.path.isfile(try_image):
+             image = try_image
+             break
         else:
             continue
-    logger.warning(f"could not find image for any of {cls}, using fallback ({fallback})")
-    return fallback
+    if image == "":
+        for name in cls:
+            if name in app_img_maps.keys():
+                image = f"{path}/{app_img_maps[name]}"
+                break
+            else:
+                logger.warning(f"could not find image for any of {cls}, using fallback ({fallback})")
+                image = fallback
+    return image
+
 
 def show_windows_menu(qtile):
     controls = []
