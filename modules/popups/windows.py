@@ -18,7 +18,7 @@ def wrapperstuff(win):
 
 def get_image(name):
     path = "/usr/share/icons/BeautyLine/apps/scalable"
-    image = f"{path}/{str(name).lower}.svg"
+    image = f"{path}/{str(name).lower()}.svg"
     fallback = f"{path}/python.svg"
     if os.path.isfile(image):
         return image
