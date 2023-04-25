@@ -22,7 +22,7 @@ def create_bar():
             *w_hk,
             *w_layout(),
             *w_gmenu,
-            w_notif,
+            # w_notif,
             gen_spacer(),
             *gen_groupbox(),
             gen_spacer(),

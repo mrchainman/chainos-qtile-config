@@ -120,11 +120,11 @@ def w_layout():
 
 
 
-w_notif = (
-        widget.Notify(
-            decorations=decor(),
-            )
-        )
+ # w_notif = (
+ #        widget.Notify(
+ #       #     decorations=decor(),
+ #            )
+ #        )
 
 w_cal = (
     separator(),
