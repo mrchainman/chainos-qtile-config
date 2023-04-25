@@ -15,14 +15,15 @@ import os
 home = os.path.expanduser("~")
 
 group_box_settings = {
-    "active": colors["highlight"],
-    "inactive": colors["trans"],
-    "block_highlight_text_color": colors["accent"],
+    "active": colors["accent"],
+    "inactive": colors["accent2"],
+    "block_highlight_text_color": colors["base"],
     "highlight_color": colors["trans"],
     "disable_drag": True,
     "highlight_method": "line",
     "padding_x": 10,
     "padding_y": 16,
+    "hide_unused": True,
 }
 
 # TODO fix
