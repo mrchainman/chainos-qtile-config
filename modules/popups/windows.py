@@ -16,15 +16,17 @@ def wrapperstuff(win):
     group.toscreen()
     group.focus_by_name(name)
 
-def get_image(name):
+def get_image(cls):
     path = "/usr/share/icons/BeautyLine/apps/scalable"
-    image = f"{path}/{str(name).lower()}.svg"
     fallback = f"{path}/python.svg"
-    if os.path.isfile(image):
-        return image
-    else:
-        logger.warning(f"could not find {image}, using fallback ({fallback})")
-        return fallback
+    for name in cls:
+        image = f"{path}/{str(name).lower()}.svg"
+        if os.path.isfile(image):
+            return image
+        else:
+            continue
+    logger.warning(f"could not find image for any of {cls}, using fallback ({fallback})")
+    return fallback
 
 def show_windows_menu(qtile):
     controls = []
@@ -43,7 +45,7 @@ def show_windows_menu(qtile):
             else:
                 controls.append(
                         PopupImage(
-                            filename = get_image(i.name),
+                            filename = get_image(i._wm_class),
                             row = ri,
                             col = ci,
                             background=colors["trans"],
