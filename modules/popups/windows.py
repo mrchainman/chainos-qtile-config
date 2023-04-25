@@ -30,7 +30,7 @@ def get_image(cls):
     if image == "":
         for name in cls:
             if name in app_img_maps.keys():
-                image = f"{path}/{app_img_maps[name]}"
+                image = f"{path}/{app_img_maps[name]}.svg"
                 break
             else:
                 logger.warning(f"could not find image for any of {cls}, using fallback ({fallback})")
