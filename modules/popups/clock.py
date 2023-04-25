@@ -159,18 +159,14 @@ class PClock():
                 )
 
     def month_back(self):
-        self.month -= 1
-        logger.warning(f"Set month to {self.month}")
-        self.gen_calendar()
-        self.layout.update_controls(slot_0=f"{self.days[0].weekday}\n{self.days[0].monthday}")
-        self.layout.update_controls(slot_1=f"{self.days[1].weekday}\n{self.days[1].monthday}")
-        self.layout.update_controls(slot_2=f"{self.days[2].weekday}\n{self.days[2].monthday}")
-        self.layout.update_controls(slot_3=f"{self.days[3].weekday}\n{self.days[3].monthday}")
-        self.layout.update_controls(slot_4=f"{self.days[4].weekday}\n{self.days[4].monthday}")
-        self.layout.update_controls(slot_5=f"{self.days[5].weekday}\n{self.days[5].monthday}")
-        self.layout.update_controls(slot_6=f"{self.days[6].weekday}\n{self.days[6].monthday}")
-        self.layout.update_controls(slot_7=f"{self.days[7].weekday}\n{self.days[7].monthday}")
-        
-
-
-
+        if self.month > 0:
+            self.month -= 1
+            self.gen_calendar()
+            for i in self.days:
+                if i.name in self.layout._updateable_controls:
+                    self.layout._updateable_controls[i.name] = f"{self.days[0].weekday}\n{self.days[0].monthday}"
+                else:
+                    logger.warning(f"Could not update control {i.name}")
+            self.layout.draw()
+        else:
+            logger.warning(f"Can not go below {self.month}")
