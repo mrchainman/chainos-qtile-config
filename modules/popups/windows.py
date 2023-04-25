@@ -5,8 +5,9 @@ from qtile_extras.popup.toolkit import (
     PopupText
 )
 import os
-from libqtile.resources.utils.settings import colors
-# from libqtile.log_utils import logger
+from libqtile.resources.utils.settings import colors, stickys
+from libqtile.log_utils import logger
+
 
 def wrapperstuff(win):
     group = win.group
@@ -20,28 +21,37 @@ def show_windows_menu(qtile):
     ci = 0
     for i in qtile.windows_map.values():
         if isinstance(i, Window):
-            controls.append(
-                    PopupText(
-                        text=str(i.name),
-                        row = ri,
-                        col = ci,
-                        width=0.1,
-                        height=1,
-                        h_align="center",
-                        highlight=colors["accent"],
-                        highlight_method="block",
-                        background=colors["trans"],
-                        can_focus=True,
-                        mouse_callbacks={
-                            "Button1": lambda value=i: wrapperstuff(value),
-                        },
-                        )
-                    )
-            if ci < 4:
-                ci += 1
+            # logger.warning(type(i.group.name))
+            if i.group.name == "scratchpad":
+                continue
+
+            elif i.name in stickys:
+                continue
+            elif not set(i._wm_class).isdisjoint(stickys):
+                continue
             else:
-                ri += 1
-                ci = 0
+                controls.append(
+                        PopupText(
+                            text=str(i.name),
+                            row = ri,
+                            col = ci,
+                            width=0.1,
+                            height=1,
+                            h_align="center",
+                            highlight=colors["accent"],
+                            highlight_method="block",
+                            background=colors["trans"],
+                            can_focus=True,
+                            mouse_callbacks={
+                                "Button1": lambda value=i: wrapperstuff(value),
+                            },
+                            )
+                        )
+                if ci < 4:
+                    ci += 1
+                else:
+                    ri += 1
+                    ci = 0
 
     layout = PopupGridLayout(
         qtile,
