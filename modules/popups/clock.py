@@ -112,10 +112,8 @@ class PClock():
         ri = 2
         ci = 0
         for i in self.days:
-            if i.istoday == True:
-                bg = colors["accent"]
-            else:
-                bg = colors["trans"]
+            bg = colors["accent"] if i.istoday == True else colors["trans"]
+            fg = colors["accent2"] if i.isthismonth == True else colors["base"]
             self.controls.append(
                     PopupText(
                         name= i.name,
@@ -127,6 +125,7 @@ class PClock():
                         h_align="center",
                         highlight=colors["accent"],
                         highlight_method="block",
+                        foreground=fg,
                         background=bg,
                         can_focus=True,
                         mouse_callbacks={
@@ -156,12 +155,63 @@ class PClock():
                             "Button1": self.month_back,
                         },
                         )
-                )
+                    )
+        self.controls.append(
+                    PopupText(
+                        text=self.month_converter(),
+                        name = "month",
+                        row = 1,
+                        col = 3,
+                        col_span = 1,
+                        h_align="center",
+                        highlight=colors["accent"],
+                        highlight_method="block",
+                        background=colors["trans"],
+                        can_focus=True,
+                        mouse_callbacks={
+                            "Button1": self.month_back,
+                        },
+                        )
+                    )
+        self.controls.append(
+                    PopupText(
+                        text=">",
+                        row = 1,
+                        col = 4,
+                        col_span = 3,
+                        h_align="center",
+                        highlight=colors["accent"],
+                        highlight_method="block",
+                        background=colors["trans"],
+                        can_focus=True,
+                        mouse_callbacks={
+                            "Button1": self.month_forward,
+                        },
+                        )
+                    )
 
     def month_back(self):
-        if self.month > 0:
+        if self.month > 1:
             logger.warning("month is above 0")
             self.month -= 1
+            self.gen_calendar()
+            logger.warning("regenerated calendar")
+            for i in self.days:
+                if i.name in self.layout._updateable_controls:
+                    self.layout._updateable_controls[i.name].text = f"{i.weekday}\n{i.monthday}"
+                else:
+                    logger.warning(f"Could not update control {i.name}")
+
+            self.layout._updateable_controls["month"].text = self.month_converter()
+            self.layout.draw()
+            logger.warning("redrew popup")
+        else:
+            logger.warning(f"Can not go below {self.month}")
+
+    def month_forward(self):
+        if self.month < 12:
+            logger.warning("month is above 0")
+            self.month += 1
             self.gen_calendar()
             logger.warning("regenerated calendar")
             for i in self.days:
@@ -172,4 +222,30 @@ class PClock():
             self.layout.draw()
             logger.warning("redrew popup")
         else:
-            logger.warning(f"Can not go below {self.month}")
+            logger.warning(f"Can not go above {self.month}")
+
+    def month_converter(self):
+        if self.month == 1:
+            return "Jan"
+        elif self.month == 2:
+            return "Feb"
+        elif self.month == 3:
+            return "Mar"
+        elif self.month == 4:
+            return "Apr"
+        elif self.month == 5:
+            return "May"
+        elif self.month == 6:
+            return "Jun"
+        elif self.month == 7:
+            return "Jul"
+        elif self.month == 8:
+            return "Aug"
+        elif self.month == 9:
+            return "Sep"
+        elif self.month == 10:
+            return "Okt"
+        elif self.month == 11:
+            return "Nov"
+        elif self.month == 12:
+            return "Dec"
