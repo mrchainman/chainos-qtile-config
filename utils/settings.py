@@ -3,7 +3,7 @@ from libqtile.resources.utils.presets import *
 from Xlib import display
 from Xlib.ext import randr
 
-theme = mocca
+theme = sweet
 
 colors = {
         "base": theme["base"],

@@ -1,4 +1,11 @@
 #!/usr/bin/python
+sweet = {
+        "base": "#283141",
+        "blue": "#929ba8",
+        "mauve": "#778085",
+        "yellow": "#e6e8eb",
+
+        }
 latte = {
             "rosewater": "#dc8a78",
             "flamingo": "#dd7878",
