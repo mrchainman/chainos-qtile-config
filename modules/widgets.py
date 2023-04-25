@@ -132,7 +132,6 @@ w_cal = (
         margin=5,
         mouse_callbacks={
             "Button1": lazy.function(PClock),
-            "Button3": lazy.function(gen_gui),
             },
         filename="/usr/share/icons/BeautyLine/apps/scalable/calendar.svg",
         decorations=decor(),
