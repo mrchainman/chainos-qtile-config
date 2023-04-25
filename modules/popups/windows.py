@@ -32,7 +32,7 @@ def show_windows_menu(qtile):
             else:
                 controls.append(
                         PopupText(
-                            text=str(i.name),
+                            text=f"  {str(i.name)[:10]}  ",
                             row = ri,
                             col = ci,
                             width=0.1,
