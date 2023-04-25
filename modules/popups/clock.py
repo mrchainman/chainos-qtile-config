@@ -150,6 +150,7 @@ class PClock():
                         highlight=colors["accent"],
                         highlight_method="block",
                         background=colors["trans"],
+                        foreground=colors["accent2"],
                         can_focus=True,
                         mouse_callbacks={
                             "Button1": self.month_back,
@@ -167,6 +168,7 @@ class PClock():
                         highlight=colors["accent"],
                         highlight_method="block",
                         background=colors["trans"],
+                        foreground=colors["accent2"],
                         can_focus=True,
                         mouse_callbacks={
                             "Button1": self.month_back,
@@ -183,6 +185,7 @@ class PClock():
                         highlight=colors["accent"],
                         highlight_method="block",
                         background=colors["trans"],
+                        foreground=colors["accent2"],
                         can_focus=True,
                         mouse_callbacks={
                             "Button1": self.month_forward,
