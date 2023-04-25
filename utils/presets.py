@@ -1,11 +1,12 @@
 #!/usr/bin/python
-sweet = {
+basetheme = {
         "base": "#283141",
-        "blue": "#929ba8",
-        "mauve": "#778085",
-        "yellow": "#e6e8eb",
-
+        "foreground": "#283141",
+        "highlight": "#e6e8eb",
+        "accent": "#929ba8",
+        "accent2": "#778085",
         }
+sweet = basetheme
 latte = {
             "rosewater": "#dc8a78",
             "flamingo": "#dd7878",

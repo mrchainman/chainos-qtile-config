@@ -2,19 +2,15 @@ from qtile_extras.widget.decorations import RectDecoration
 from libqtile.resources.utils.presets import *
 from Xlib import display
 from Xlib.ext import randr
+from libqtile.log_utils import logger
 
-theme = sweet
+colors = sweet
+logger.warning(colors)
+colors["trans"] = "#00000000"
 
-colors = {
-        "base": theme["base"],
-        "foreground": theme["base"],
-        "accent": theme["blue"],
-        "accent2": theme["mauve"],
-        "highlight": theme["yellow"],
-        "trans": "#00000000",
-        "bat_charging": "#ABE9B3",
-        "bat_discharing": "#E8A2AF",
-}
+# Probably not needed
+colors["bat_charging"] = "#ABE9B3"
+colors["bat_discharing"] = "#E8A2AF"
 
 workspace_names = chinese
 
