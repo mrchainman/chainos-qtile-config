@@ -199,6 +199,8 @@ class PClock():
             for i in self.days:
                 if i.name in self.layout._updateable_controls:
                     self.layout._updateable_controls[i.name].text = f"{i.weekday}\n{i.monthday}"
+                    self.layout._updateable_controls[i.name].foreground = colors["accent2"] if i.isthismonth == True else colors["base"]
+                    self.layout._updateable_controls[i.name].background = colors["accent"] if i.istoday == True else colors["trans"]
                 else:
                     logger.warning(f"Could not update control {i.name}")
 
