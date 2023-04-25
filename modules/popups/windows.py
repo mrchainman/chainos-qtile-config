@@ -2,7 +2,8 @@ from libqtile.lazy import lazy
 from libqtile.backend.x11.window import Window
 from qtile_extras.popup.toolkit import (
     PopupGridLayout,
-    PopupText
+    PopupText,
+    PopupImage,
 )
 import os
 from libqtile.resources.utils.settings import colors, stickys
@@ -14,6 +15,15 @@ def wrapperstuff(win):
     name = win.name
     group.toscreen()
     group.focus_by_name(name)
+
+def get_image(name):
+    path = "/usr/share/icons/BeautyLine/apps/scalable"
+    image = f"{path}/{str(name).lower}.svg"
+    fallback = f"{path}/python.svg"
+    if os.path.isfile(image):
+        return image
+    else:
+        return fallback
 
 def show_windows_menu(qtile):
     controls = []
@@ -31,8 +41,17 @@ def show_windows_menu(qtile):
                 continue
             else:
                 controls.append(
+                        PopupImage(
+                            filename = get_image(i.name),
+                            row = ri,
+                            col = ci,
+                            background=colors["trans"],
+                            ),
+                        )
+                ri += 1
+                controls.append(
                         PopupText(
-                            text=f"  {str(i.name)[:15]}  ",
+                            text= f"  {str(i.name)[:15]}  ",
                             row = ri,
                             col = ci,
                             width=0.1,
@@ -47,6 +66,7 @@ def show_windows_menu(qtile):
                             },
                             )
                         )
+                ri -= 1
                 if ci < 4:
                     ci += 1
                 else:
