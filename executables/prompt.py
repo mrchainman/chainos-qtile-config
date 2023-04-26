@@ -1,4 +1,6 @@
 #!/usr/bin/python
+from libqtile.resources.utils.settings import colors
+# print(colors)
 class Prompt():
     def __init__(self,color: str = "#efefef", color2: str = "#bebbeb", prompt_style: str = "default", plugins: list = ["line","prompt"]):
         self.color = color
@@ -54,7 +56,7 @@ w
         print(f"{line}{cwd}{git}{exitcode}{prompt}{color1}")
 
 #283141
-ps1 = Prompt(color="#929ba8",color2="#283141",plugins = ["line","prompt","git","cwd","exitcode"])
+ps1 = Prompt(color=colors["accent"],color2=colors["accent2"],plugins = ["line","prompt","git","cwd","exitcode"])
 ps1.construct_prompt()
 
 
