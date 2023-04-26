@@ -3,7 +3,7 @@ basetheme = {
         "base": "#283141",
         "foreground": "#283141",
         "highlight": "#e6e8eb",
-        "accent": "#929ba8",
+        "accent": "#929bc8",
         "accent2": "#778085",
         }
 sweet = basetheme
