@@ -24,8 +24,10 @@ class Prompt():
         c_r2,c_g2,c_b2 = self.rgb2
         self.p_color2 = f"\[\033[38;2;{c_r2};{c_g2};{c_b2}m\["
 
-        self.line_head = self.p_color2 + "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n"
-        self.line = self.p_color2 + "┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫\n"
+        #< ~/test | sed 's/0/━/g')
+        self.char_creator = "$(for i in $(seq $(expr $COLUMNS - 2)); do echo -n '━' ; done)"
+        self.line_head = self.p_color2 + "┏" + self.char_creator + "┓\n"
+        self.line = self.p_color2 + "┣" + self.char_creator + "┫\n"
         self.spacerbeginning = "┣━┫ "
         self.spacerend = " ┣━┫"
         self.spacermiddle = " ┣━┫ "
