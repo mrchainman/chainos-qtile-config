@@ -8,12 +8,13 @@ from libqtile.resources.modules.popups.power import show_power_menu
 from libqtile.resources.modules.popups.windows import show_windows_menu
 from libqtile.resources.modules.popups.bl import bl_applet
 from libqtile.resources.modules.popups.clock import PClock
+from libqtile.resources.utils.settings import terminal
 
 mod = "mod4"
 control = "control"
 shift = "shift"
 alt = "mod1"
-terminal = "kitty"
+# terminal = "kitty"
 home = os.path.expanduser('~')
 sticky_windows = []
 
@@ -209,10 +210,10 @@ keys = [
         Key([], "p", lazy.spawn("passmenu"), desc="Launch Passmenu"),
         Key([], "e", lazy.spawn("rofi -modi emoji -show emoji"), desc="Launch Rofi Emoji Picker"),
         Key([], "k", lazy.spawn("betterlockscreen -l blur"), desc="Lock screen"),
-        Key([], "n", lazy.spawn("kitty nvim"), desc="Launch Neovim"),
-        Key([], "v", lazy.spawn("kitty vifmrun"), desc="Launch Vifm"),
+        Key([], "n", lazy.spawn(f"{terminal} nvim"), desc="Launch Neovim"),
+        Key([], "v", lazy.spawn(f"{terminal} vifmrun"), desc="Launch Vifm"),
         Key([], "m", lazy.spawn("pcmanfm"), desc="Launch PCManFm"),
-        Key([], "s", lazy.spawn("kitty ansible_ssh.sh"), desc="Connect to ansible Server"),
+        Key([], "s", lazy.spawn(f"{terminal} ansible_ssh.sh"), desc="Connect to ansible Server"),
     ]),
     # Dunst
     KeyChord([alt], "d", [

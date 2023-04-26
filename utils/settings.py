@@ -24,6 +24,9 @@ app_img_maps = {
         "qutebrowser": "web-browser"
         }
 
+terminal = "alacritty"
+
+
 
 def decor():
     return [
