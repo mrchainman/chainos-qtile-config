@@ -43,9 +43,9 @@ w
 
         """
         c_r1,c_g1,c_b1 = self.rgb
-        color1 = f"\033[38;2;{c_r1};{c_g1};{c_b1}m"
+        color1 = f"\[\033[38;2;{c_r1};{c_g1};{c_b1}m\["
         c_r2,c_g2,c_b2 = self.rgb2
-        color2 = f"\033[38;2;{c_r2};{c_g2};{c_b2}m"
+        color2 = f"\[\033[38;2;{c_r2};{c_g2};{c_b2}m\["
         line = color2 + "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n" if "line" in self.plugins else ""
         spacer = color2 + "┣━━ "
         git = spacer + color1 + "Git Branch: $(git branch 2>/dev/null | grep '^\*' | awk '{print $NF}'  || '') \n" if "git" in self.plugins else ""
