@@ -5,7 +5,7 @@ from Xlib.ext import randr
 from libqtile.log_utils import logger
 
 colors = sweet
-logger.warning(colors)
+# logger.warning(colors)
 colors["trans"] = "#00000000"
 
 # Probably not needed

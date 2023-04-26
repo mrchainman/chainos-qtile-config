@@ -1,6 +1,5 @@
 #!/usr/bin/python
 from libqtile.resources.utils.settings import colors
-# print(colors)
 class Prompt():
     def __init__(self,color: str = "#efefef", color2: str = "#bebbeb", prompt_style: str = "default", plugins: list = ["line","prompt"]):
         self.color = color
