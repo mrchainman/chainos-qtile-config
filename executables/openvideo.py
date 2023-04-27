@@ -10,4 +10,3 @@ if __name__ == "__main__":
     mpv_run(url = sys.argv[1])
 
 
-
