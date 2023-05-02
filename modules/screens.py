@@ -1,6 +1,5 @@
 from libqtile import bar
 from libqtile.config import Screen
-import copy
 
 from libqtile.resources.modules.widgets import *
 from libqtile.resources.utils.settings import colors, monitors

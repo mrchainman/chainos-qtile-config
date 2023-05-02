@@ -8,7 +8,10 @@ from libqtile.resources.modules.popups.power import show_power_menu
 from libqtile.resources.modules.popups.windows import show_windows_menu
 from libqtile.resources.modules.popups.bl import bl_applet
 from libqtile.resources.modules.popups.clock import PClock
+from libqtile.resources.modules.popups.randr import randr_applet
 from libqtile.resources.utils.settings import terminal
+from libqtile.resources.modules.widgets import positioner
+from libqtile.resources.utils.wallpaper import set_random_wallpaper
 
 mod = "mod4"
 control = "control"
@@ -159,7 +162,8 @@ keys = [
     # Key([], "c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"), desc="Launch Rofi Clipboard Manager"),
     Key([], "e", lazy.function(show_power_menu), desc="Launch Power Menu"),
     Key([], "c", lazy.function(PClock), desc="Toggle Clock Widget"),
-    Key([], "r", lazy.restart(), desc="Restart Qtile"),
+    Key([], "m", lazy.function(randr_applet, positioner * 5), desc="Configure Monitors"),
+    Key([], "w", lazy.function(set_random_wallpaper), desc="Set random Wallpaper"),
     ]),
     ###########################################################################################################
     ####################################### Scratchpads #######################################################

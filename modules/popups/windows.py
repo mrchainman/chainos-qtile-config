@@ -76,13 +76,8 @@ def show_windows_menu(qtile):
                             width=0.1,
                             height=1,
                             h_align="center",
-                            highlight=colors["accent"],
-                            highlight_method="block",
                             background=colors["trans"],
-                            can_focus=True,
-                            mouse_callbacks={
-                                "Button1": lambda value=i: wrapperstuff(value),
-                            },
+                            can_focus=False,
                             )
                         )
                 ri -= 1

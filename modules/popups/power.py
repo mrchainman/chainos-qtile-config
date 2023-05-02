@@ -1,6 +1,6 @@
 from libqtile.lazy import lazy
 from qtile_extras.popup.toolkit import (
-    PopupRelativeLayout,
+    PopupGridLayout,
     PopupImage,
     PopupText
 )
@@ -11,30 +11,24 @@ def show_power_menu(qtile):
     controls = [
         PopupImage(
             filename="/usr/share/icons/BeautyLine/actions/scalable/lock.svg",
-            pos_x=0.05,
-            pos_y=0.1,
-            width=0.1,
-            height=0.5,
+            col=0,
+            row=0,
             mouse_callbacks={
                 "Button1": lazy.spawn("betterlockscreen -l blur")
             }
         ),
         PopupImage(
             filename="/usr/share/icons/BeautyLine/actions/scalable/system-suspend.svg",
-            pos_x=0.25,
-            pos_y=0.1,
-            width=0.1,
-            height=0.5,
+            col=1,
+            row=0,
             mouse_callbacks={
                 "Button1": lazy.spawn("systemctl suspend")
             }
         ),
         PopupImage(
             filename="/usr/share/icons/BeautyLine/actions/scalable/system-shutdown.svg",
-            pos_x=0.45,
-            pos_y=0.1,
-            width=0.1,
-            height=0.5,
+            col=2,
+            row=0,
             highlight="A00000",
             mouse_callbacks={
                 "Button1": lazy.spawn("systemctl poweroff")
@@ -42,10 +36,8 @@ def show_power_menu(qtile):
         ),
         PopupImage(
             filename="/usr/share/icons/BeautyLine/actions/scalable/system-reboot.svg",
-            pos_x=0.65,
-            pos_y=0.1,
-            width=0.1,
-            height=0.5,
+            col=3,
+            row=0,
             highlight="A00000",
             mouse_callbacks={
                 "Button1": lazy.spawn("systemctl reboot")
@@ -53,61 +45,66 @@ def show_power_menu(qtile):
         ),
         PopupImage(
             filename="/usr/share/icons/BeautyLine/actions/scalable/xfsm-logout.svg",
-            pos_x=0.85,
-            pos_y=0.1,
-            width=0.1,
-            height=0.5,
+            col=4,
+            row=0,
             highlight="A00000",
             mouse_callbacks={
                 "Button1": lazy.spawn("loginctl kill-session self")
             }
         ),
+        PopupImage(
+            filename="/usr/share/icons/BeautyLine/actions/scalable/reload.svg",
+            col=5,
+            row=0,
+            highlight="A00000",
+            mouse_callbacks={
+                "Button1": lazy.restart()
+            }
+        ),
         PopupText(
             text="Lock",
-            pos_x=0.05,
-            pos_y=0.7,
-            width=0.1,
-            height=0.2,
+            col=0,
+            row=1,
             h_align="center"
         ),
         PopupText(
             text="Sleep",
-            pos_x=0.25,
-            pos_y=0.7,
-            width=0.1,
-            height=0.2,
+            col=1,
+            row=1,
             h_align="center"
         ),
         PopupText(
             text="Shutdown",
-            pos_x=0.45,
-            pos_y=0.7,
-            width=0.1,
-            height=0.2,
+            col=2,
+            row=1,
             h_align="center"
         ),
         PopupText(
             text="Reboot",
-            pos_x=0.65,
-            pos_y=0.7,
-            width=0.1,
-            height=0.2,
+            col=3,
+            row=1,
             h_align="center"
         ),
         PopupText(
             text="Leave",
-            pos_x=0.85,
-            pos_y=0.7,
-            width=0.1,
-            height=0.2,
+            col=4,
+            row=1,
+            h_align="center"
+        ),
+        PopupText(
+            text="Reload",
+            col=5,
+            row=1,
             h_align="center"
         ),
     ]
 
-    layout = PopupRelativeLayout(
+    layout = PopupGridLayout(
         qtile,
         width=800,
         height=200,
+        rows = 2,
+        cols = 6,
         controls=controls,
         background=colors["trans"],
         initial_focus=None,

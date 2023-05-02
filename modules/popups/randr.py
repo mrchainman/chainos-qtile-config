@@ -6,7 +6,7 @@ from qtile_extras.popup.toolkit import (
 from libqtile.resources.utils.settings import colors
 import os
 
-def randr_applet(qtile):
+def randr_applet(qtile,x_index):
     controls = [ ]
 
     ri = 0
@@ -16,8 +16,8 @@ def randr_applet(qtile):
             text=mode,
             row = ri,
             col = 0,
-            width=0.80,
-            height=0.1,
+            # width=0.80,
+            # height=0.1,
             h_align="center",
             highlight=colors["accent"],
             highlight_method="block",
@@ -30,12 +30,14 @@ def randr_applet(qtile):
 
     layout = PopupGridLayout(
         qtile,
-        width=300,
-        height=300,
+        width=100,
+        height = len(controls) * 40,
 
+        cols = 1,
+        rows = ri + 1,
         controls=controls,
         background=colors["trans"],
         initial_focus=None,
     )
 
-    layout.show(x=0, y=0, relative_to = 3, relative_to_bar=True)
+    layout.show(x=x_index, y=0, relative_to = 3, relative_to_bar=True)

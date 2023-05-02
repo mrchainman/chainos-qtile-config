@@ -9,6 +9,7 @@ from libqtile.resources.modules.popups.bl import bl_applet
 from libqtile.resources.modules.popups.bat import bat_applet
 from libqtile.resources.modules.popups.clock import PClock
 from libqtile.resources.modules.popups.randr import randr_applet
+from libqtile.resources.utils.wallpaper import set_random_wallpaper
 
 import os
 
@@ -28,8 +29,9 @@ group_box_settings = {
 
 # TODO fix
 # def toggle_maximize():
-#     lazy.window.toggle_maximize()
+#     lazywindow.toggle_maximize()
 
+positioner = -44
 
 def parse_window_name(text):
     """Simplifies the names of a few windows, to be displayed in the bar"""
@@ -91,7 +93,7 @@ w_hk = (
     separator(),
     widget.Image (
     margin=5,
-    mouse_callbacks={"Button1": lazy.function(show_windows_menu)},
+    mouse_callbacks={"Button1": lazy.function(set_random_wallpaper)},
     filename="/usr/share/icons/BeautyLine/apps/scalable/python.svg",
     decorations=decor(),
     ),
@@ -141,7 +143,7 @@ w_cal = (
 
 
 w_flame = (
-    # separator(),
+    separator(),
     widget.Image(
         margin=5,
         mouse_callbacks={"Button1": lazy.spawn("flameshot gui")},
@@ -159,7 +161,7 @@ w_blue = (
     margin=5,
     mouse_callbacks={
         "Button1": lazy.group["scratchpad"].dropdown_toggle("bluetooth"),
-        "Button3": lazy.function(bl_applet),
+        "Button3": lazy.function(bl_applet, positioner * 5),
     },
     filename="/usr/share/icons/BeautyLine/apps/scalable/bluetooth.svg",
     decorations=decor(),
@@ -172,8 +174,8 @@ w_randr = (
     widget.Image(
     margin=5,
     mouse_callbacks={
-        # "Button1": lazy.group["scratchpad"].dropdown_toggle("bluetooth"),
-        "Button3": lazy.function(randr_applet),
+        "Button1": lazy.group["scratchpad"].dropdown_toggle("arandr"),
+        "Button3": lazy.function(randr_applet, positioner * 6),
     },
     filename="/usr/share/icons/BeautyLine/apps/scalable/xscreensaver.svg",
     decorations=decor(),
@@ -190,6 +192,7 @@ w_bat = (
         "Button3": lazy.function(bat_applet),
         },
     filename=battery_state(),
+    update=battery_state(),
     decorations=decor(),
     ),
     separator(),

@@ -103,7 +103,7 @@ class PClock():
                 if k == 6:
                     d = "Su"
                 self.days.append(
-                        mday(name=f"slot_{counter}",monthday=m,weekday=d,isthismonth= True if m > 0 else False, istoday= True if m == today else False)
+                        mday(name=f"slot_{counter}",monthday=m,weekday=d,isthismonth= True if m > 0 else False, istoday= True if m == int(today) else False)
                         )
                 counter += 1
         
