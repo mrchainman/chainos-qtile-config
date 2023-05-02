@@ -132,7 +132,7 @@ groups.append(
         [
             DropDown(
                 "term",
-                "kitty",
+                "alacritty",
                 opacity=0.5,
                 x=0.05,
                 y=0.05,
@@ -142,7 +142,7 @@ groups.append(
             ),
             DropDown(
                 "ipy",
-                "kitty -e ipython",
+                "alacritty -e ipython",
                 opacity=0.5,
                 x=0.05,
                 y=0.55,
@@ -152,7 +152,7 @@ groups.append(
             ),
             DropDown(
                 "nvim",
-                "kitty -e nvim ~/.data/editornotes",
+                "alacritty -e nvim ~/.data/editornotes",
                 opacity=0.5,
                 x=0.5,
                 y=0.05,

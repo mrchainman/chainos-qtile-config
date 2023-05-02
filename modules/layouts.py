@@ -16,7 +16,8 @@ layout_theme = {
     "ratio": 0.618,
     "ratio_increment": 0.05,
     "shift_windows": True,
-    "font": "JetBrainsMono Nerd Font",
+    "font": "Source Code Pro",
+    # "font": "JetBrainsMono Nerd Font",
     "grow_amount": 1,
 }
 

@@ -6,7 +6,8 @@ from libqtile.resources.modules.widgets import *
 from libqtile.resources.utils.settings import colors, monitors
 
 widget_defaults = dict(
-    font="JetBrainsMono Nerd Font",
+    # font="JetBrainsMono Nerd Font",
+    font="Source Code Pro",
     fontsize=15,
     padding=2,
     background=colors["trans"],
