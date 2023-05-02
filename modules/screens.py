@@ -29,6 +29,7 @@ def create_bar():
             gen_spacer(),
             # *w_systray,
             *w_flame,
+            *w_randr,
             *w_blue,
             *w_wifi,
             *w_bat,

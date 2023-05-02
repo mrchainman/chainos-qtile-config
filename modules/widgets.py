@@ -8,6 +8,7 @@ from libqtile.resources.modules.popups.windows import show_windows_menu
 from libqtile.resources.modules.popups.bl import bl_applet
 from libqtile.resources.modules.popups.bat import bat_applet
 from libqtile.resources.modules.popups.clock import PClock
+from libqtile.resources.modules.popups.randr import randr_applet
 
 import os
 
@@ -161,6 +162,20 @@ w_blue = (
         "Button3": lazy.function(bl_applet),
     },
     filename="/usr/share/icons/BeautyLine/apps/scalable/bluetooth.svg",
+    decorations=decor(),
+    ),
+    separator(),
+)
+
+w_randr = (
+    separator(),
+    widget.Image(
+    margin=5,
+    mouse_callbacks={
+        # "Button1": lazy.group["scratchpad"].dropdown_toggle("bluetooth"),
+        "Button3": lazy.function(randr_applet),
+    },
+    filename="/usr/share/icons/BeautyLine/apps/scalable/xscreensaver.svg",
     decorations=decor(),
     ),
     separator(),
