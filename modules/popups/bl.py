@@ -5,46 +5,48 @@ from qtile_extras.popup.toolkit import (
 )
 from libqtile.resources.utils.settings import colors
 
-def bl_applet(qtile,x_index):
-    controls = [
-        PopupText(
-            text="Enable",
-            row = 0,
-            col = 0,
-            h_align="center",
-            highlight=colors["accent"],
-            highlight_method="block",
-            mouse_callbacks={
-                "Button1": lazy.spawn("sudo systemctl start bluetooth")
-            },
-        ),
-        PopupText(
-            text="Disable",
-            row = 1,
-            col = 0,
-            h_align="center",
-            highlight=colors["accent"],
-            highlight_method="block",
-            mouse_callbacks={
-                "Button1": lazy.spawn("sudo systemctl stop bluetooth")
-            },
-        ),
-        ]
 
+from libqtile.resources.modules.popups.baseclass import Base
 
-    layout = PopupGridLayout(
-        qtile,
+class Blue(Base):
+    def __init__(self,qtile,x_index=0):
+        super().__init__(qtile,x_index)
 
-        width=100,
-        height = len(controls) * 80,
+    def _startup(self):
 
-        cols = 1,
-        rows = 5,
+        self.rowcount = 5
+        self.bl_applet()
+        self.gen_layout(
+                self.qtile_instance,
+                rows=self.rowcount,
+                cols=1,
+                width=100,
+                height=len(self.controls*80)
+                )
+        self.show_layout()
 
-
-        controls=controls,
-        background=colors["trans"],
-        initial_focus=None,
-    )
-
-    layout.show(x=x_index, y=0, relative_to = 3, relative_to_bar=True)
+    def bl_applet(self):
+        self.controls = [
+            PopupText(
+                text="Enable",
+                row = 0,
+                col = 0,
+                h_align="center",
+                highlight=colors["accent"],
+                highlight_method="block",
+                mouse_callbacks={
+                    "Button1": lazy.spawn("sudo systemctl start bluetooth")
+                },
+            ),
+            PopupText(
+                text="Disable",
+                row = 1,
+                col = 0,
+                h_align="center",
+                highlight=colors["accent"],
+                highlight_method="block",
+                mouse_callbacks={
+                    "Button1": lazy.spawn("sudo systemctl stop bluetooth")
+                },
+            ),
+            ]

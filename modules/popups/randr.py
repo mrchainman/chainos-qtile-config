@@ -6,38 +6,41 @@ from qtile_extras.popup.toolkit import (
 from libqtile.resources.utils.settings import colors
 import os
 
-def randr_applet(qtile,x_index):
-    controls = [ ]
+from libqtile.resources.modules.popups.baseclass import Base
 
-    ri = 0
-    for mode in os.listdir(os.path.expanduser("~/.config/autorandr")):
-        controls.append(
-        PopupText(
-            text=mode,
-            row = ri,
-            col = 0,
-            # width=0.80,
-            # height=0.1,
-            h_align="center",
-            highlight=colors["accent"],
-            highlight_method="block",
-            mouse_callbacks={
-                "Button1": lazy.spawn(f"autorandr --load {mode}")
-            },
-        )
-        )
-        ri += 1
+class Randr(Base):
+    def __init__(self,qtile,x_index=0):
+        super().__init__(qtile,x_index)
 
-    layout = PopupGridLayout(
-        qtile,
-        width=100,
-        height = len(controls) * 40,
 
-        cols = 1,
-        rows = ri + 1,
-        controls=controls,
-        background=colors["trans"],
-        initial_focus=None,
-    )
+    def _startup(self):
+        self.rowcount = 0
+        self.randr_applet()
+        self.gen_layout(
+                self.qtile_instance,
+                rows=self.rowcount,
+                cols=1,
+                width=100,
+                height=len(self.controls*40)
+                )
+        self.show_layout()
 
-    layout.show(x=x_index, y=0, relative_to = 3, relative_to_bar=True)
+    def randr_applet(self):
+        ri = 0
+        for mode in os.listdir(os.path.expanduser("~/.config/autorandr")):
+            self.controls.append(
+            PopupText(
+                text=mode,
+                row = ri,
+                col = 0,
+                h_align="center",
+                highlight=colors["accent"],
+                highlight_method="block",
+                mouse_callbacks={
+                    "Button1": lazy.spawn(f"autorandr --load {mode}")
+                },
+            )
+            )
+            ri += 1
+        self.rowcount = ri + 1
+

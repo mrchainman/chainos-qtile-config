@@ -5,10 +5,10 @@ from qtile_extras import widget
 from libqtile.resources.utils.settings import colors, decor, with_wlan, with_battery, with_bluetooth
 from libqtile.resources.modules.popups.power import show_power_menu
 from libqtile.resources.modules.popups.windows import show_windows_menu
-from libqtile.resources.modules.popups.bl import bl_applet
+from libqtile.resources.modules.popups.bl import Blue
 from libqtile.resources.modules.popups.bat import bat_applet
 from libqtile.resources.modules.popups.clock import PClock
-from libqtile.resources.modules.popups.randr import randr_applet
+from libqtile.resources.modules.popups.randr import Randr
 from libqtile.resources.utils.wallpaper import set_random_wallpaper
 
 import os
@@ -26,12 +26,6 @@ group_box_settings = {
     "padding_y": 16,
     "hide_unused": True,
 }
-
-# TODO fix
-# def toggle_maximize():
-#     lazywindow.toggle_maximize()
-
-positioner = -44
 
 def parse_window_name(text):
     """Simplifies the names of a few windows, to be displayed in the bar"""
@@ -88,27 +82,30 @@ def battery_state():
         battery_icon = "/usr/share/icons/BeautyLine/devices/scalable/ac-adapter.svg"
     return battery_icon
 
+def img_widget(func_l=None,func_r=None,scratch=None,x_index=None,img=None):
+    mouse_callbacks={}
+    if func_l:
+        mouse_callbacks["Button1"] = lazy.function(func_l)
+    elif scratch:
+        lazy.group["scratchpad"].dropdown_toggle(scratch)
 
-w_hk = (
-    separator(),
-    widget.Image (
-    margin=5,
-    mouse_callbacks={"Button1": lazy.function(set_random_wallpaper)},
-    filename="/usr/share/icons/BeautyLine/apps/scalable/python.svg",
-    decorations=decor(),
-    ),
-    separator(),
-)
+    if func_r:
+        mouse_callbacks["Button3"] = lazy.function(func_r, x_index)
 
+    logger.warning(f"{img} has {mouse_callbacks}")
+    return(
+        separator(),
+        widget.Image (
+        margin=5,
+        mouse_callbacks=mouse_callbacks,
+        filename=f"/usr/share/icons/BeautyLine/apps/scalable/{img}.svg",
+        decorations=decor(),
+        ),
+        separator(),
+        )
 
-# w_layout =  (
-#     separator(),
-#     widget.CurrentLayout(
-#         padding=8,
-#         decorations=decor(),
-#     ),
-#     separator(),
-# )
+def w_hk(): 
+    return img_widget(func_l=set_random_wallpaper, img="python")
 
 def w_layout():   
     return (
@@ -122,27 +119,45 @@ def w_layout():
 
 
 
- # w_notif = (
- #        widget.Notify(
- #       #     decorations=decor(),
- #            )
- #        )
+def w_cal(x_index): 
+    return img_widget(func_r=PClock, x_index=x_index, img="calendar")
 
-w_cal = (
+
+
+def w_blue(x_index):
+    return img_widget(func_r=Blue, x_index=x_index, scratch="bluetooth",img="bluetooth")
+    # return (
+    # separator(),
+    # widget.Image(
+    # margin=5,
+    # mouse_callbacks={
+    #     "Button1": lazy.group["scratchpad"].dropdown_toggle("bluetooth"),
+    #     "Button3": lazy.function(Blue, x_index=x_index),
+    # },
+    # filename="/usr/share/icons/BeautyLine/apps/scalable/bluetooth.svg",
+    # decorations=decor(),
+    # ),
+    # separator(),
+# )
+
+def w_randr(x_index):  
+    return (
     separator(),
     widget.Image(
-        margin=5,
-        mouse_callbacks={
-            "Button1": lazy.function(PClock),
-            },
-        filename="/usr/share/icons/BeautyLine/apps/scalable/calendar.svg",
-        decorations=decor(),
+    margin=5,
+    mouse_callbacks={
+        "Button1": lazy.group["scratchpad"].dropdown_toggle("arandr"),
+        "Button3": lazy.function(Randr, x_index=x_index),
+    },
+    filename="/usr/share/icons/BeautyLine/apps/scalable/xscreensaver.svg",
+    decorations=decor(),
     ),
     separator(),
 )
 
 
-w_flame = (
+def w_flame(x_index): 
+    return (
     separator(),
     widget.Image(
         margin=5,
@@ -154,34 +169,6 @@ w_flame = (
 )
 
 
-
-w_blue = (
-    separator(),
-    widget.Image(
-    margin=5,
-    mouse_callbacks={
-        "Button1": lazy.group["scratchpad"].dropdown_toggle("bluetooth"),
-        "Button3": lazy.function(bl_applet, positioner * 5),
-    },
-    filename="/usr/share/icons/BeautyLine/apps/scalable/bluetooth.svg",
-    decorations=decor(),
-    ),
-    separator(),
-)
-
-w_randr = (
-    separator(),
-    widget.Image(
-    margin=5,
-    mouse_callbacks={
-        "Button1": lazy.group["scratchpad"].dropdown_toggle("arandr"),
-        "Button3": lazy.function(randr_applet, positioner * 6),
-    },
-    filename="/usr/share/icons/BeautyLine/apps/scalable/xscreensaver.svg",
-    decorations=decor(),
-    ),
-    separator(),
-)
 
 w_bat = (
     separator(),
@@ -261,72 +248,3 @@ w_gmenu = (
         ),
     separator(),
         )
-
-
-# w_clock = (
-#     widget.Clock(
-#         padding=8,
-#         decorations=decor(),
-#         )
-# )
-
-
-# w_blue = (
-#         widget.Bluetooth(
-#             fmt="{}",
-#             hci="/dev_E1_4A_BB_C7_62_0F",
-#             padding=16,
-#             decorations=decor(),
-#             mouse_callbacks={"Button1": lazy.spawn("kitty bluetuith"), "Button3": lazy.function(bl_applet)},
-#             )
-#         )
-
-
-# w_wttr = (
-#         widget.Wttr(
-#             location = { 'Berlin': 'Berlin' },
-#             padding=8,
-#             decorations=decor(),
-#             mouse_callbacks={"Button1": lazy.spawn("kitty --hold curl https://wttr.in")},
-#         )
-# )
-
-
-# internet
-# w_wlan = (
-#     separator(),
-#     widget.WiFiIcon(
-#         active_colour=colors["foreground"],
-#         inactive_colour=colors["base"],
-#         interface="wlan0",
-#         update_interval=5,
-#         mouse_callbacks={"Button1": lazy.spawn("iwgtk")},
-#         padding=8,
-#         decorations=decor(),
-#     ),
-#     separator(),
-# )
-
-
-# # battery
-# w_battery = (
-#     separator(),
-#     widget.UPowerWidget(
-#         format="{char}",
-#         charge_char="",
-#         discharge_char="",
-#         full_char="",
-#         unknown_char="",
-#         empty_char="",
-#         show_short_text=False,
-#         border_colour=colors["foreground"],
-#         border_charge_colour=colors["foreground"],
-#         border_critical_colour=colors["foreground"],
-#         fill_normal=colors["foreground"],
-#         fill_charge=colors["bat_charging"],
-#         fill_critical=colors["bat_discharing"],
-#         padding=8,
-#         decorations=decor(),
-#     ),
-#     separator(),
-# )

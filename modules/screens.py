@@ -17,9 +17,8 @@ extension_defaults = widget_defaults.copy()
 
 def create_bar():
     """Create top bar, defined as function to allow duplication in other monitors"""
-    return bar.Bar(
-        [
-            *w_hk,
+    w_list = [
+            *w_hk(),
             *w_layout(),
             *w_gmenu,
             # w_notif,
@@ -27,15 +26,27 @@ def create_bar():
             *gen_groupbox(),
             gen_spacer(),
             # *w_systray,
-            *w_flame,
-            *w_randr,
-            *w_blue,
-            *w_wifi,
-            *w_bat,
-            *w_kb,
-            *w_cal,
-            *w_power,
-        ],
+            ]
+
+    w_list_2 = [
+            # w_flame,
+            w_randr,
+            w_blue,
+            # w_wifi,
+            # w_bat,
+            # *w_kb,
+            w_cal,
+            # w_power,
+        ]
+
+    position = len(w_list_2) - 1
+    for item in w_list_2:
+        w_list.extend([*item(position)])
+        position -= 1
+
+
+    return bar.Bar(
+        w_list,
         30,
         background=colors["trans"],
         margin=[4, 6, 2, 6],

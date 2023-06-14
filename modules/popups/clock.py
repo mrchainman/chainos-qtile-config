@@ -9,6 +9,7 @@ from libqtile import widget
 from datetime import date, datetime
 import time
 from libqtile.resources.utils.settings import colors
+from libqtile.resources.modules.popups.baseclass import Base
 
 from libqtile.log_utils import logger
 import calendar
@@ -22,25 +23,17 @@ class mday():
         self.istoday = istoday
         self.isthismonth = isthismonth
 
-class PClock():
-    instances = [] 
-    def __init__(self,qtile):
-        logger.warning(f"Instance count is: {len(self.__class__.instances)}")
-        if len(self.__class__.instances) > 0:
-            logger.warning("if clause triggered")
-            for v in self.__class__.instances:
-                v.layout.kill()
-                logger.warning(f"Deleted {v}")
-                self.__class__.instances = []
+class PClock(Base):
+    def __init__(self,qtile,x_index=0):
+        super().__init__(qtile,x_index)
 
-        else:
-            self.__class__.instances.append(self)
-            self.cal = calendar.Calendar()
-            self.month = date.today().month
-            self.days = []
-            self.gen_all()
-            self.gen_layout(qtile)
-            self.show_layout()
+    def _startup(self):
+        self.cal = calendar.Calendar()
+        self.month = date.today().month
+        self.days = []
+        self.gen_all()
+        self.gen_layout(self.qtile_instance,rows=7,cols=7,width=400,height=300)
+        self.show_layout()
 
     def gen_all(self):
         self.controls = []
@@ -49,21 +42,10 @@ class PClock():
         self.gen_calendar_gui()
         self.gen_month_switcher()
 
-    def show_layout(self):
-        self.layout.show(x=0, y=0, relative_to = 3, relative_to_bar=True)
 
-    def gen_layout(self,qtile):
-        self.layout = PopupGridLayout(
-                            qtile,
-                            rows=7,
-                            cols=7,
-                            width=400,
-                            height=300,
-                            controls=self.controls,
-                            background=colors["trans"],
-                            initial_focus=None,
-                            close_on_click=False,
-                            )
+
+
+
 
     def gen_clock_gui(self):
         self.controls.append(
