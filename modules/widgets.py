@@ -8,7 +8,8 @@ from libqtile.resources.modules.popups.windows import show_windows_menu
 from libqtile.resources.modules.popups.bl import Blue
 from libqtile.resources.modules.popups.bat import bat_applet
 from libqtile.resources.modules.popups.clock import PClock
-from libqtile.resources.modules.popups.randr import Randr
+#from libqtile.resources.modules.popups.cal_events import Events
+from libqtile.resources.modules.popups.randr import randr_applet
 from libqtile.resources.utils.wallpaper import set_random_wallpaper
 
 import os
@@ -74,8 +75,11 @@ def gen_spacer():
     return widget.Spacer()
 
 def battery_state():
-    status_file = open("/sys/class/power_supply/BAT0/status", "r")
-    status = status_file.readline()
+    try:
+        status_file = open("/sys/class/power_supply/BAT0/status", "r")
+        status = status_file.readline()
+    except:
+        status = "AC"
     if status == "Discharging\n":
         battery_icon = "/usr/share/icons/BeautyLine/apps/scalable/battery.svg"
     else:
@@ -103,6 +107,34 @@ def img_widget(func_l=None,func_r=None,scratch=None,x_index=None,img=None):
         ),
         separator(),
         )
+
+# w_hk = (
+#     separator(),
+#     widget.Image (
+#     margin=5,
+#     # mouse_callbacks={"Button1": lazy.function(set_random_wallpaper)},
+#     mouse_callbacks={
+#         "Button1": lazy.spawn("nwggrid -client"),
+#         "Button3": lazy.function(set_random_wallpaper)
+#                      },
+#     filename="/usr/share/icons/BeautyLine/apps/scalable/python.svg",
+#     decorations=decor(),
+#     ),
+#     separator(),
+# )
+
+w_pom = (
+    separator(),
+    widget.Pomodoro(
+        length_pomodori=25,
+        length_short_break=5,
+        num_pomodori=3,
+        length_long_break=30,
+        decorations=decor(),
+        ),
+    separator(),
+        )
+
 
 def w_hk(): 
     return img_widget(func_l=set_random_wallpaper, img="python")
@@ -144,6 +176,7 @@ def w_randr(x_index):
     return (
     separator(),
     widget.Image(
+<<<<<<< HEAD
     margin=5,
     mouse_callbacks={
         "Button1": lazy.group["scratchpad"].dropdown_toggle("arandr"),

@@ -15,6 +15,16 @@ from libqtile.log_utils import logger
 import calendar
 
 
+
+
+import sys
+import datetime
+import time
+import os
+sys.path.append(os.path.expanduser("~/.data/Development/ChainOS/chainos-packages/python-libs/chainos_python_libs/work/"))
+#import office365
+
+
 class mday():
     def __init__(self, name, monthday, weekday, isthismonth=True, istoday=False):
         self.name = name
@@ -227,3 +237,5 @@ class PClock(Base):
             return "Nov"
         elif self.month == 12:
             return "Dec"
+
+

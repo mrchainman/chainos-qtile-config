@@ -73,7 +73,7 @@ class Notifier(configurable.Configurable):
 
     """
     defaults = [
-        ('x', 1700, 'x position on screen to start drawing notifications.'),
+        ('x', 3000, 'x position on screen to start drawing notifications.'),
         ('y', 64, 'y position on screen to start drawing notifications.'),
         ('width', 192, 'Width of notifications.'),
         ('height', 64, 'Height of notifications.'),

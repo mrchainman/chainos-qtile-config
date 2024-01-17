@@ -4,6 +4,8 @@ from libqtile.config import Screen
 from libqtile.resources.modules.widgets import *
 from libqtile.resources.utils.settings import colors, monitors
 
+import os.path
+
 widget_defaults = dict(
     # font="JetBrainsMono Nerd Font",
     font="Source Code Pro",
@@ -20,7 +22,8 @@ def create_bar():
     w_list = [
             *w_hk(),
             *w_layout(),
-            *w_gmenu,
+            *w_pom,
+            # *w_gmenu,
             # w_notif,
             gen_spacer(),
             *gen_groupbox(),
@@ -52,6 +55,8 @@ def create_bar():
         margin=[4, 6, 2, 6],
     )
 
+wallpaper = "~/.config/wallpaper"
+wp_path = os.path.expanduser(wallpaper)
 screens = []
 
 for i in monitors:
@@ -61,7 +66,7 @@ for i in monitors:
             bottom=bar.Gap(2),
             left=bar.Gap(2),
             right=bar.Gap(2),
-            wallpaper="/home/davidc/.config/wallpaper",
+            wallpaper=wp_path,
             wallpaper_mode="stretch",
         ),
     )
