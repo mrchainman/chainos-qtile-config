@@ -32,7 +32,7 @@ def create_bar():
             ]
 
     w_list_2 = [
-            # w_flame,
+            w_flame,
             w_randr,
             w_blue,
             # w_wifi,

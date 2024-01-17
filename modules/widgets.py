@@ -9,7 +9,7 @@ from libqtile.resources.modules.popups.bl import Blue
 from libqtile.resources.modules.popups.bat import bat_applet
 from libqtile.resources.modules.popups.clock import PClock
 #from libqtile.resources.modules.popups.cal_events import Events
-from libqtile.resources.modules.popups.randr import randr_applet
+from libqtile.resources.modules.popups.randr import Randr
 from libqtile.resources.utils.wallpaper import set_random_wallpaper
 
 import os
@@ -86,12 +86,14 @@ def battery_state():
         battery_icon = "/usr/share/icons/BeautyLine/devices/scalable/ac-adapter.svg"
     return battery_icon
 
-def img_widget(func_l=None,func_r=None,scratch=None,x_index=None,img=None):
+def img_widget(func_l=None,func_r=None,spawn=None,scratch=None,x_index=None,img=None):
     mouse_callbacks={}
     if func_l:
         mouse_callbacks["Button1"] = lazy.function(func_l)
     elif scratch:
         lazy.group["scratchpad"].dropdown_toggle(scratch)
+    elif spawn:
+        mouse_callbacks["Button1"] = lazy.spawn(spawn)
 
     if func_r:
         mouse_callbacks["Button3"] = lazy.function(func_r, x_index)
@@ -107,21 +109,6 @@ def img_widget(func_l=None,func_r=None,scratch=None,x_index=None,img=None):
         ),
         separator(),
         )
-
-# w_hk = (
-#     separator(),
-#     widget.Image (
-#     margin=5,
-#     # mouse_callbacks={"Button1": lazy.function(set_random_wallpaper)},
-#     mouse_callbacks={
-#         "Button1": lazy.spawn("nwggrid -client"),
-#         "Button3": lazy.function(set_random_wallpaper)
-#                      },
-#     filename="/usr/share/icons/BeautyLine/apps/scalable/python.svg",
-#     decorations=decor(),
-#     ),
-#     separator(),
-# )
 
 w_pom = (
     separator(),
@@ -158,50 +145,12 @@ def w_cal(x_index):
 
 def w_blue(x_index):
     return img_widget(func_r=Blue, x_index=x_index, scratch="bluetooth",img="bluetooth")
-    # return (
-    # separator(),
-    # widget.Image(
-    # margin=5,
-    # mouse_callbacks={
-    #     "Button1": lazy.group["scratchpad"].dropdown_toggle("bluetooth"),
-    #     "Button3": lazy.function(Blue, x_index=x_index),
-    # },
-    # filename="/usr/share/icons/BeautyLine/apps/scalable/bluetooth.svg",
-    # decorations=decor(),
-    # ),
-    # separator(),
-# )
 
 def w_randr(x_index):  
-    return (
-    separator(),
-    widget.Image(
-<<<<<<< HEAD
-    margin=5,
-    mouse_callbacks={
-        "Button1": lazy.group["scratchpad"].dropdown_toggle("arandr"),
-        "Button3": lazy.function(Randr, x_index=x_index),
-    },
-    filename="/usr/share/icons/BeautyLine/apps/scalable/xscreensaver.svg",
-    decorations=decor(),
-    ),
-    separator(),
-)
-
+    return img_widget(func_r=Randr, x_index=x_index, scratch="arandr",img="xscreensaver")
 
 def w_flame(x_index): 
-    return (
-    separator(),
-    widget.Image(
-        margin=5,
-        mouse_callbacks={"Button1": lazy.spawn("flameshot gui")},
-        filename="/usr/share/icons/BeautyLine/apps/scalable/flameshot.svg",
-        decorations=decor(),
-    ),
-    separator(),
-)
-
-
+    return img_widget(spawn="flameshot gui", x_index=x_index, img="flameshot")
 
 w_bat = (
     separator(),

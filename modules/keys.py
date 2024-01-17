@@ -162,7 +162,7 @@ keys = [
     # Key([], "c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"), desc="Launch Rofi Clipboard Manager"),
     Key([], "c", lazy.function(PClock), desc="Toggle Clock Widget"),
     Key([], "e", lazy.function(show_power_menu), desc="Launch Power Menu"),
-    Key([], "m", lazy.function(randr_applet, positioner * 5), desc="Configure Monitors"),
+    Key([], "m", lazy.function(Randr), desc="Configure Monitors"),
     Key([], "w", lazy.function(set_random_wallpaper), desc="Set random Wallpaper"),
     ]),
     ###########################################################################################################
