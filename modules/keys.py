@@ -132,23 +132,24 @@ keys = [
     ####################################### Qtile essentials ##################################################
     ###########################################################################################################
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Application Launcher"),
+    # Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Application Launcher"),
+    Key([mod], "space", lazy.spawn("nwggrid -client"), desc="Launch Nwggrid"),
     Key([mod], "q", lazy.window.kill(), desc="Kill active window"),
     KeyChord([mod], "w", [
-    Key([], "w", lazy.function(show_windows_menu), desc="Launch Windows Menu"),
-    Key([], "l", lazy.next_layout(), desc="Toggle forward layout"),
-    Key([], "h", lazy.prev_layout(), desc="Toggle last layout"),
-    Key([], "n", lazy.layout.normalize(), desc="Normalize window size ratios"),
-    Key([], "m", lazy.window.toggle_maximize(), desc="Toggle window between minimum and maximum sizes",),
     Key([], "f", lazy.window.toggle_floating(), desc="Toggle floating mode for a window"),
     Key([], "g", lazy.group["scratchpad"].toscreen(toggle=True), desc="Toggle scratchpad group"),
-    Key([shift], "g", lazy.window.togroup("scratchpad"), desc="Move Window to scratchpad"),
+    Key([], "h", lazy.prev_layout(), desc="Toggle last layout"),
+    Key([], "l", lazy.next_layout(), desc="Toggle forward layout"),
+    Key([], "m", lazy.window.toggle_maximize(), desc="Toggle window between minimum and maximum sizes",),
+    Key([], "n", lazy.layout.normalize(), desc="Normalize window size ratios"),
     Key([], "s", toggle_sticky_windows, desc="Toggle Window Sticky state"),
+    Key([], "w", lazy.function(show_windows_menu), desc="Launch Windows Menu"),
+    Key([shift], "g", lazy.window.togroup("scratchpad"), desc="Move Window to scratchpad"),
     ]),
     KeyChord([mod], "s", [
+    Key([], "a", lazy.spawn("autorandr -c"), desc="Autorandr screens"),
     Key([], "h", lazy.prev_screen(), desc="Move focus to previous monitor",),    # TODO find a better hotkey
     Key([], "l", lazy.next_screen(), desc="Move focus to next monitor",),    # TODO find a better hotkey
-    Key([], "a", lazy.spawn("autorandr -c"), desc="Autorandr screens"),
     ]),
     ###########################################################################################################
     ####################################### Qtile Menus #######################################################
@@ -160,8 +161,8 @@ keys = [
     ###########################################################################################################
     KeyChord([mod], "b", [
     # Key([], "c", lazy.spawn("rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"), desc="Launch Rofi Clipboard Manager"),
-    Key([], "e", lazy.function(show_power_menu), desc="Launch Power Menu"),
     Key([], "c", lazy.function(PClock), desc="Toggle Clock Widget"),
+    Key([], "e", lazy.function(show_power_menu), desc="Launch Power Menu"),
     Key([], "m", lazy.function(randr_applet, positioner * 5), desc="Configure Monitors"),
     Key([], "w", lazy.function(set_random_wallpaper), desc="Set random Wallpaper"),
     ]),
@@ -169,19 +170,20 @@ keys = [
     ####################################### Scratchpads #######################################################
     ###########################################################################################################
     KeyChord([mod], "t", [
-    Key([], "t", lazy.group["scratchpad"].dropdown_toggle("term"), desc="Toggle Scratchpad"),
-    Key([], "p", lazy.group["scratchpad"].dropdown_toggle("ipy"), desc="Toggle IPython"),
-    Key([], "n", lazy.group["scratchpad"].dropdown_toggle("nvim"), desc="Toggle Editor"),
-    # Key([], "v", lazy.group["scratchpad"].dropdown_toggle("mpv"), desc="Toggle MPV"),
-    Key([], "w", lazy.group["scratchpad"].dropdown_toggle("twtimer"), desc="Toggle Teamwork Timer"),
-    Key([], "k", lazy.group["scratchpad"].dropdown_toggle("keepass"), desc="Toggle Keepass"),
-    Key([], "j", lazy.group["scratchpad"].dropdown_toggle("joplin"), desc="Toggle Joplin"),
-    Key([], "m", lazy.group["scratchpad"].dropdown_toggle("pcmanfm"), desc="Toggle PCManFM"),
-    Key([], "f", lazy.group["scratchpad"].dropdown_toggle("ferdium"), desc="Toggle Ferdium"),
-    Key([], "x", lazy.group["scratchpad"].dropdown_toggle("myxer"), desc="Toggle Myxer"),
     Key([], "b", lazy.group["scratchpad"].dropdown_toggle("bluetooth"), desc="Toggle Bluetooth"),
+    Key([], "f", lazy.group["scratchpad"].dropdown_toggle("ferdium"), desc="Toggle Ferdium"),
     Key([], "i", lazy.group["scratchpad"].dropdown_toggle("wifi"), desc="Toggle Wifi"),
+    Key([], "j", lazy.group["scratchpad"].dropdown_toggle("joplin"), desc="Toggle Joplin"),
+    Key([], "k", lazy.group["scratchpad"].dropdown_toggle("keepass"), desc="Toggle Keepass"),
+    Key([], "l", lazy.group["scratchpad"].dropdown_toggle("nchat"), desc="Toggle Nchat"),
+    Key([], "m", lazy.group["scratchpad"].dropdown_toggle("pcmanfm"), desc="Toggle PCManFM"),
+    Key([], "n", lazy.group["scratchpad"].dropdown_toggle("nvim"), desc="Toggle Editor"),
+    Key([], "o", lazy.group["scratchpad"].dropdown_toggle("onenote"), desc="Toggle Onenote"),
+    Key([], "p", lazy.group["scratchpad"].dropdown_toggle("ipy"), desc="Toggle IPython"),
     Key([], "q", lazy.group["scratchpad"].dropdown_toggle("qtpass"), desc="Toggle QtPass"),
+    Key([], "t", lazy.group["scratchpad"].dropdown_toggle("term"), desc="Toggle Scratchpad"),
+    Key([], "w", lazy.group["scratchpad"].dropdown_toggle("twtimer"), desc="Toggle Teamwork Timer"),
+    Key([], "x", lazy.group["scratchpad"].dropdown_toggle("myxer"), desc="Toggle Myxer"),
     ]),
     ###########################################################################################################
     ####################################### Qtile Windows #####################################################
@@ -207,25 +209,25 @@ keys = [
     ####################################### Qtile Programs#####################################################
     ###########################################################################################################
     KeyChord([alt], "c", [
-        Key([], "w", lazy.spawn("qutebrowser"), desc="Launch Qutebrowser"),
+        Key([], "e", lazy.spawn("rofi -modi emoji -show emoji"), desc="Launch Rofi Emoji Picker"),
         Key([], "f", lazy.spawn("ferdium"), desc="Launch Ferdium"),
         Key([], "j", lazy.spawn("joplin-desktop"), desc="Launch Joplin"),
-        Key([], "r", lazy.spawn("rofi-rbw"), desc="Launch Bitwarden"),
-        Key([], "p", lazy.spawn("passmenu"), desc="Launch Passmenu"),
-        Key([], "e", lazy.spawn("rofi -modi emoji -show emoji"), desc="Launch Rofi Emoji Picker"),
         Key([], "k", lazy.spawn("betterlockscreen -l blur"), desc="Lock screen"),
-        Key([], "n", lazy.spawn(f"{terminal} nvim"), desc="Launch Neovim"),
-        Key([], "v", lazy.spawn(f"{terminal} vifmrun"), desc="Launch Vifm"),
         Key([], "m", lazy.spawn("pcmanfm"), desc="Launch PCManFm"),
+        Key([], "n", lazy.spawn(f"{terminal} nvim"), desc="Launch Neovim"),
+        Key([], "p", lazy.spawn("passmenu"), desc="Launch Passmenu"),
+        Key([], "r", lazy.spawn("rofi-rbw"), desc="Launch Bitwarden"),
         Key([], "s", lazy.spawn(f"{terminal} ansible_ssh.sh"), desc="Connect to ansible Server"),
+        Key([], "v", lazy.spawn(f"{terminal} vifmrun"), desc="Launch Vifm"),
+        Key([], "w", lazy.spawn("qutebrowser"), desc="Launch Qutebrowser"),
     ]),
     # Dunst
-    KeyChord([alt], "d", [
-        Key([], "c", lazy.spawn("dunstctl close"), desc="Close last Notification"),
-        Key([], "a", lazy.spawn("dunstctl close-all"), desc="Close all Notifications"),
-        Key([], "f", lazy.spawn("dunstctl history-pop"), desc="Show old Notifications"),
-        Key([], "d", lazy.spawn("dunstctl context"), desc="Execute Notification context"),
-    ]),
+    # KeyChord([alt], "d", [
+    #     Key([], "c", lazy.spawn("dunstctl close"), desc="Close last Notification"),
+    #     Key([], "a", lazy.spawn("dunstctl close-all"), desc="Close all Notifications"),
+    #     Key([], "f", lazy.spawn("dunstctl history-pop"), desc="Show old Notifications"),
+    #     Key([], "d", lazy.spawn("dunstctl context"), desc="Execute Notification context"),
+    # ]),
     # audio stuff
     Key([], "XF86AudioRaiseVolume", lazy.spawn("pulsemixer --change-volume +10"), desc="Increase volume",),
     Key([], "XF86AudioLowerVolume", lazy.spawn("pulsemixer --change-volume -10"), desc="Decrease volume",),

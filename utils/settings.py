@@ -42,12 +42,16 @@ def decor():
     ]
 
 def get_mon():
-    d = display.Display()
-    root = d.screen().root
-    monitors = []
-    for m in root.xrandr_get_monitors().monitors:
-        c = d.get_atom_name(m.name)
-        monitors.append(c)
+    try:
+        d = display.Display()
+        root = d.screen().root
+        monitors = []
+        for m in root.xrandr_get_monitors().monitors:
+            c = d.get_atom_name(m.name)
+            monitors.append(c)
+        #logger.warning(f"Monitors: {monitors}\n")
+    except:
+        monitors = ["None"]
     return monitors
 
 # Hardware

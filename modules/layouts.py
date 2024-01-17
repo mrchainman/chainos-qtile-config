@@ -6,7 +6,7 @@ from libqtile.resources.utils.settings import colors
 layout_theme = {
     "margin": 20,
     "margin_on_single": True,
-    "border_width": 0,
+    "border_width": 1,
     "border_focus": colors["accent"],
     "border_normal": colors["trans"],
     "border_on_single": True,
@@ -52,8 +52,11 @@ floating_layout = layout.Floating(
         Match(wm_class="Godot"),
         Match(wm_class="Minetest"),
         Match(wm_class="Steam"),
+        Match(wm_class="steam"),
         # Match(wm_class="Dockx"),
         Match(title="chainos-urlhandler"),  # Custom
+        Match(title="Grand Theft Auto V"),
+        Match(title="Rockstar Games Launcher"),
         # TODO add matches
     ],
 )
